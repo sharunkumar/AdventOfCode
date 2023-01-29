@@ -8,8 +8,14 @@ const input = readFileSync(__dirname + "/io/input.txt", "utf-8")
 
 const solution: Solution = new RucksackReorganization()
 
+const start = Date.now()
+
 const output = solution.solve(input)
 
+const end = Date.now()
+
 console.log({ output })
+
+console.debug("solution runtime: " + (end - start) + "ms")
 
 writeFileSync(__dirname + "/io/output.txt", output.toString(), { encoding: "utf8" })
