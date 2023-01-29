@@ -34,4 +34,7 @@ export abstract class Solution {
     get_lines(input: string): Array<string> {
         return input.split("\r\n")
     }
+    get_blocks(input: string): Array<string> {
+        return input.split("\r\n\r\n")
+    }
 }

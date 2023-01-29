@@ -7,7 +7,7 @@ import { Solution } from "./utils";
 
 const input = readFileSync(__dirname + "/io/input.txt", "utf-8")
 
-const solution: Solution = new CampCleanup()
+const solution: Solution = new CalorieCounting()
 
 const start = Date.now()
 
