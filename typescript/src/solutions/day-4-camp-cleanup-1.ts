@@ -1,4 +1,4 @@
-import { inclusive_between, pipelog, Solution, sum } from "./utils";
+import { pipelog, Solution, sum } from "../utils";
 
 class Range extends Object {
     start: number;
@@ -13,13 +13,6 @@ class Range extends Object {
     includes(other: Range): boolean {
         return this.start <= other.start && this.end >= other.end
     }
-
-    overlaps(other: Range): boolean {
-        return inclusive_between(this.start, other.start, other.end)
-            || inclusive_between(this.end, other.start, other.end)
-            || inclusive_between(other.start, this.start, this.end)
-            || inclusive_between(other.end, this.start, this.end)
-    }
 }
 
 export default class CampCleanup extends Solution {
@@ -28,8 +21,8 @@ export default class CampCleanup extends Solution {
         return this.get_lines(input)
             .map(str => str.split(","))
             .map(arr => [new Range(arr[0]), new Range(arr[1])])
-            .filter(([one, two]) => one.overlaps(two))
-            // .map(pipelog)
+            .filter(ranges => ranges[0].includes(ranges[1]) || ranges[1].includes(ranges[0]))
+            .map(pipelog)
             .length
     }
 }
