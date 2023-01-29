@@ -15,8 +15,8 @@ const output = solution.solve(input)
 
 const end = Date.now()
 
-console.log({ output })
+console.debug({ output })
 
 console.debug("solution runtime: " + (end - start) + "ms")
 
-writeFileSync(__dirname + "/io/output.txt", output.toString(), { encoding: "utf8" })
+// writeFileSync(__dirname + "/io/output.txt", output.toString(), { encoding: "utf8" })
