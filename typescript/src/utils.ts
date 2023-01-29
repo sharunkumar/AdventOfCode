@@ -16,6 +16,14 @@ export function ascii_to_char(ascii: number) {
     return String.fromCharCode(ascii)
 }
 
+export function ascending(a: number, b: number): number {
+    return a - b
+}
+
+export function descending(a: number, b: number): number {
+    return b - a
+}
+
 export abstract class Solution {
     // define an abstract method that solves
     abstract solve(input: string): any

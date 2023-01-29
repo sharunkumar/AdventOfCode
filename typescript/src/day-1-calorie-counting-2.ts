@@ -1,4 +1,4 @@
-import { Solution, sum } from "./utils";
+import { descending, Solution, sum } from "./utils";
 
 export default class CalorieCounting extends Solution {
     solve(input: string): any {
@@ -8,7 +8,7 @@ export default class CalorieCounting extends Solution {
                 parseFloat(item))
                 .reduce(sum)
             )
-            .sort((a, b) => b - a)
+            .sort(descending)
 
         return a + b + c
     }
