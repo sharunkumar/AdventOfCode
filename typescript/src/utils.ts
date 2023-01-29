@@ -24,6 +24,10 @@ export function descending(a: number, b: number): number {
     return b - a
 }
 
+export function inclusive_between(x: number, start: number, end: number) {
+    return start <= x && x <= end
+}
+
 export abstract class Solution {
     // define an abstract method that solves
     abstract solve(input: string): any
