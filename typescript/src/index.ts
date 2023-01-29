@@ -4,7 +4,7 @@ export abstract class Solution {
 }
 
 import { readFileSync, writeFileSync } from "fs";
-import CalorieCounting from "./day-1-calorie-counting";
+import CalorieCounting from "./day-1-calorie-counting-2";
 
 const input = readFileSync(__dirname + "/io/input.txt", "utf-8")
 
