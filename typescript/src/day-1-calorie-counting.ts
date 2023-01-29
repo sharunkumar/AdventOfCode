@@ -1,9 +1,15 @@
 import { Solution } from ".";
 
 export default class CalorieCounting extends Solution {
-    solve(input: string): string {
+    solve(input: string): any {
+        var max_calories = input.split("\r\n\r\n")
+            .map(item => item.split("\r\n"))
+            .map(item_aray => item_aray.map(item =>
+                parseFloat(item))
+                .reduce((prev, next) => prev + next)
+            )
+            .reduce((prev, next) => prev > next ? prev : next)
 
-
-        return input
+        return max_calories
     }
 }

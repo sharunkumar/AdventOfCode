@@ -1,6 +1,6 @@
 export abstract class Solution {
     // define an abstract method that solves
-    abstract solve(input: string): string
+    abstract solve(input: string): any
 }
 
 import { readFileSync, writeFileSync } from "fs";
@@ -12,4 +12,6 @@ const solution: Solution = new CalorieCounting()
 
 const output = solution.solve(input)
 
-writeFileSync(__dirname + "/io/output.txt", output)
+console.log({ output })
+
+writeFileSync(__dirname + "/io/output.txt", output.toString())
