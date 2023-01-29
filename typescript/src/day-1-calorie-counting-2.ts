@@ -1,4 +1,4 @@
-import { Solution, sum } from ".";
+import { Solution, sum } from "./utils";
 
 export default class CalorieCounting extends Solution {
     solve(input: string): any {

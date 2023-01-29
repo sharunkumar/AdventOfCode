@@ -1,4 +1,5 @@
-import { Solution, sum } from ".";
+import { Solution } from ".";
+import { sum } from "./utils";
 
 enum play {
     rock,
