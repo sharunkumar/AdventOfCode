@@ -4,9 +4,10 @@ export abstract class Solution {
     get_lines(input: string): Array<string> {
         return input.split("\r\n")
     }
-    sum(x: number, y: number): number {
-        return x + y
-    }
+}
+
+export function sum(x: number, y: number): number {
+    return x + y
 }
 
 import { readFileSync, writeFileSync } from "fs";

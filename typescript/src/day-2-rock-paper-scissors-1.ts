@@ -1,4 +1,4 @@
-import { Solution } from ".";
+import { Solution, sum } from ".";
 
 enum play {
     rock,
@@ -51,7 +51,7 @@ export default class RockPaperScissors extends Solution {
             .map(line => line.split(" "))
             .map(arr => arr.map(item => this.parse_raw(item)))
             .map(plays => this.get_outcome(plays[0], plays[1]) + plays[1] + 1)
-            .reduce(this.sum)
+            .reduce(sum)
     }
 
 }

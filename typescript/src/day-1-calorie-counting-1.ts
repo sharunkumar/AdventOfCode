@@ -1,4 +1,4 @@
-import { Solution } from ".";
+import { Solution, sum } from ".";
 
 export default class CalorieCounting extends Solution {
     solve(input: string): any {
@@ -6,9 +6,9 @@ export default class CalorieCounting extends Solution {
             .map(item => item.split("\r\n"))
             .map(item_aray => item_aray.map(item =>
                 parseFloat(item))
-                .reduce((prev, next) => prev + next)
+                .reduce(sum)
             )
-            .reduce((prev, next) => prev > next ? prev : next)
+            .reduce((prev, next) => Math.max(prev, next))
 
         return max_calories
     }
