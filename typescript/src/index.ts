@@ -5,9 +5,9 @@ import RucksackReorganization from "./solutions/day-3-rucksack-reorganization-2"
 import CampCleanup from "./solutions/day-4-camp-cleanup-2";
 import { Solution } from "./utils";
 
-const input = readFileSync(__dirname + "/io/input.txt", "utf-8")
+const solution: Solution = new CampCleanup()
 
-const solution: Solution = new CalorieCounting()
+const input = readFileSync(__dirname + "/io/input.txt", "utf-8")
 
 const start = Date.now()
 
