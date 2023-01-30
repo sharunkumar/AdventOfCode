@@ -5,7 +5,7 @@ import RockPaperScissors from "./solutions/day-2-rock-paper-scissors-2";
 import RucksackReorganization from "./solutions/day-3-rucksack-reorganization-2";
 import CampCleanup from "./solutions/day-4-camp-cleanup-2";
 import SupplyStacks from "./solutions/day-5-supply-stacks-2";
-import TuningTrouble from "./solutions/day-6-tuning-trouble-1";
+import TuningTrouble from "./solutions/day-6-tuning-trouble-2";
 import { Solution } from "./utils";
 
 const solution: Solution = new TuningTrouble()
