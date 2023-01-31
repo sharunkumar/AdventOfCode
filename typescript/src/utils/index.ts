@@ -38,3 +38,7 @@ export abstract class Solution {
         return input.split("\r\n\r\n")
     }
 }
+
+export function spreadMap<K, V>(input: Map<K, V>): Array<V> {
+    return [...input].map(value => value[1])
+}
