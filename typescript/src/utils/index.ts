@@ -1,3 +1,5 @@
+import { EOL } from 'os';
+
 
 export function sum(x: number, y: number): number {
     return x + y;
@@ -32,10 +34,10 @@ export abstract class Solution {
     // define an abstract method that solves
     abstract solve(input: string): any
     get_lines(input: string): Array<string> {
-        return input.split("\r\n")
+        return input.split(EOL)
     }
     get_blocks(input: string): Array<string> {
-        return input.split("\r\n\r\n")
+        return input.split(`${EOL}${EOL}`)
     }
 }
 
