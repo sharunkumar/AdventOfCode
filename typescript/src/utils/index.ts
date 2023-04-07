@@ -44,3 +44,5 @@ export abstract class Solution {
 export function spreadMap<K, V>(input: Map<K, V>): Array<V> {
     return [...input].map(value => value[1])
 }
+
+export type ObjectValues<T> = T[keyof T]
