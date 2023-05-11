@@ -8,7 +8,7 @@ import SupplyStacks from "./solutions/day-5-supply-stacks-2";
 import TuningTrouble from "./solutions/day-6-tuning-trouble-2";
 import NoSpaceLeftOnDevice from "./solutions/day-7-no-space-left-on-device-2";
 import TreetopTreeHouse from "./solutions/day-8-treetop-tree-house-2";
-import RopeBridge from "./solutions/day-9-rope-bridge-1";
+import RopeBridge from "./solutions/day-9-rope-bridge-2";
 import { Solution } from "./utils";
 
 const solution: Solution = new RopeBridge()
