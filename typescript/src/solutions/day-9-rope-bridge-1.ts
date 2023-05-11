@@ -36,7 +36,14 @@ class MoveD {
 }
 
 class GameState {
-    constructor(public head: Position, public tail: Position) {
+    knots: Position[];
+    constructor(public knots_count: number = 2) {
+        this.knots = [] as Position[]
+
+        for (let i = 0; i < knots_count; i++) {
+            this.knots.push(new Position(0, 0))
+        }
+
         this.tail_states = new Set<[number, number]>
     }
 
@@ -47,19 +54,21 @@ class GameState {
     }
 
     move_head(move: MoveD) {
+        let head = 0
+        let tail = 1
         for (let i = 0; i < move.count; i++) {
-            this.head.x += move.dx;
-            this.head.y += move.dy;
+            this.knots[head].x += move.dx;
+            this.knots[head].y += move.dy;
 
-            if (!this.tail.is_around(this.head)) {
-                let tdx = this.head.x == this.tail.x ? 0 : (this.head.x - this.tail.x) / Math.abs(this.head.x - this.tail.x)
-                let tdy = this.head.y == this.tail.y ? 0 : (this.head.y - this.tail.y) / Math.abs(this.head.y - this.tail.y)
+            if (!this.knots[tail].is_around(this.knots[head])) {
+                let tdx = this.knots[head].x == this.knots[tail].x ? 0 : (this.knots[head].x - this.knots[tail].x) / Math.abs(this.knots[head].x - this.knots[tail].x)
+                let tdy = this.knots[head].y == this.knots[tail].y ? 0 : (this.knots[head].y - this.knots[tail].y) / Math.abs(this.knots[head].y - this.knots[tail].y)
 
-                this.tail.x += tdx;
-                this.tail.y += tdy;
+                this.knots[tail].x += tdx;
+                this.knots[tail].y += tdy;
             }
 
-            this.tail_states.add([this.tail.x, this.tail.y])
+            this.tail_states.add([this.knots[tail].x, this.knots[tail].y])
         }
     }
 }
@@ -76,7 +85,7 @@ export default class RopeBridge extends Solution {
             .map(arr => new Move(arr[0], parseInt(arr[1])))
             .map(mv => new MoveD(mv))
 
-        let state = new GameState(new Position(0, 0), new Position(0, 0))
+        let state = new GameState()
 
         moves.map(m => state.move_head(m))
 
