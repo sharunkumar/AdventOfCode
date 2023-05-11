@@ -10,7 +10,7 @@ import TuningTrouble from "./solutions/day-6-tuning-trouble-2";
 import NoSpaceLeftOnDevice from "./solutions/day-7-no-space-left-on-device-2";
 import TreetopTreeHouse from "./solutions/day-8-treetop-tree-house-2";
 import RopeBridge from "./solutions/day-9-rope-bridge-2";
-import CathodeRayTube from "./solutions/day-10-cathode-ray-tube";
+import CathodeRayTube from "./solutions/day-10-cathode-ray-tube-2";
 
 const solution: Solution = new CathodeRayTube()
 
