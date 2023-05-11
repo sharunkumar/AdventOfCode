@@ -1,4 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
+import { Solution } from "./utils";
 import path from "path";
 import CalorieCounting from "./solutions/day-1-calorie-counting-2";
 import RockPaperScissors from "./solutions/day-2-rock-paper-scissors-2";
@@ -9,9 +10,9 @@ import TuningTrouble from "./solutions/day-6-tuning-trouble-2";
 import NoSpaceLeftOnDevice from "./solutions/day-7-no-space-left-on-device-2";
 import TreetopTreeHouse from "./solutions/day-8-treetop-tree-house-2";
 import RopeBridge from "./solutions/day-9-rope-bridge-2";
-import { Solution } from "./utils";
+import CathodeRayTube from "./solutions/day-10-cathode-ray-tube";
 
-const solution: Solution = new RopeBridge()
+const solution: Solution = new CathodeRayTube()
 
 const input_file_name = path.join(__dirname, "io", `${solution.constructor.name}.txt`)
 
