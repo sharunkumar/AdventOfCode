@@ -43,13 +43,8 @@ export default class CathodeRayTube extends Solution {
     solve(input: string) {
         this.get_lines(input)
             .map(line => line.split(" "))
-            .map(command => {
-                let func = command.shift()
-                return [Reflect.get(Instruction, func + ""), ...command.map(parseInt)]
-            })
-            .map(([func, ...args]) => {
-                func(...args)
-            })
+            .map(command => [Reflect.get(Instruction, command.shift() + ""), ...command.map(parseInt)])
+            .map(([func, ...args]) => func(...args))
 
         return signal
     }
