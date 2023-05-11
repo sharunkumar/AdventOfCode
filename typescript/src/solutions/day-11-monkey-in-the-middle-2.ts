@@ -16,7 +16,7 @@ class Monkey {
     ) {
     }
 
-    operate() {
+    operate(modulo: number) {
         let item = this.items.shift()
         if (!item) return
         this.inspected++
@@ -24,7 +24,7 @@ class Monkey {
         let result = Number(eval(this.operation.replace(/old/g, item + "")))
 
         //monke gets bored
-        result = Math.floor(result / 3)
+        result = result % modulo
 
         let target_monkey = result % this.test_divisible_by == 0 ? this.true_monkey : this.false_monkey
 
@@ -58,21 +58,23 @@ export class MonkeyInTheMiddle extends Solution {
 
         // let ops = monkeys.map(monke => monke.operate()).map(op => op())
 
-        for (let round = 0; round < 20; round++) {
-            console.log({ round })
+        let modulo = monkeys.map(m => m.test_divisible_by).reduce((acc, curr) => acc * curr, 1)
+
+        for (let round = 0; round < 10000; round++) {
+            // console.log({ round })
             for (let m = 0; m < monkeys.length; m++) {
                 const monke = monkeys[m];
                 // const op = ops[m]
                 while (monke.items.length > 0) {
-                    let result = monke.operate()
+                    let result = monke.operate(modulo)
                     if (!result) break
                     monkeys[result.target_monkey].items.push(result.item)
                 }
             }
-            monkeys.map(m => m.toString()).pipelog()
+            monkeys.map(m => m.toString())//.pipelog()
         }
 
-        let [first, second, _] = monkeys.map(m => m.inspected).sort(descending).pipelog()
+        let [first, second, _] = monkeys.map(m => m.inspected).sort(descending)//.pipelog()
 
         // monkeys.pipelog()
 
