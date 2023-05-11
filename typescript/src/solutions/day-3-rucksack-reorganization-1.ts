@@ -1,4 +1,4 @@
-import { ascii_to_char, char_to_ascii, pipelog, Solution, sum } from "../utils"
+import { ascii_to_char, char_to_ascii, Solution, sum } from "../utils"
 
 export default class RucksackReorganization extends Solution {
     constructor() {

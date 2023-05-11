@@ -1,4 +1,4 @@
-import { pipelog, Solution, sum } from "../utils";
+import { Solution, sum } from "../utils";
 
 class Range extends Object {
     start: number;
@@ -22,7 +22,7 @@ export default class CampCleanup extends Solution {
             .map(str => str.split(","))
             .map(arr => [new Range(arr[0]), new Range(arr[1])])
             .filter(ranges => ranges[0].includes(ranges[1]) || ranges[1].includes(ranges[0]))
-            .map(pipelog)
+            .pipelog()
             .length
     }
 }

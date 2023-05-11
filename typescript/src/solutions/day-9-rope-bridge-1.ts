@@ -1,4 +1,4 @@
-import { pipelog, Solution } from "../utils";
+import { Solution } from "../utils";
 
 class Position {
     constructor(public x: number, public y: number) { }

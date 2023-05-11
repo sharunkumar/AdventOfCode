@@ -1,4 +1,4 @@
-import { pipelog, Solution, spreadMap, sum } from "../utils";
+import { Solution, spreadMap, sum } from "../utils";
 
 class File {
     name: string;

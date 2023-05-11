@@ -1,4 +1,4 @@
-import { inclusive_between, pipelog, Solution } from "../utils";
+import { inclusive_between, Solution } from "../utils";
 
 export default class TreetopTreeHouse extends Solution {
     solve(input: string) {

@@ -1,4 +1,4 @@
-import { FunctionLibrary, Solution, pipelog } from "../utils";
+import { FunctionLibrary, Solution } from "../utils";
 
 let cycles = 0
 let x = 1

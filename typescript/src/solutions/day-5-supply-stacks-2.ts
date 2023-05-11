@@ -1,4 +1,4 @@
-import { descending, pipelog, Solution, sum } from "../utils";
+import { descending, Solution, sum } from "../utils";
 import { Stack } from "../utils/stack";
 
 class Move {
@@ -61,7 +61,7 @@ export default class SupplyStacks extends Solution {
         console.log(this.stacks)
 
         return this.stacks.map(item => item.peek())
-            .map(pipelog)
+            .pipelog()
             .join("")
     }
 }
