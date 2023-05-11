@@ -21,7 +21,7 @@ export default class SupplyStacks extends Solution {
 
         const stack_array = this.get_lines(stacks_input).reverse()
             .map((item, idx) => [idx, item])
-            .filter(([idx, item]) => idx > 0)
+            .filter(([idx, item]) => parseInt(idx + "") > 0)
             .map(item => item[1] + "")
 
         for (let i = 1; i < stack_array[0].length; i += 4) {
