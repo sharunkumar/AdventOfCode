@@ -11,8 +11,9 @@ import NoSpaceLeftOnDevice from "./solutions/day-7-no-space-left-on-device-2";
 import TreetopTreeHouse from "./solutions/day-8-treetop-tree-house-2";
 import RopeBridge from "./solutions/day-9-rope-bridge-2";
 import CathodeRayTube from "./solutions/day-10-cathode-ray-tube-2";
+import { MonkeyInTheMiddle } from "./solutions/day-11-monkey-in-the-middle-1";
 
-const solution: Solution = new CathodeRayTube()
+const solution: Solution = new MonkeyInTheMiddle()
 
 const input_file_name = path.join(__dirname, "io", `${solution.constructor.name}.txt`)
 
