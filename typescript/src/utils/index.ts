@@ -52,3 +52,17 @@ export class FunctionLibrary {
         return Reflect.get(this, name)
     }
 }
+
+declare global {
+    interface Array<T> {
+        pipelog(): Array<T>;
+    }
+}
+
+Array.prototype.pipelog = function <T>(): Array<T> {
+    for (let i = 0; i < this.length; i++) {
+        console.log(this[i])
+    }
+    return this as Array<T>;
+};
+
