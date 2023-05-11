@@ -54,10 +54,8 @@ class GameState {
     }
 
     move_head(move: MoveD) {
-        let hi = 0
-        let ti = 1
-        let head = this.knots[hi]
-        let tail = this.knots[ti]
+        let head = this.knots[0]
+        let tail = this.knots[1]
         for (let i = 0; i < move.count; i++) {
             head.x += move.dx;
             head.y += move.dy;
@@ -70,7 +68,7 @@ class GameState {
                 tail.y += tdy;
             }
 
-            if (ti == this.knots.length - 1)
+            if (tail == this.knots[this.knots.length - 1])
                 this.tail_states.add([tail.x, tail.y])
         }
     }
