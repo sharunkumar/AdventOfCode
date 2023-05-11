@@ -54,22 +54,24 @@ class GameState {
     }
 
     move_head(move: MoveD) {
-        let head = 0
-        let tail = 1
+        let hi = 0
+        let ti = 1
+        let head = this.knots[hi]
+        let tail = this.knots[ti]
         for (let i = 0; i < move.count; i++) {
-            this.knots[head].x += move.dx;
-            this.knots[head].y += move.dy;
+            head.x += move.dx;
+            head.y += move.dy;
 
-            if (!this.knots[tail].is_around(this.knots[head])) {
-                let tdx = this.knots[head].x == this.knots[tail].x ? 0 : (this.knots[head].x - this.knots[tail].x) / Math.abs(this.knots[head].x - this.knots[tail].x)
-                let tdy = this.knots[head].y == this.knots[tail].y ? 0 : (this.knots[head].y - this.knots[tail].y) / Math.abs(this.knots[head].y - this.knots[tail].y)
+            if (!tail.is_around(head)) {
+                let tdx = head.x == tail.x ? 0 : (head.x - tail.x) / Math.abs(head.x - tail.x)
+                let tdy = head.y == tail.y ? 0 : (head.y - tail.y) / Math.abs(head.y - tail.y)
 
-                this.knots[tail].x += tdx;
-                this.knots[tail].y += tdy;
+                tail.x += tdx;
+                tail.y += tdy;
             }
 
-            if (tail == this.knots.length - 1)
-                this.tail_states.add([this.knots[tail].x, this.knots[tail].y])
+            if (ti == this.knots.length - 1)
+                this.tail_states.add([tail.x, tail.y])
         }
     }
 }
