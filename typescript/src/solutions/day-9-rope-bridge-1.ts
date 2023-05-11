@@ -68,7 +68,8 @@ class GameState {
                 this.knots[tail].y += tdy;
             }
 
-            this.tail_states.add([this.knots[tail].x, this.knots[tail].y])
+            if (tail == this.knots.length - 1)
+                this.tail_states.add([this.knots[tail].x, this.knots[tail].y])
         }
     }
 }
