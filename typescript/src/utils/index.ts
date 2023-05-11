@@ -46,3 +46,9 @@ export function spreadMap<K, V>(input: Map<K, V>): Array<V> {
 }
 
 export type ObjectValues<T> = T[keyof T]
+
+export class FunctionLibrary {
+    static get(name: string) {
+        return Reflect.get(this, name)
+    }
+}

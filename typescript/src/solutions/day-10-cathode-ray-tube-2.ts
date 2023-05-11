@@ -1,4 +1,4 @@
-import { Solution, pipelog } from "../utils";
+import { FunctionLibrary, Solution, pipelog } from "../utils";
 
 let cycles = 0
 let x = 1
@@ -24,7 +24,7 @@ function is_qualifying_cycle() {
     return cycles % 40 == 0
 }
 
-class Instruction {
+class Instruction extends FunctionLibrary {
     static noop() {
         // console.log("noop")
         increment_cycle()
@@ -43,7 +43,7 @@ export default class CathodeRayTube extends Solution {
     solve(input: string) {
         this.get_lines(input)
             .map(line => line.split(" "))
-            .map(command => [Reflect.get(Instruction, command.shift() + ""), ...command.map(parseInt)])
+            .map(command => [Instruction.get(command.shift() + ""), ...command.map(parseInt)])
             .map(([func, ...args]) => func(...args))
 
         return signal
