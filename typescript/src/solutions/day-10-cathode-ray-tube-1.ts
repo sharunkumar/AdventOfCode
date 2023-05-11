@@ -22,11 +22,11 @@ class Instruction {
         increment_cycle()
     }
 
-    static addx(x: number) {
-        console.log("addx", x)
+    static addx(num: number) {
+        console.log("addx", num)
         increment_cycle()
         increment_cycle()
-        x += x
+        x += num
     }
 }
 
