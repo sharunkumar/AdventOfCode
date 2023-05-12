@@ -916,6 +916,10 @@ p-locate@^5.0.0:
   dependencies:
     p-limit "^3.0.2"
 
+"p-queue-ts@https://github.com/sharunkumar/p-queue-ts#6b5c6f8444947e53d9f445fe86f356a391566d19":
+  version "1.1.0"
+  resolved "https://github.com/sharunkumar/p-queue-ts#6b5c6f8444947e53d9f445fe86f356a391566d19"
+
 parent-module@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/parent-module/-/parent-module-1.0.1.tgz#691d2709e78c79fae3a156622452d00762caaaa2"
