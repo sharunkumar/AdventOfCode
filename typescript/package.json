@@ -32,7 +32,7 @@
     "husky": "^8.0.1",
     "nodemon": "^2.0.22",
     "onchange": "^7.1.0",
-    "p-queue-ts": "https://github.com/sharunkumar/p-queue-ts#6b5c6f8444947e53d9f445fe86f356a391566d19",
+    "p-queue-ts": "https://github.com/sharunkumar/p-queue-ts#build",
     "prettier": "^2.7.1",
     "rimraf": "^3.0.2",
     "run-script-os": "^1.1.6",

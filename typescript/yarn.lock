@@ -916,9 +916,9 @@ p-locate@^5.0.0:
   dependencies:
     p-limit "^3.0.2"
 
-"p-queue-ts@https://github.com/sharunkumar/p-queue-ts#6b5c6f8444947e53d9f445fe86f356a391566d19":
+"p-queue-ts@https://github.com/sharunkumar/p-queue-ts#build":
   version "1.1.0"
-  resolved "https://github.com/sharunkumar/p-queue-ts#6b5c6f8444947e53d9f445fe86f356a391566d19"
+  resolved "https://github.com/sharunkumar/p-queue-ts#10be556ea9f25d6664ebf3db4fae7a109cd8fe95"
 
 parent-module@^1.0.0:
   version "1.0.1"
