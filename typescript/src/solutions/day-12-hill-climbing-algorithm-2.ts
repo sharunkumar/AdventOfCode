@@ -65,7 +65,7 @@ export default class HillClimbingAlgorithm extends Solution {
 
         const pq = new MinPriorityQueue<Position>((pos) => pos.steps)
 
-        pq.push(S)
+        pq.push(E)
 
         while (pq.size() > 0) {
             let curr = pq.pop()
@@ -74,9 +74,9 @@ export default class HillClimbingAlgorithm extends Solution {
 
             visit(curr)
 
-            if (curr.x == E.x && curr.y == E.y) return { curr }
+            if (matrix[curr.x][curr.y] == "a") return { curr }
 
-            neighbours(curr).filter(nb => nb.z <= curr.z + 1).forEach(n => pq.push(n))
+            neighbours(curr).filter(nb => nb.z >= curr.z - 1).forEach(n => pq.push(n))
         }
 
         // return { matrix, S, E }
