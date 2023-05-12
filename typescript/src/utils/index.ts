@@ -59,6 +59,8 @@ declare global {
     }
 }
 
+export const ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"
+
 Array.prototype.pipelog = function <T>(): Array<T> {
     for (let i = 0; i < this.length; i++) {
         console.log(this[i])
