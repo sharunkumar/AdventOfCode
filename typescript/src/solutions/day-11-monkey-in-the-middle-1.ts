@@ -38,7 +38,7 @@ class Monkey {
     }
 }
 
-export class MonkeyInTheMiddle extends Solution {
+export default class MonkeyInTheMiddle extends Solution {
     solve(input: string) {
         const monkeys = this.get_blocks(input)
             .map((block, idx) => {
