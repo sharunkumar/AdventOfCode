@@ -13,8 +13,9 @@ import RopeBridge from "./solutions/day-09-rope-bridge-2";
 import CathodeRayTube from "./solutions/day-10-cathode-ray-tube-2";
 import MonkeyInTheMiddle from "./solutions/day-11-monkey-in-the-middle-2";
 import HillClimbingAlgorithm from "./solutions/day-12-hill-climbing-algorithm-2";
+import DistressSignal from "./solutions/day-13-distress-signal-1";
 
-const solution: Solution = new HillClimbingAlgorithm()
+const solution: Solution = new DistressSignal()
 
 const input_file_name = path.join(__dirname, "io", `${solution.constructor.name}.txt`)
 
