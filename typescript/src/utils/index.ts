@@ -58,6 +58,7 @@ declare global {
         pipelog(): Array<T>;
         pipelog(include_index: boolean): Array<T>;
         pipelog(include_index: boolean, index_start: number): Array<T>;
+        sum(): Number;
     }
 }
 
@@ -71,5 +72,9 @@ Array.prototype.pipelog = function <T>(include_index: boolean = false, index_sta
             console.log(this[i])
     }
     return this as Array<T>;
+};
+
+Array.prototype.sum = function <T>(): number {
+    return this.reduce(sum)
 };
 
