@@ -1,3 +1,4 @@
+import { isNumberObject } from "util/types";
 import { Solution, sum } from "../utils";
 
 type Signal = Array<number | Signal>
@@ -6,41 +7,39 @@ export default class DistressSignal extends Solution {
 
     compare_signals(left: Signal, right: Signal): number {
         console.log("comparing", { left, right })
+        if (Number.isFinite(left) && !Number.isFinite(right)) {
+            left = [left] as Signal
+        }
+
+        if (Number.isFinite(right) && !Number.isFinite(left)) {
+            right = [right] as Signal
+        }
+
+        if (Number.isFinite(right) && Number.isFinite(left)) {
+            if (left < right) return 1
+            if (left == right) return 0
+            return -1
+        }
+
+
         let ll = left.length
         let rl = right.length
 
         let i = 0
 
-        for (i = 0; i < Math.min(ll, rl); i++) {
+        while (i < ll && i < rl) {
             let l = left[i] as Signal
             let r = right[i] as Signal
-            if (Number.isFinite(l) && Number.isFinite(r)) {
-                if (l == r) continue
-                else {
-                    if (l < r) return -1
-                    else return 1
-                }
-            }
-            else if (Array.isArray(l) && Array.isArray(r)) {
-                let result = this.compare_signals(l, r)
-                if (result == 0) continue
-                else return result
-            }
-            else {
-                if (Number.isFinite(l)) {
-                    let result = this.compare_signals([l] as Signal, r)
-                    if (result == 0) continue
-                    else return result
-                } else if (Number.isFinite(r)) {
-                    let result = this.compare_signals(l, [r] as Signal)
-                    if (result == 0) continue
-                    else return result
-                }
-            }
+            let x = this.compare_signals(l, r)
+            if (x == 1 || x == -1) return x
+            i++
         }
 
-        console.log({ i })
-        if (i == rl && ll != rl) { return 1 }
+        if (i == ll) {
+            if (ll == rl) return 0
+            return 1
+        }
+
         return -1
     }
 
@@ -50,7 +49,7 @@ export default class DistressSignal extends Solution {
                 .map(line => JSON.parse(line)) as [Signal, Signal])
             .map((sigs, idx) => this.compare_signals(sigs[0], sigs[1]))
             .pipelog(true, 1)
-            .map((x, idx) => x == -1 ? idx + 1 : 0)
+            .map((x, idx) => x == 1 ? idx + 1 : 0)
             .sum()
 
         return { signals }
