@@ -36,10 +36,19 @@ const start = Date.now()
 
 const output = solution.solve(input)
 
-const end = Date.now()
+if (output instanceof Promise) {
+    output.then(ending)
+}
+else {
+    ending()
+}
 
-console.debug({ output })
+function ending() {
+    const end = Date.now()
 
-console.debug("solution runtime: " + (end - start) + "ms")
+    console.debug({ output })
+
+    console.debug("solution runtime: " + (end - start) + "ms")
+}
 
 // writeFileSync(__dirname + "/io/output.txt", output.toString(), { encoding: "utf8" })
