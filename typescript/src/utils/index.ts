@@ -83,3 +83,5 @@ Array.prototype.sum = function <T>(): number {
 Array.prototype.flatten = function <T>(): Array<T> {
     return this.reduce((acc, curr) => acc.concat(curr), [] as T[]) as Array<T>;
 };
+
+export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
