@@ -46,8 +46,8 @@ export default class DistressSignal extends Solution {
     solve(input: string) {
         let signals = this.get_blocks(input)
             .map(block => this.get_lines(block)
-                .map(line => JSON.parse(line)) as [Signal, Signal])
-            .reduce((acc, curr) => acc.concat(curr), [] as Signal[])
+                .map(line => JSON.parse(line)) as Signal)
+            .flatten()
 
         let [x, y] = [[[2]] as Signal, [[6]] as Signal]
 
@@ -55,7 +55,7 @@ export default class DistressSignal extends Solution {
         signals.push(y)
 
         signals.sort((a, b) => -1 * this.compare_signals(a, b))
-        // .pipelog()
+        // .pipelog(true, 1)
 
         return { decoder_key: (signals.indexOf(x) + 1) * (signals.indexOf(y, 1) + 1) }
     }
