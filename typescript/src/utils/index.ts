@@ -59,7 +59,6 @@ declare global {
         pipelog(include_index: boolean): Array<T>;
         pipelog(include_index: boolean, index_start: number): Array<T>;
         sum(): Number;
-        flatten(): Array<T>;
     }
 }
 
@@ -78,10 +77,6 @@ Array.prototype.pipelog = function <T>(include_index: boolean = false, index_sta
 
 Array.prototype.sum = function <T>(): number {
     return this.reduce(sum)
-};
-
-Array.prototype.flatten = function <T>(): Array<T> {
-    return this.reduce((acc, curr) => acc.concat(curr), [] as T[]) as Array<T>;
 };
 
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
