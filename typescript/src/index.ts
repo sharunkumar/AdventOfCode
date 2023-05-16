@@ -36,12 +36,7 @@ const start = Date.now()
 
 const output = solution.solve(input)
 
-if (output instanceof Promise) {
-    output.then(ending)
-}
-else {
-    ending()
-}
+output instanceof Promise ? output.then(ending) : ending()
 
 function ending() {
     const end = Date.now()
