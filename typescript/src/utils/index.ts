@@ -57,15 +57,16 @@ declare global {
     interface Array<T> {
         pipelog(): Array<T>;
         pipelog(include_index: boolean): Array<T>;
+        pipelog(include_index: boolean, index_start: number): Array<T>;
     }
 }
 
 export const ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"
 
-Array.prototype.pipelog = function <T>(include_index: boolean = false): Array<T> {
+Array.prototype.pipelog = function <T>(include_index: boolean = false, index_start: number = 0): Array<T> {
     for (let i = 0; i < this.length; i++) {
         if (include_index)
-            console.log(i, this[i])
+            console.log(i + index_start, this[i])
         else
             console.log(this[i])
     }
