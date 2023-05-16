@@ -6,7 +6,7 @@ type Signal = Array<number | Signal>
 export default class DistressSignal extends Solution {
 
     compare_signals(left: Signal, right: Signal): number {
-        console.log("comparing", { left, right })
+        // console.log("comparing", { left, right })
         if (Number.isFinite(left) && !Number.isFinite(right)) {
             left = [left] as Signal
         }
@@ -47,8 +47,8 @@ export default class DistressSignal extends Solution {
         let signals = this.get_blocks(input)
             .map(block => this.get_lines(block)
                 .map(line => JSON.parse(line)) as [Signal, Signal])
-            .map((sigs, idx) => this.compare_signals(sigs[0], sigs[1]))
-            .pipelog(true, 1)
+            .map(sigs => this.compare_signals(sigs[0], sigs[1]))
+            // .pipelog(true, 1)
             .map((x, idx) => x == 1 ? idx + 1 : 0)
             .sum()
 
