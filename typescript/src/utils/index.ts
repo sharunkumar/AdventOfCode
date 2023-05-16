@@ -56,14 +56,18 @@ export class FunctionLibrary {
 declare global {
     interface Array<T> {
         pipelog(): Array<T>;
+        pipelog(include_index: boolean): Array<T>;
     }
 }
 
 export const ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"
 
-Array.prototype.pipelog = function <T>(): Array<T> {
+Array.prototype.pipelog = function <T>(include_index: boolean = false): Array<T> {
     for (let i = 0; i < this.length; i++) {
-        console.log(this[i])
+        if (include_index)
+            console.log(i, this[i])
+        else
+            console.log(this[i])
     }
     return this as Array<T>;
 };
