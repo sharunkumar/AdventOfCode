@@ -92,3 +92,7 @@ export class Point {
         return manhattan_distance(this.x, this.y, other.x, other.y)
     }
 }
+
+export function regexMatch(input: string, re: RegExp) {
+    return [...input.matchAll(re)].map(match => match[0])
+}
