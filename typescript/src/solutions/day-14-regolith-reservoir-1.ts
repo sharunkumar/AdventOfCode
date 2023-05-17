@@ -27,7 +27,7 @@ export default class RegolithReservoir extends Solution {
 
         min_x = min_y = 0
 
-        console.log({ min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
+        // console.log({ min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
 
         let box = construct_box(paths, max_x, max_y)
 
@@ -36,7 +36,7 @@ export default class RegolithReservoir extends Solution {
         for (let i = 0; i < paths.length; i++) {
             const path = paths[i];
 
-            console.log({path})
+            // console.log({path})
             
             let [x,y] = path[0]
             box[y][x] = "#"
@@ -70,9 +70,9 @@ export default class RegolithReservoir extends Solution {
         while (drop_sand(box, starting, max_x, max_y)) {
             sands++
             console.clear()
-            draw_box(box);
+            // draw_box(box);
             console.log({sands})
-            await sleep(10)
+            // await sleep(10)
         }
         // drop_sand(box, starting, max_x, max_y)
 
