@@ -21,56 +21,38 @@ export default class BeaconExclusionZone extends Solution {
         let beacons = coords.map(([_, p2]) => p2)
         // .pipelog()
 
-        let Y = 2000000
+        let pos_lines = [] as number[]
+        let neg_lines = [] as number[]
 
-        type Interval = [number, number]
-
-        let intervals = [] as Interval[]
-
-        sensors.forEach((s, idx) => {
-            let dx = dist[idx] - Math.abs(s.y - Y)
-
-            if (dx > 0) {
-                intervals.push([s.x - dx, s.x + dx])
-            }
+        sensors.forEach((s, i) => {
+            const d = dist[i];
+            neg_lines.push(...[s.x + s.y - d, s.x + s.y + d])
+            pos_lines.push(...[s.x - s.y - d, s.x - s.y + d])
         })
 
-        let beacons_xs = beacons
-            .filter(b => b.y == Y)
-            .map(b => b.x)
-        // .pipelog()
+        let pos = 0
+        let neg = 0
 
-        let pq = new MinPriorityQueue<Interval>((i) => i[0])
-
-        intervals.forEach(i => pq.push(i))
-
-        let xs = new Set<Number>()
-
-        function spread(int: Interval) {
-            for (let i = int[0]; i <= int[1]; i++) {
-                if (!beacons_xs.includes(i)) {
-                    xs.add(i)
-                }
+        for (let i = 0; i < pos_lines.length; i++) {
+            for (let j = i + 1; j < neg_lines.length; j++) {
+                pos = this.calc(pos_lines, i, j, pos);
+                neg = this.calc(neg_lines, i, j, neg)
             }
         }
 
-        while (!pq.isEmpty()) {
-            let int1 = pq.pop()
-            if (pq.isEmpty()) {
-                spread(int1)
-                break
-            }
-            let int2 = pq.pop()
+        let [x, y] = [(pos + neg) / 2, (neg - pos) / 2]
 
-            if (ibw(int2[0], int1[0], int1[1])) {
-                pq.push([Math.min(int1[0], int2[0]), Math.max(int1[1], int2[1])])
-            } else {
-                spread(int1)
-                pq.push(int2)
-            }
-        }
+        // console.log({ x, y })
 
-        return { exclusion: xs.size }
+        return { tuning_frequency: x * 4000000 + y }
     }
 
+    private calc(lines: number[], i: number, j: number, pos: number) {
+        let a = lines[i];
+        let b = lines[j];
+
+        if (Math.abs(a - b) == 2)
+            pos = Math.min(a, b) + 1;
+        return pos;
+    }
 }
