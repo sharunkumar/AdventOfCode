@@ -1,13 +1,12 @@
 import { Solution, sleep, sum } from "../utils";
 
-type Char = "#" | "." | "O"
-
+type Char = "#" | "." | "O" | "+"
 
 export default class RegolithReservoir extends Solution {
     async solve(input: string) {
         let paths = this.get_lines(input)
             .map(line => line.split(" -> ").map(rock => rock.split(",").map(Number)))
-            .pipelog()
+            // .pipelog()
 
         const rocks_x = paths.map(path => path.map(rock => rock[0])).flat().flat();
         const rocks_y = paths.map(path => path.map(rock => rock[1])).flat().flat();
@@ -18,12 +17,13 @@ export default class RegolithReservoir extends Solution {
         let min_y = rocks_y.reduce((acc, curr) => Math.min(acc, curr), 999)
         let max_y = rocks_y.reduce((acc, curr) => Math.max(acc, curr), 0)
 
-        paths = paths.map(path => path.map(([x, y]) => [x - min_x, y - min_y])).pipelog()
+        paths = paths.map(path => path.map(([x, y]) => [x - min_x, y]))
+        // .pipelog()
 
         let starting = [500 - min_x, 0]
 
         max_x = max_x - min_x
-        max_y = max_y - min_y
+        // max_y = max_y - min_y
 
         min_x = min_y = 0
 
@@ -31,10 +31,49 @@ export default class RegolithReservoir extends Solution {
 
         let box = construct_box(paths, max_x, max_y)
 
-        box.map(x => x.join("")).pipelog()
+        // paths.map(rocks => rocks.map(([x,y]) => box[y][x] = "#"))
+
+        for (let i = 0; i < paths.length; i++) {
+            const path = paths[i];
+
+            console.log({path})
+            
+            let [x,y] = path[0]
+            box[y][x] = "#"
+
+            for (let j = 1; j < path.length; j++) {
+                let [x1,y1] = path[j]
+
+                // draw the endpoint
+                box[y1][x1] = "#"
+
+                // connect prev rock to endpoint
+                if (x==x1) {
+                    for (let k = Math.min(y,y1); k <= Math.max(y,y1); k++) {
+                        box[k][x] = "#"
+                    }
+                } else if (y == y1) {
+                    for (let k = Math.min(x, x1); k <= Math.max(x, x1); k++) {
+                        box[y][k] = "#"
+                    }
+                }
+
+                // update the current rock coordinates
+                [x,y] = [x1,y1]
+            }
+            
+        }
+
+        box[starting[1]][starting[0]] = "+"
+
+        draw_box(box);
 
         // await draw(paths, { min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
     }
+}
+
+function draw_box(box: Char[][]) {
+    box.map(x => x.join("")).pipelog();
 }
 
 function construct_box(paths: number[][][], max_x: number, max_y: number) {
