@@ -14,8 +14,9 @@ import CathodeRayTube from "./solutions/day-10-cathode-ray-tube-2";
 import MonkeyInTheMiddle from "./solutions/day-11-monkey-in-the-middle-2";
 import HillClimbingAlgorithm from "./solutions/day-12-hill-climbing-algorithm-2";
 import DistressSignal from "./solutions/day-13-distress-signal-2";
+import RegolithReservoir from "./solutions/day-14-regolith-reservoir-2";
 
-const solution: Solution = new DistressSignal()
+const solution: Solution = new RegolithReservoir()
 
 const input_file_name = path.join(__dirname, "io", `${solution.constructor.name}.txt`)
 
@@ -35,10 +36,14 @@ const start = Date.now()
 
 const output = solution.solve(input)
 
-const end = Date.now()
+output instanceof Promise ? output.then(ending) : ending()
 
-console.debug({ output })
+function ending() {
+    const end = Date.now()
 
-console.debug("solution runtime: " + (end - start) + "ms")
+    console.debug({ output })
+
+    console.debug("solution runtime: " + (end - start) + "ms")
+}
 
 // writeFileSync(__dirname + "/io/output.txt", output.toString(), { encoding: "utf8" })
