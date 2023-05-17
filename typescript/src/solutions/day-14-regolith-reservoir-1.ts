@@ -71,7 +71,8 @@ export default class RegolithReservoir extends Solution {
             sands++
             console.clear()
             draw_box(box);
-            await sleep(100)
+            console.log({sands})
+            await sleep(10)
         }
         // drop_sand(box, starting, max_x, max_y)
 
@@ -101,8 +102,13 @@ function drop_sand(box: Char[][], starting: number[], max_x: number, max_y: numb
     let [x,y] = starting
 
     do {
-        let [x1,y1] = get_next_drop(box,x,y)
-        if(x1==-1 || y1 == -1) return false
+        let [x1,y1] = get_next_drop(box,x,y,max_x,max_y)
+        
+        function outOfBounts(): boolean {
+            return !ibw(x1, 0, max_x) || !ibw(y1, 0, max_y)
+        }
+
+        if (outOfBounts()) return false
 
         if(box[y1][x1] == ".") {
             [x,y] = [x1,y1]
@@ -117,21 +123,23 @@ function drop_sand(box: Char[][], starting: number[], max_x: number, max_y: numb
     return true
 }
 
-function get_next_drop(box: Char[][], x: number, y: number): [number, number] {
+function get_next_drop(box: Char[][], x: number, y: number, max_x: number, max_y: number): [number, number] {
     let [x1,y1] = [x,y]
     y1 +=1
 
-    if (box[y1][x1] == ".") return [x1, y1]
+    function outOfBounts(): boolean {
+        return !ibw(x1,0,max_x) || !ibw(y1,0,max_y)
+    }
+
+    if (outOfBounts()  ||box[y1][x1] == ".") return [x1, y1]
 
     if (box[y1][x1] == "#" || box[y1][x1] == "O") {
         x1-=1
-        if (box[y1][x1] == ".") return [x1, y1]
-        if (x1 == -1 || y1 == -1) return [x1, y1]
+        if (outOfBounts() ||box[y1][x1] == ".") return [x1, y1]
     }
     if (box[y1][x1] == "#" || box[y1][x1] == "O") {
         x1 += 2
-        if (box[y1][x1] == ".") return [x1, y1]
-        if (x1 == -1 || y1 == -1) return [x1, y1]
+        if (outOfBounts() ||box[y1][x1] == ".") return [x1, y1]
     }
 
     return [x1,y1]
