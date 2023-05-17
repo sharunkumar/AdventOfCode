@@ -69,14 +69,15 @@ export default class RegolithReservoir extends Solution {
         let sands = 0
         while (drop_sand(box, starting, max_x, max_y)) {
             sands++
-            console.clear()
+            // console.clear()
             // draw_box(box);
-            console.log({sands})
+            // console.log({sands})
             // await sleep(10)
         }
         // drop_sand(box, starting, max_x, max_y)
 
         // await draw(paths, { min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
+        // draw_box(box)
         return {sands}
     }
 }
