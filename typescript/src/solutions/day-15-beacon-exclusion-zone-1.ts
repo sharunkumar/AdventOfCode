@@ -40,17 +40,8 @@ export default class BeaconExclusionZone extends Solution {
             .map(b => b.x)
         // .pipelog()
 
-        // intervals.sort((i1, i2) => i1[0] - i2[0]).pipelog()
-
-        // for (let i = intervals[0][0]; i <= intervals[intervals.length - 1][1]; i++) {
-        //     console.log(i)
-        // }
-
-        // intervals.pipelog()
-
-        let pq = new MinPriorityQueue<Interval>((i) => i[0])
-
-        intervals.forEach(i => pq.push(i))
+        intervals.sort((i1, i2) => i1[0] - i2[0])
+        // .pipelog()
 
         let xs = new Set<Number>()
 
@@ -62,19 +53,18 @@ export default class BeaconExclusionZone extends Solution {
             }
         }
 
-        while (!pq.isEmpty()) {
-            let int1 = pq.pop()
-            if (pq.isEmpty()) {
-                spread(int1)
+        while (intervals.length > 0) {
+            let [i1, i2] = [intervals.shift(), intervals.shift()]
+
+            if (!i1) break
+
+            if (!i2) {
+                spread(i1)
                 break
             }
-            let int2 = pq.pop()
 
-            if (ibw(int2[0], int1[0], int1[1])) {
-                pq.push([Math.min(int1[0], int2[0]), Math.max(int1[1], int2[1])])
-            } else {
-                spread(int1)
-                pq.push(int2)
+            if (ibw(i2[0], i1[0], i2[0])) {
+                intervals.unshift([Math.min(i1[0], i2[0]), Math.max(i1[1], i2[1])])
             }
         }
 
