@@ -102,7 +102,7 @@ function drop_sand(box: Char[][], starting: number[], max_x: number, max_y: numb
     let [x,y] = starting
 
     do {
-        let [x1,y1] = get_next_drop(box,x,y,max_x,max_y)
+        let [x1, y1] = get_next_drop(box, x, y, max_x, max_y)
         
         function outOfBounts(): boolean {
             return !ibw(x1, 0, max_x) || !ibw(y1, 0, max_y)
