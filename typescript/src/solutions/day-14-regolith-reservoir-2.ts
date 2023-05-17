@@ -69,8 +69,7 @@ export default class RegolithReservoir extends Solution {
         let sands = 0
         while (drop_sand(box, starting, max_x, max_y)) {
             sands++
-            // console.clear()
-            // draw_box(box);
+            await draw_box(box, 100);
             // console.log({sands})
             // await sleep(10)
         }
@@ -82,8 +81,10 @@ export default class RegolithReservoir extends Solution {
     }
 }
 
-function draw_box(box: Char[][]) {
+async function draw_box(box: Char[][], sleep_millis:number = 0) {
+    console.clear()
     box.map(x => x.join("")).pipelog();
+    await sleep(sleep_millis)
 }
 
 function construct_box(paths: number[][][], max_x: number, max_y: number) {
