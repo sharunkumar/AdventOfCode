@@ -1,4 +1,4 @@
-import { Solution, sleep, sum } from "../utils";
+import { Solution, inclusive_between as ibw, sleep, sum } from "../utils";
 
 type Char = "#" | "." | "O" | "+"
 
@@ -66,9 +66,17 @@ export default class RegolithReservoir extends Solution {
 
         box[starting[1]][starting[0]] = "+"
 
-        draw_box(box);
+        let sands = 0
+        while (drop_sand(box, starting, max_x, max_y)) {
+            sands++
+            console.clear()
+            draw_box(box);
+            await sleep(100)
+        }
+        // drop_sand(box, starting, max_x, max_y)
 
         // await draw(paths, { min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
+        return {sands}
     }
 }
 
@@ -87,6 +95,46 @@ function construct_box(paths: number[][][], max_x: number, max_y: number) {
     }
 
     return box
+}
+
+function drop_sand(box: Char[][], starting: number[], max_x: number, max_y: number): boolean {
+    let [x,y] = starting
+
+    do {
+        let [x1,y1] = get_next_drop(box,x,y)
+        if(x1==-1 || y1 == -1) return false
+
+        if(box[y1][x1] == ".") {
+            [x,y] = [x1,y1]
+        } else {
+            break
+        }
+        
+    } while (true)
+
+    box[y][x] = "O"
+
+    return true
+}
+
+function get_next_drop(box: Char[][], x: number, y: number): [number, number] {
+    let [x1,y1] = [x,y]
+    y1 +=1
+
+    if (box[y1][x1] == ".") return [x1, y1]
+
+    if (box[y1][x1] == "#" || box[y1][x1] == "O") {
+        x1-=1
+        if (box[y1][x1] == ".") return [x1, y1]
+        if (x1 == -1 || y1 == -1) return [x1, y1]
+    }
+    if (box[y1][x1] == "#" || box[y1][x1] == "O") {
+        x1 += 2
+        if (box[y1][x1] == ".") return [x1, y1]
+        if (x1 == -1 || y1 == -1) return [x1, y1]
+    }
+
+    return [x1,y1]
 }
 // async function draw(paths: number[][][], data: { min_x: number; max_x: number; min_y: number; max_y: number; starting: number[]; }) {
 //     for (let i = 0; i < paths.length; i++) {
