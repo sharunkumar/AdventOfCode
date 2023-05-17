@@ -11,13 +11,18 @@ export default class RegolithReservoir extends Solution {
         const rocks_x = paths.map(path => path.map(rock => rock[0])).flat().flat();
         const rocks_y = paths.map(path => path.map(rock => rock[1])).flat().flat();
 
-        let min_x = rocks_x.reduce((acc, curr) => Math.min(acc, curr), 999)
-        let max_x = rocks_x.reduce((acc, curr) => Math.max(acc, curr), 0)
+        let min_x = rocks_x.reduce((acc, curr) => Math.min(acc, curr), 999) - 1000
+        let max_x = rocks_x.reduce((acc, curr) => Math.max(acc, curr), 0) + 1000
 
         let min_y = rocks_y.reduce((acc, curr) => Math.min(acc, curr), 999)
         let max_y = rocks_y.reduce((acc, curr) => Math.max(acc, curr), 0)
 
+        max_y +=2
+
+        paths.push([[min_x, max_y], [max_x, max_y]])
+
         paths = paths.map(path => path.map(([x, y]) => [x - min_x, y]))
+
         // .pipelog()
 
         let starting = [500 - min_x, 0]
@@ -27,6 +32,7 @@ export default class RegolithReservoir extends Solution {
 
         min_x = min_y = 0
 
+        // paths.push([[min_x - 10, max_y], [max_x + 10, max_y]])
         // console.log({ min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
 
         let box = construct_box(paths, max_x, max_y)
@@ -69,7 +75,8 @@ export default class RegolithReservoir extends Solution {
         let sands = 0
         while (drop_sand(box, starting, max_x, max_y)) {
             sands++
-            await draw_box(box, 100);
+            // await draw_box(box, 100);
+            if(box[starting[1]][starting[0]] == "O") break
             // console.log({sands})
             // await sleep(10)
         }
