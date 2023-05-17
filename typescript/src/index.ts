@@ -15,8 +15,9 @@ import MonkeyInTheMiddle from "./solutions/day-11-monkey-in-the-middle-2";
 import HillClimbingAlgorithm from "./solutions/day-12-hill-climbing-algorithm-2";
 import DistressSignal from "./solutions/day-13-distress-signal-2";
 import RegolithReservoir from "./solutions/day-14-regolith-reservoir-2";
+import BeaconExclusionZone from "./solutions/day-15-beacon-exclusion-zone-2";
 
-const solution: Solution = new RegolithReservoir()
+const solution: Solution = new BeaconExclusionZone
 
 const input_file_name = path.join(__dirname, "io", `${solution.constructor.name}.txt`)
 
