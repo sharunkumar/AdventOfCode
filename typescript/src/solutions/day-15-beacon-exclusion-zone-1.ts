@@ -13,15 +13,15 @@ export default class BeaconExclusionZone extends Solution {
         // .pipelog()
 
         let dist = coords.map(([p1, p2]) => p1.manhattan_distance_to(p2))
-            .pipelog()
+        // .pipelog()
 
         let sensors = coords.map(([p1, _]) => p1)
-            .pipelog()
+        // .pipelog()
 
         let beacons = coords.map(([_, p2]) => p2)
-            .pipelog()
+        // .pipelog()
 
-        let Y = 10
+        let Y = 2000000
 
         type Interval = [number, number]
 
@@ -38,7 +38,7 @@ export default class BeaconExclusionZone extends Solution {
         let beacons_xs = beacons
             .filter(b => b.y == Y)
             .map(b => b.x)
-            .pipelog()
+        // .pipelog()
 
         // intervals.sort((i1, i2) => i1[0] - i2[0]).pipelog()
 
@@ -52,12 +52,12 @@ export default class BeaconExclusionZone extends Solution {
 
         intervals.forEach(i => pq.push(i))
 
-        let xs = [] as number[]
+        let xs = new Set<Number>()
 
         function spread(int: Interval) {
             for (let i = int[0]; i <= int[1]; i++) {
                 if (!beacons_xs.includes(i)) {
-                    xs.push(i)
+                    xs.add(i)
                 }
             }
         }
@@ -78,7 +78,7 @@ export default class BeaconExclusionZone extends Solution {
             }
         }
 
-        return xs.pipelog().length
+        return { exclusion: xs.size }
     }
 
 }
