@@ -14,7 +14,7 @@ import CathodeRayTube from "./solutions/day-10-cathode-ray-tube-2";
 import MonkeyInTheMiddle from "./solutions/day-11-monkey-in-the-middle-2";
 import HillClimbingAlgorithm from "./solutions/day-12-hill-climbing-algorithm-2";
 import DistressSignal from "./solutions/day-13-distress-signal-2";
-import RegolithReservoir from "./solutions/day-14-regolith-reservoir-1";
+import RegolithReservoir from "./solutions/day-14-regolith-reservoir-2";
 
 const solution: Solution = new RegolithReservoir()
 
