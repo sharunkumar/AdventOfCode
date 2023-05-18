@@ -16,7 +16,7 @@ import HillClimbingAlgorithm from "./solutions/day-12-hill-climbing-algorithm-2"
 import DistressSignal from "./solutions/day-13-distress-signal-2";
 import RegolithReservoir from "./solutions/day-14-regolith-reservoir-2";
 import BeaconExclusionZone from "./solutions/day-15-beacon-exclusion-zone-2";
-import ProboscideaVolcanium from "./solutions/day-16-proboscidea-volcanium-1";
+import ProboscideaVolcanium from "./solutions/day-16-proboscidea-volcanium-2";
 
 const solution: Solution = new ProboscideaVolcanium
 
