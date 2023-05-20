@@ -16,6 +16,8 @@ let file_name = title_with_day.replace(":", "").replace(/ /g, "-").toLowerCase()
 
 let file_path = path.join(".", "src", "solutions", file_name)
 
+let sample_input_path = path.join(".", "src", "io", className + ".txt")
+
 let extensions = ["-1.ts", "-2.ts"]
 
 let file_content = `import { Solution } from "../utils";
@@ -28,6 +30,8 @@ export default class ${className} extends Solution {
 `
 
 extensions.forEach(e => createFile(file_path + e, file_content))
+
+createFile(sample_input_path)
 
 // console.log({ className, file_name, file_path })
 
