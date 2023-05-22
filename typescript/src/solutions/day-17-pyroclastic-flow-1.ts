@@ -3,7 +3,9 @@ import { Solution } from "../utils";
 class Rock {
     rock_height: number;
     rock_width: number;
+
     private vec = [] as number[]
+
     constructor(public rows: string[]) {
         console.log({ rows })
         this.rock_height = this.rows.length

@@ -6,5 +6,6 @@
         "yaml": false,
         "plaintext": false,
         "markdown": false
-    }
+    },
+    "terminal.integrated.defaultProfile.windows": "JavaScript Debug Terminal",
 }
