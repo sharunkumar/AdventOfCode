@@ -51,5 +51,7 @@ export default class PyroclasticFlow extends Solution {
         console.log({ stream })
 
         rocks.forEach((x, idx) => console.log(idx, x.surface_vector()))
+
+        // console.log({ surface: rocks[0].surface_vector() })
     }
 }
