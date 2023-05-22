@@ -1,6 +1,7 @@
 {
   "watch": [
-    "src"
+    "src",
+    "io"
   ],
   "ext": ".ts,.js,.txt",
   "ignore": [
