@@ -116,7 +116,7 @@ export default class PyroclasticFlow extends Solution {
             set_rock(current_rock, chamber, pos)
             console.log("rock rest")
 
-            chamber_floor -= current_rock.height
+            chamber_floor = pos.y - 1
 
             print(chamber, chamber_floor)
         }
