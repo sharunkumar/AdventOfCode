@@ -49,14 +49,14 @@ export default class PyroclasticFlow extends Solution {
                 let jet = iter_jets.next()
 
                 if (jet == ">") {
-                    if (pos.x + current_rock.width < chamber[0].length) {
+                    if (can_move_right(current_rock, pos, chamber)) {
                         pos.x++
                         console.log("rock pushed right")
                     } else {
                         console.log("rock pushed right, nothing happens")
                     }
                 } else if (jet == "<") {
-                    if (pos.x - 1 >= 0) {
+                    if (can_move_left(current_rock, pos, chamber)) {
                         pos.x--
                         console.log("rock pushed left")
                     } else {
@@ -122,7 +122,6 @@ function rock_can_move(rock: Rock, position: Point, chamber: string[][]): boolea
         return false
     }
 
-    let row = chamber[rownum]
     let vec = rock.surface_vector_bottom()
 
     for (let i = 0; i < vec.length; i++) {
@@ -141,5 +140,41 @@ function set_rock(rock: Rock, chamber: string[][], pos: Point) {
             chamber[pos.y + y][pos.x + x] = c
         })
     })
+}
+
+function can_move_right(rock: Rock, position: Point, chamber: string[][]): boolean {
+    const colnum = position.x + rock.width;
+    if (colnum >= chamber[0].length)
+        return false
+
+    let vec = rock.surface_vector_right()
+
+    for (let i = 0; i < vec.length; i++) {
+        const v = vec[i];
+
+        if (chamber[position.y + i][colnum + v] != ".") {
+            return false
+        }
+    }
+
+    return true;
+}
+
+function can_move_left(rock: Rock, position: Point, chamber: string[][]): boolean {
+    const colnum = position.x - 1;
+    if (colnum < 0)
+        return false
+
+    let vec = rock.surface_vector_left()
+
+    for (let i = 0; i < vec.length; i++) {
+        const v = vec[i];
+
+        if (chamber[position.y + i][colnum + v] != ".") {
+            return false
+        }
+    }
+
+    return true;
 }
 

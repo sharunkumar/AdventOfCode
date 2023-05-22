@@ -99,7 +99,7 @@ export class Rock {
             c++;
         }
 
-        this.vec_left = surface.map(s => -s + 1);
+        this.vec_left = surface.map(s => s - 1);
         return this.vec_left;
     }
 }
