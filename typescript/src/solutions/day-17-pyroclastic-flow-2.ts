@@ -13,6 +13,7 @@ export default class PyroclasticFlow extends Solution {
         let chamber_floor = chamber_height - 1
 
         let chamber = [] as string[][]
+        let height = 0
 
         for (let i = 0; i < chamber_height; i++) {
             let arr = []
@@ -24,7 +25,6 @@ export default class PyroclasticFlow extends Solution {
 
         let iter_rocks = new LoopingIterator(rocks)
         let iter_jets = new LoopingIterator([...stream])
-
 
         // loop n times
         while (iter_rocks.count < 2022) {
@@ -64,10 +64,11 @@ export default class PyroclasticFlow extends Solution {
 
             chamber_floor = Math.min(pos.y - 1, chamber_floor)
 
+            height = chamber.length - chamber_floor - 1
             // print(chamber, chamber_floor)
         }
 
-        return { height: chamber.length - chamber_floor - 1 }
+        return { height }
     }
 }
 
