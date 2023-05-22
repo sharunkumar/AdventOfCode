@@ -15,6 +15,8 @@ export default class PyroclasticFlow extends Solution {
 
         let chamber = {} as chamber
 
+        let inputs = { part1: 2022, part2: 1000000000000 } as const
+
         chamber.length = chamber_height
 
         for (let i = 0; i < chamber_height; i++) {
@@ -29,7 +31,7 @@ export default class PyroclasticFlow extends Solution {
         let iter_jets = new LoopingIterator([...stream])
 
         // loop n times
-        while (iter_rocks.count < 2022) {
+        while (iter_rocks.count < inputs.part1) {
             // rock appears
             let current_rock = iter_rocks.next()
             let rock_appear_position_y = chamber_floor - 2 - current_rock.height
