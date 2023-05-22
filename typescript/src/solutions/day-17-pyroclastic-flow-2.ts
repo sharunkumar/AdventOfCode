@@ -1,4 +1,5 @@
 import { Point, Solution } from "../utils";
+import { LoopingIterator } from "../utils/iterator";
 import { Rock, chamber } from "./modals/day-17";
 
 export default class PyroclasticFlow extends Solution {
@@ -81,21 +82,6 @@ function print(chamber: chamber, starting: number = 0) {
     for (let i = starting; i < chamber.length; i++) {
         const l = chamber[i];
         console.log(l.join(""))
-    }
-}
-
-class LoopingIterator<T> {
-    index: number;
-    count: number;
-    constructor(public array: T[]) {
-        this.index = -1
-        this.count = 0
-    }
-
-    next() {
-        this.index = (this.index + 1) % this.array.length
-        this.count++
-        return this.array[this.index]
     }
 }
 
