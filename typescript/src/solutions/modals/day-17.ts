@@ -1,3 +1,9 @@
+export interface chamber {
+    [key: number]: string[]
+
+    length: number
+}
+
 export class Rock {
     height: number;
     width: number;

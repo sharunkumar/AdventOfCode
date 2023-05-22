@@ -1,11 +1,5 @@
 import { Point, Solution } from "../utils";
-import { Rock } from "./modals/Rock";
-
-interface chamber {
-    [key: number]: string[]
-
-    length: number
-}
+import { Rock, chamber } from "./modals/day-17";
 
 export default class PyroclasticFlow extends Solution {
     solve(input: string) {

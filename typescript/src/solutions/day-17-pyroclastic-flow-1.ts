@@ -1,5 +1,5 @@
 import { Point, Solution } from "../utils";
-import { Rock } from "./modals/Rock";
+import { Rock } from "./modals/day-17";
 
 export default class PyroclasticFlow extends Solution {
     solve(input: string) {
