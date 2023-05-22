@@ -138,7 +138,7 @@ function rock_can_move(rock: Rock, position: Point, chamber: string[][]): boolea
 function set_rock(rock: Rock, chamber: string[][], pos: Point) {
     rock.rows.forEach((row, y) => {
         [...row].forEach((c, x) => {
-            chamber[pos.y + y][pos.x + x] = c
+            chamber[pos.y + y][pos.x + x] = (c == "#" ? c : chamber[pos.y + y][pos.x + x])
         })
     })
 }
