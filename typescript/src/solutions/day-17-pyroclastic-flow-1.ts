@@ -4,7 +4,9 @@ class Rock {
     height: number;
     width: number;
 
-    private vec = [] as number[]
+    private vec_bottom = [] as number[]
+    private vec_right = [] as number[]
+    private vec_left = [] as number[]
 
     constructor(public rows: string[]) {
         console.log({ rows })
@@ -13,8 +15,8 @@ class Rock {
     }
 
     surface_vector_bottom() {
-        if (this.vec.length > 0) { // cache it
-            return this.vec
+        if (this.vec_bottom.length > 0) { // cache it
+            return this.vec_bottom
         }
 
         let surface = [] as number[]
@@ -35,8 +37,45 @@ class Rock {
             r--
         }
 
-        this.vec = surface.map(s => -s + 1);
-        return this.vec
+        this.vec_bottom = surface.map(s => -s + 1);
+        return this.vec_bottom
+    }
+
+    private cols(c: number) {
+        let cols = [] as string[]
+        for (let i = 0; i < this.rows.length; i++) {
+            const row = this.rows[i];
+            cols.push(row.charAt(c))
+        }
+
+        return cols
+    }
+
+    surface_vector_right() {
+        if (this.vec_right.length > 0) { // cache it
+            return this.vec_right
+        }
+
+        let surface = [] as number[]
+
+        for (let i = 0; i < this.height; i++) {
+            surface.push(0)
+        }
+
+        let c = this.width - 1
+
+        let inc = 1
+
+        while (surface.includes(0) && c >= 0) {
+            let spread = this.cols(c).map(c => c == "#" ? inc : 0)
+            spread.forEach((x, idx) => surface[idx] = (x == inc && surface[idx] == 0) ? x : surface[idx])
+
+            inc++
+            c--
+        }
+
+        this.vec_right = surface.map(s => -s + 1);
+        return this.vec_right
     }
 }
 
@@ -50,7 +89,7 @@ export default class PyroclasticFlow extends Solution {
 
         console.log({ stream })
 
-        rocks.forEach((x, idx) => console.log(idx, x.surface_vector_bottom()))
+        rocks.forEach((x, idx) => console.log(idx, x.surface_vector_right()))
 
         // console.log({ surface: rocks[0].surface_vector() })
 
