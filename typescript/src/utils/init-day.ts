@@ -16,7 +16,7 @@ let file_name = title_with_day.replace(":", "").replace(/ /g, "-").toLowerCase()
 
 let file_path = path.join(".", "src", "solutions", file_name)
 
-let sample_input_path = path.join(".", "src", "io", className + ".txt")
+let sample_input_path = path.join(".", "io", className + ".txt")
 
 let extensions = ["-1.ts", "-2.ts"]
 
