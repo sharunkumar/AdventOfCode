@@ -75,4 +75,31 @@ export class Rock {
         this.vec_right = surface.map(s => -s + 1);
         return this.vec_right;
     }
+
+    surface_vector_left() {
+        if (this.vec_left.length > 0) { // cache it
+            return this.vec_left;
+        }
+
+        let surface = [] as number[];
+
+        for (let i = 0; i < this.height; i++) {
+            surface.push(0);
+        }
+
+        let c = 0;
+
+        let inc = 1;
+
+        while (surface.includes(0) && c < this.width) {
+            let spread = this.cols(c).map(c => c == "#" ? inc : 0);
+            spread.forEach((x, idx) => surface[idx] = (x == inc && surface[idx] == 0) ? x : surface[idx]);
+
+            inc++;
+            c++;
+        }
+
+        this.vec_left = surface.map(s => -s + 1);
+        return this.vec_left;
+    }
 }
