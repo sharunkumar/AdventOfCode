@@ -7,7 +7,6 @@ export class Rock {
     private vec_left = [] as number[];
 
     constructor(public rows: string[]) {
-        console.log({ rows });
         this.height = this.rows.length;
         this.width = this.rows[0].length;
     }
