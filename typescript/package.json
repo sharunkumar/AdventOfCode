@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "Advent of Code solutions for 2022",
   "scripts": {
-    "start:dev": "npx nodemon",
+    "start:dev": "nodemon",
     "init:dev": "ts-node ./src/utils/init-day.ts",
     "lint": "eslint . --ext .ts",
     "prettier-format": "run-script-os",
