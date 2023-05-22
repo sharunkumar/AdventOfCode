@@ -1,6 +1,12 @@
 import { Point, Solution } from "../utils";
 import { Rock } from "./modals/Rock";
 
+interface chamber {
+    [key: number]: string[]
+
+    length: number
+}
+
 export default class PyroclasticFlow extends Solution {
     solve(input: string) {
 
@@ -11,16 +17,18 @@ export default class PyroclasticFlow extends Solution {
         let chamber_width = 7
         let chamber_height = 6000
         let chamber_floor = chamber_height - 1
-
-        let chamber = [] as string[][]
         let height = 0
+
+        let chamber = {} as chamber
+
+        chamber.length = chamber_height
 
         for (let i = 0; i < chamber_height; i++) {
             let arr = []
             for (let j = 0; j < chamber_width; j++) {
                 arr.push(".")
             }
-            chamber.push(arr)
+            chamber[i] = arr
         }
 
         let iter_rocks = new LoopingIterator(rocks)
@@ -72,7 +80,7 @@ export default class PyroclasticFlow extends Solution {
     }
 }
 
-function print(chamber: string[][], starting: number = 0) {
+function print(chamber: chamber, starting: number = 0) {
     // console.clear()
     for (let i = starting; i < chamber.length; i++) {
         const l = chamber[i];
@@ -95,7 +103,7 @@ class LoopingIterator<T> {
     }
 }
 
-function rock_can_move(rock: Rock, position: Point, chamber: string[][]): boolean {
+function rock_can_move(rock: Rock, position: Point, chamber: chamber): boolean {
     const rownum = position.y + rock.height;
 
     if (rownum >= chamber.length) {
@@ -114,7 +122,7 @@ function rock_can_move(rock: Rock, position: Point, chamber: string[][]): boolea
 
     return true
 }
-function set_rock(rock: Rock, chamber: string[][], pos: Point) {
+function set_rock(rock: Rock, chamber: chamber, pos: Point) {
     rock.rows.forEach((row, y) => {
         [...row].forEach((c, x) => {
             chamber[pos.y + y][pos.x + x] = (c == "#" ? c : chamber[pos.y + y][pos.x + x])
@@ -122,7 +130,7 @@ function set_rock(rock: Rock, chamber: string[][], pos: Point) {
     })
 }
 
-function can_move_right(rock: Rock, position: Point, chamber: string[][]): boolean {
+function can_move_right(rock: Rock, position: Point, chamber: chamber): boolean {
     const colnum = position.x + rock.width;
     if (colnum >= chamber[0].length)
         return false
@@ -140,7 +148,7 @@ function can_move_right(rock: Rock, position: Point, chamber: string[][]): boole
     return true;
 }
 
-function can_move_left(rock: Rock, position: Point, chamber: string[][]): boolean {
+function can_move_left(rock: Rock, position: Point, chamber: chamber): boolean {
     const colnum = position.x - 1;
     if (colnum < 0)
         return false
