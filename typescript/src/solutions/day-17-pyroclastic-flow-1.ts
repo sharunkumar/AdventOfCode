@@ -34,12 +34,12 @@ export default class PyroclasticFlow extends Solution {
 
 
         // loop n times
-        while (iter_rocks.count < 3) {
+        while (iter_rocks.count < 2022) {
             // rock appears
-            console.log({ chamber_floor })
+            // console.log({ chamber_floor })
             let current_rock = iter_rocks.next()
             let rock_appear_position_y = chamber_floor - 2 - current_rock.height
-            console.log({ rock_appear_position_y })
+            // console.log({ rock_appear_position_y })
             let rock_appear_position_x = 2
 
             const pos = new Point(rock_appear_position_x, rock_appear_position_y)
@@ -51,22 +51,22 @@ export default class PyroclasticFlow extends Solution {
                 if (jet == ">") {
                     if (can_move_right(current_rock, pos, chamber)) {
                         pos.x++
-                        console.log("rock pushed right")
+                        // console.log("rock pushed right")
                     } else {
-                        console.log("rock pushed right, nothing happens")
+                        // console.log("rock pushed right, nothing happens")
                     }
                 } else if (jet == "<") {
                     if (can_move_left(current_rock, pos, chamber)) {
                         pos.x--
-                        console.log("rock pushed left")
+                        // console.log("rock pushed left")
                     } else {
-                        console.log("rock pushed left, nothing happens")
+                        // console.log("rock pushed left, nothing happens")
                     }
                 }
                 // move rock down
                 if (rock_can_move(current_rock, pos, chamber)) {
                     pos.y++
-                    console.log("rock moved down")
+                    // console.log("rock moved down")
                 }
                 else {
                     break
@@ -75,11 +75,11 @@ export default class PyroclasticFlow extends Solution {
 
             // settle the rock
             set_rock(current_rock, chamber, pos)
-            console.log("rock rest")
+            // console.log("rock rest")
 
-            chamber_floor = pos.y - 1
+            chamber_floor = Math.min(pos.y - 1, chamber_floor)
 
-            print(chamber, chamber_floor)
+            // print(chamber, chamber_floor)
         }
 
 
@@ -89,6 +89,7 @@ export default class PyroclasticFlow extends Solution {
 
         // // solidify the rock
 
+        return { height: chamber.length - chamber_floor - 1 }
     }
 }
 
