@@ -1,6 +1,6 @@
 import { Point, Solution } from "../utils";
 import { LoopingIterator } from "../utils/iterator";
-import { Rock } from "./modals/day-17";
+import { Rock, height_rock } from "./modals/day-17";
 
 export default class PyroclasticFlow extends Solution {
     solve(input: string) {
@@ -15,11 +15,6 @@ export default class PyroclasticFlow extends Solution {
         let height = 0
 
         let chamber = [] as string[][]
-
-        interface height_rock {
-            height: number,
-            rock: number
-        }
 
         let height_map = new Map<string, height_rock[]>()
         let skipped_height = 0
