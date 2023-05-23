@@ -4,6 +4,7 @@
   "description": "Advent of Code solutions for 2022",
   "scripts": {
     "start:dev": "nodemon",
+    "bunmon": "nodemon --exec 'bun ./src/index.ts'",
     "build": "tsc",
     "init:dev": "ts-node ./src/utils/init-day.ts",
     "lint": "eslint . --ext .ts",
