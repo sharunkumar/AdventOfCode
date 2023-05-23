@@ -11,4 +11,9 @@ export class LoopingIterator<T> {
         this.count++
         return this.array[this.index]
     }
+
+    skip(count: number) {
+        this.index = (this.index + count) % this.array.length
+        this.count += count
+    }
 }
