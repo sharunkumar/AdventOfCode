@@ -39,9 +39,9 @@ const start = Date.now()
 
 const output = solution.solve(input)
 
-output instanceof Promise ? output.then(ending) : ending()
+output instanceof Promise ? output.then(ending) : ending(output)
 
-function ending() {
+function ending(output: any) {
     const end = Date.now()
 
     console.debug({ output })
