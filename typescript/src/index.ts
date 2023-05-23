@@ -17,10 +17,11 @@ import DistressSignal from "./solutions/day-13-distress-signal-2";
 import RegolithReservoir from "./solutions/day-14-regolith-reservoir-2";
 import BeaconExclusionZone from "./solutions/day-15-beacon-exclusion-zone-2";
 import ProboscideaVolcanium from "./solutions/day-16-proboscidea-volcanium-2";
+import PyroclasticFlow from "./solutions/day-17-pyroclastic-flow-2";
 
-const solution: Solution = new ProboscideaVolcanium
+const solution: Solution = new PyroclasticFlow
 
-const input_file_name = path.join(__dirname, "io", `${solution.constructor.name}.txt`)
+const input_file_name = path.join(__dirname, "..", "io", `${solution.constructor.name}.txt`)
 
 if (!existsSync(input_file_name)) {
     writeFileSync(input_file_name, "", "utf-8")

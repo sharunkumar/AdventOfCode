@@ -1,10 +1,11 @@
 {
   "watch": [
-    "src"
+    "src",
+    "io"
   ],
   "ext": ".ts,.js,.txt",
   "ignore": [
     "output.txt"
   ],
-  "exec": "npx ts-node ./src/index.ts"
+  "exec": "ts-node ./src/index.ts"
 }
