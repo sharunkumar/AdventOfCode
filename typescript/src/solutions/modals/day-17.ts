@@ -1,7 +1,6 @@
-export interface chamber {
-    [key: number]: string[]
-
-    length: number
+export interface height_rock {
+    height: number,
+    rock: number
 }
 
 export class Rock {
