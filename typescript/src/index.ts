@@ -18,7 +18,7 @@ import RegolithReservoir from "./solutions/day-14-regolith-reservoir-2";
 import BeaconExclusionZone from "./solutions/day-15-beacon-exclusion-zone-2";
 import ProboscideaVolcanium from "./solutions/day-16-proboscidea-volcanium-2";
 import PyroclasticFlow from "./solutions/day-17-pyroclastic-flow-2";
-import BoilingBoulders from "./solutions/day-18-boiling-boulders-1";
+import BoilingBoulders from "./solutions/day-18-boiling-boulders-2";
 
 const solution: Solution = new BoilingBoulders
 
