@@ -10,8 +10,6 @@ export default class BoilingBoulders extends Solution {
         let min = add(coords.reduce(minp, [Infinity, Infinity, Infinity]), [-1, -1, -1])
         let max = add(coords.reduce(maxp, [-Infinity, -Infinity, -Infinity]), [1, 1, 1])
 
-        console.log({ min, max })
-
         let facediffs = [[0.5, 0, 0], [-0.5, 0, 0], [0, 0.5, 0], [0, -0.5, 0], [0, 0, 0.5], [0, 0, -0.5]] as point3d[]
 
         let faces = coords.map(c => facediffs.map(f => add(f, c)))
