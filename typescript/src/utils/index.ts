@@ -88,3 +88,9 @@ export function manhattan_distance(x1: number, y1: number, x2: number, y2: numbe
 export function regexMatch(input: string, re: RegExp) {
     return [...input.matchAll(re)].map(match => match[0])
 }
+
+export function intersect<T>(one: Set<T>, two: Set<T>): Set<T> {
+    return new Set(
+        [...one].filter(x => two.has(x))
+    )
+}
