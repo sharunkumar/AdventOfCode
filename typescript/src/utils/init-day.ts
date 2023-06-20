@@ -1,4 +1,4 @@
-import { existsSync, writeFileSync } from "fs";
+import { existsSync, readFileSync, writeFileSync } from "fs";
 import { regexMatch } from "."
 import { titleCase } from "title-case";
 import path from "path";
@@ -16,18 +16,13 @@ let file_name = title_with_day.replace(":", "").replace(/ /g, "-").toLowerCase()
 
 let file_path = path.join(".", "src", "solutions", file_name)
 
+let template_path = path.join(".", "src", "utils", "TemplateSolution.ts")
+
 let sample_input_path = path.join(".", "io", className + ".txt")
 
 let extensions = ["-1.ts", "-2.ts"]
 
-let file_content = `import { Solution } from "../utils";
-
-export default class ${className} extends Solution {
-    solve(input: string) {
-
-    }
-}
-`
+let file_content = readFileSync(template_path).toString().replace(/TemplateSolution/g, className)
 
 extensions.forEach(e => createFile(file_path + e, file_content))
 
