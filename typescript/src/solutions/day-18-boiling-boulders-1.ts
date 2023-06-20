@@ -9,17 +9,7 @@ export default class BoilingBoulders extends Solution {
         }
 
         function hashPoint3D(point: point3d) {
-            let [x, y, z] = point;
-            x *= 2
-            y *= 2
-            z *= 2
-            let hash = 5381;
-
-            hash = ((hash << 5) + hash) + x;
-            hash = ((hash << 5) + hash) + y;
-            hash = ((hash << 5) + hash) + z;
-
-            return hash;
+            return JSON.stringify(point)
         }
 
         let coords = this.get_lines(input)
@@ -34,11 +24,15 @@ export default class BoilingBoulders extends Solution {
             .map(x => [hashPoint3D(x), x])
         // .pipelog()
 
-        let counter = new Counter(faces.map(x => x[0])).getEntries()
+        const counter = new Counter(faces.map(x => x[0]));
+
+        // console.log(new Set(counter.getEntries().map(x => x[1])))
+
+        let result = counter.getEntries()
             .filter(x => x[1] == 1)
         // .pipelog()
 
-        return counter.length
+        return result.length
 
     }
 }
