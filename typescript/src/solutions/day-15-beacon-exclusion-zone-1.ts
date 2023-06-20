@@ -1,5 +1,6 @@
 import { MinPriorityQueue } from "@datastructures-js/priority-queue";
-import { Point, Solution, inclusive_between as ibw } from "../utils";
+import { Solution, inclusive_between as ibw } from "../utils";
+import { Point } from '../utils/Point';
 
 class Sensor extends Point { }
 class Beacon extends Point { }

@@ -1,9 +1,10 @@
-import { Point, Solution } from "../utils";
+import { Solution } from "../utils";
+import { Point } from '../utils/Point';
 import { LoopingIterator } from "../utils/iterator";
 import { Rock, height_rock } from "./modals/day-17";
 
 export default class PyroclasticFlow extends Solution {
-    solve(input: string) {
+    async solve(input: string) {
 
         let [stream, ...rocks_raw] = this.get_blocks(input)
 

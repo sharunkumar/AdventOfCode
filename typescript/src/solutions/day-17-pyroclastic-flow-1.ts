@@ -1,4 +1,5 @@
-import { Point, Solution } from "../utils";
+import { Solution } from "../utils";
+import { Point } from '../utils/Point';
 import { Rock } from "./modals/day-17";
 
 export default class PyroclasticFlow extends Solution {
