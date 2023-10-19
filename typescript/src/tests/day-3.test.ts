@@ -1,6 +1,6 @@
 import path from "path";
-import { default as day1 } from "../solutions/day-03-rucksack-reorganization-1";
-import { default as day2 } from "../solutions/day-03-rucksack-reorganization-2";
+import { default as part1 } from "../solutions/day-03-rucksack-reorganization-1";
+import { default as part2 } from "../solutions/day-03-rucksack-reorganization-2";
 import { readFileSync } from "fs";
 
 describe("day 3", () => {
@@ -10,11 +10,11 @@ describe("day 3", () => {
     input = readFileSync(input_file_name, "utf-8");
   });
   test("part 1", () => {
-    let output = new day1().solve(input);
+    let output = new part1().solve(input);
     expect(output).toBe(157);
   });
   test("part 2", () => {
-    let output = new day2().solve(input);
+    let output = new part2().solve(input);
     expect(output).toBe(70);
   });
 });
