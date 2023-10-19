@@ -23,12 +23,7 @@ import NotEnoughMinerals from "./solutions/day-19-not-enough-minerals-1";
 
 const solution: Solution = new NotEnoughMinerals();
 
-const input_file_name = path.join(
-  __dirname,
-  "..",
-  "io",
-  `${solution.constructor.name}.txt`,
-);
+const input_file_name = path.join(__dirname, "..", "io", `${solution.constructor.name}.txt`);
 
 if (!existsSync(input_file_name)) {
   writeFileSync(input_file_name, "", "utf-8");

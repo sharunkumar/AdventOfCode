@@ -81,10 +81,7 @@ export default class ProboscideaVolcanium extends Solution {
         let remaining = time - dist[valve][nb] - 1; //time to open the valve
         if (remaining <= 0) continue;
 
-        maxval = Math.max(
-          maxval,
-          dfs(remaining, nb, bitmask | bit) + valves[nb] * remaining,
-        );
+        maxval = Math.max(maxval, dfs(remaining, nb, bitmask | bit) + valves[nb] * remaining);
 
         if (Number.isNaN(maxval)) {
           throw new Error("wtf");
@@ -100,10 +97,7 @@ export default class ProboscideaVolcanium extends Solution {
     let b = (1 << nonempty.length) - 1;
 
     for (let i = 0; i < (b + 1) / 2; i++) {
-      global_max = Math.max(
-        global_max,
-        dfs(26, "AA", i) + dfs(26, "AA", b ^ i),
-      );
+      global_max = Math.max(global_max, dfs(26, "AA", i) + dfs(26, "AA", b ^ i));
     }
 
     return { global_max };

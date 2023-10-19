@@ -7,17 +7,11 @@ let [_1, _2, ...arg] = process.argv;
 
 let title_with_day = arg.join(" ");
 
-let title = titleCase(regexMatch(title_with_day, /: .*/g).join("")).replace(
-  ": ",
-  "",
-);
+let title = titleCase(regexMatch(title_with_day, /: .*/g).join("")).replace(": ", "");
 
 let className = title.replace(/ /g, "");
 
-let file_name = title_with_day
-  .replace(":", "")
-  .replace(/ /g, "-")
-  .toLowerCase();
+let file_name = title_with_day.replace(":", "").replace(/ /g, "-").toLowerCase();
 
 let file_path = path.join(".", "src", "solutions", file_name);
 

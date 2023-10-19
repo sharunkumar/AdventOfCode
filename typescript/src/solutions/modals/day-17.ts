@@ -34,10 +34,7 @@ export class Rock {
 
     while (surface.includes(0) && r >= 0) {
       let spread = this.rows[r].split("").map((c) => (c == "#" ? inc : 0));
-      spread.forEach(
-        (x, idx) =>
-          (surface[idx] = x == inc && surface[idx] == 0 ? x : surface[idx]),
-      );
+      spread.forEach((x, idx) => (surface[idx] = x == inc && surface[idx] == 0 ? x : surface[idx]));
 
       inc++;
       r--;
@@ -75,10 +72,7 @@ export class Rock {
 
     while (surface.includes(0) && c >= 0) {
       let spread = this.cols(c).map((c) => (c == "#" ? inc : 0));
-      spread.forEach(
-        (x, idx) =>
-          (surface[idx] = x == inc && surface[idx] == 0 ? x : surface[idx]),
-      );
+      spread.forEach((x, idx) => (surface[idx] = x == inc && surface[idx] == 0 ? x : surface[idx]));
 
       inc++;
       c--;
@@ -106,10 +100,7 @@ export class Rock {
 
     while (surface.includes(0) && c < this.width) {
       let spread = this.cols(c).map((c) => (c == "#" ? inc : 0));
-      spread.forEach(
-        (x, idx) =>
-          (surface[idx] = x == inc && surface[idx] == 0 ? x : surface[idx]),
-      );
+      spread.forEach((x, idx) => (surface[idx] = x == inc && surface[idx] == 0 ? x : surface[idx]));
 
       inc++;
       c++;

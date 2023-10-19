@@ -55,22 +55,9 @@ class Directory {
   }
 
   print(level = 1) {
-    console.log(
-      "-".repeat(level),
-      this.name,
-      "(dir)",
-      "[",
-      this.getSize(),
-      "]",
-    );
+    console.log("-".repeat(level), this.name, "(dir)", "[", this.getSize(), "]");
     this.files.forEach((value) => {
-      console.log(
-        "-".repeat(level + 1),
-        value.name,
-        "(file, size=",
-        value.size,
-        ")",
-      );
+      console.log("-".repeat(level + 1), value.name, "(file, size=", value.size, ")");
     });
     this.children.forEach((value) => {
       value.print(level + 1);

@@ -4,9 +4,7 @@ import { add, hash, point3d } from "../utils/Point3D";
 
 export default class BoilingBoulders extends Solution {
   solve(input: string) {
-    let coords = this.get_lines(input).map(
-      (i) => i.split(",").map((j) => parseInt(j)) as point3d,
-    );
+    let coords = this.get_lines(input).map((i) => i.split(",").map((j) => parseInt(j)) as point3d);
     // .pipelog()
 
     let facediffs = [

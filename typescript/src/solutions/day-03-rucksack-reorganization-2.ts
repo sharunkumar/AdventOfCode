@@ -1,10 +1,4 @@
-import {
-  ascending,
-  ascii_to_char,
-  char_to_ascii,
-  Solution,
-  sum,
-} from "../utils";
+import { ascending, ascii_to_char, char_to_ascii, Solution, sum } from "../utils";
 
 export default class RucksackReorganization extends Solution {
   constructor() {

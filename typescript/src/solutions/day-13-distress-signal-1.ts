@@ -43,13 +43,7 @@ export default class DistressSignal extends Solution {
 
   solve(input: string) {
     let signals = this.get_blocks(input)
-      .map(
-        (block) =>
-          this.get_lines(block).map((line) => JSON.parse(line)) as [
-            Signal,
-            Signal,
-          ],
-      )
+      .map((block) => this.get_lines(block).map((line) => JSON.parse(line)) as [Signal, Signal])
       .map((sigs) => this.compare_signals(sigs[0], sigs[1]))
       // .pipelog(true, 1)
       .map((x, idx) => (x == 1 ? idx + 1 : 0))

@@ -6,9 +6,7 @@ export default class PyroclasticFlow extends Solution {
   solve(input: string) {
     let [stream, ...rocks_raw] = this.get_blocks(input);
 
-    let rocks = rocks_raw
-      .map(this.get_lines.bind(this))
-      .map((r) => new Rock(r));
+    let rocks = rocks_raw.map(this.get_lines.bind(this)).map((r) => new Rock(r));
 
     let chamber_width = 7;
     let chamber_height = 6000;
@@ -94,11 +92,7 @@ class LoopingIterator<T> {
   }
 }
 
-function rock_can_move(
-  rock: Rock,
-  position: Point,
-  chamber: string[][],
-): boolean {
+function rock_can_move(rock: Rock, position: Point, chamber: string[][]): boolean {
   const rownum = position.y + rock.height;
 
   if (rownum >= chamber.length) {
@@ -120,17 +114,12 @@ function rock_can_move(
 function set_rock(rock: Rock, chamber: string[][], pos: Point) {
   rock.rows.forEach((row, y) => {
     [...row].forEach((c, x) => {
-      chamber[pos.y + y][pos.x + x] =
-        c == "#" ? c : chamber[pos.y + y][pos.x + x];
+      chamber[pos.y + y][pos.x + x] = c == "#" ? c : chamber[pos.y + y][pos.x + x];
     });
   });
 }
 
-function can_move_right(
-  rock: Rock,
-  position: Point,
-  chamber: string[][],
-): boolean {
+function can_move_right(rock: Rock, position: Point, chamber: string[][]): boolean {
   const colnum = position.x + rock.width;
   if (colnum >= chamber[0].length) return false;
 
@@ -147,11 +136,7 @@ function can_move_right(
   return true;
 }
 
-function can_move_left(
-  rock: Rock,
-  position: Point,
-  chamber: string[][],
-): boolean {
+function can_move_left(rock: Rock, position: Point, chamber: string[][]): boolean {
   const colnum = position.x - 1;
   if (colnum < 0) return false;
 

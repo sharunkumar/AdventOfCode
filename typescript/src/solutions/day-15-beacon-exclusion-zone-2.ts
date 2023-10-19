@@ -10,10 +10,7 @@ export default class BeaconExclusionZone extends Solution {
     console.clear();
     let coords = this.get_lines(input)
       .map((line) => [...line.matchAll(/\-?\d+/g)].map((m) => Number(m[0])))
-      .map(
-        ([x1, y1, x2, y2]) =>
-          [new Sensor(x1, y1), new Beacon(x2, y2)] as [Sensor, Beacon],
-      );
+      .map(([x1, y1, x2, y2]) => [new Sensor(x1, y1), new Beacon(x2, y2)] as [Sensor, Beacon]);
     // .pipelog()
 
     let dist = coords.map(([p1, p2]) => p1.manhattan_distance_to(p2));

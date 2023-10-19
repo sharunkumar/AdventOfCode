@@ -15,11 +15,7 @@ export default class TreetopTreeHouse extends Solution {
     function isLargest(x: number, y: number, dx: number, dy: number) {
       const tree = trees[x][y];
 
-      for (
-        x += dx, y += dy;
-        inclusive_between(x, 0, rows - 1) && inclusive_between(y, 0, cols - 1);
-        x += dx, y += dy
-      ) {
+      for (x += dx, y += dy; inclusive_between(x, 0, rows - 1) && inclusive_between(y, 0, cols - 1); x += dx, y += dy) {
         if (trees[x][y] >= tree) {
           return false;
         }
@@ -30,11 +26,7 @@ export default class TreetopTreeHouse extends Solution {
 
     for (let i = 1; i < rows - 1; i++) {
       for (let j = 1; j < cols - 1; j++) {
-        const result =
-          isLargest(i, j, 0, 1) ||
-          isLargest(i, j, 0, -1) ||
-          isLargest(i, j, 1, 0) ||
-          isLargest(i, j, -1, 0);
+        const result = isLargest(i, j, 0, 1) || isLargest(i, j, 0, -1) || isLargest(i, j, 1, 0) || isLargest(i, j, -1, 0);
 
         count += result ? 1 : 0;
       }

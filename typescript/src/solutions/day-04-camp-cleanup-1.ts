@@ -20,10 +20,7 @@ export default class CampCleanup extends Solution {
     return this.get_lines(input)
       .map((str) => str.split(","))
       .map((arr) => [new Range(arr[0]), new Range(arr[1])])
-      .filter(
-        (ranges) =>
-          ranges[0].includes(ranges[1]) || ranges[1].includes(ranges[0]),
-      )
+      .filter((ranges) => ranges[0].includes(ranges[1]) || ranges[1].includes(ranges[0]))
       .pipelog().length;
   }
 }

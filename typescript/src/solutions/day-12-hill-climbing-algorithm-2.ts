@@ -1,16 +1,8 @@
 import { Solution, ascii_lowercase, inclusive_between as ibw } from "../utils";
-import {
-  MaxPriorityQueue,
-  MinPriorityQueue,
-} from "@datastructures-js/priority-queue";
+import { MaxPriorityQueue, MinPriorityQueue } from "@datastructures-js/priority-queue";
 
 class Position {
-  constructor(
-    public x: number,
-    public y: number,
-    public z: number,
-    public steps: number = 0,
-  ) {}
+  constructor(public x: number, public y: number, public z: number, public steps: number = 0) {}
 }
 
 function get_elevation(char: string) {

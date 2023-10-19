@@ -25,10 +25,7 @@ class Monkey {
     //monke gets bored
     result = Math.floor(result / 3);
 
-    let target_monkey =
-      result % this.test_divisible_by == 0
-        ? this.true_monkey
-        : this.false_monkey;
+    let target_monkey = result % this.test_divisible_by == 0 ? this.true_monkey : this.false_monkey;
 
     const op_result = new OperationResult(target_monkey, result);
     // console.log({ index: this.index, op_result })
@@ -45,23 +42,12 @@ export default class MonkeyInTheMiddle extends Solution {
     const monkeys = this.get_blocks(input).map((block, idx) => {
       let lines = this.get_lines(block);
       //.pipelog()
-      let starting = lines[1]
-        .trim()
-        .replace("Starting items: ", "")
-        .split(", ")
-        .map(Number); //.pipelog()
+      let starting = lines[1].trim().replace("Starting items: ", "").split(", ").map(Number); //.pipelog()
       let operation = lines[2].trim().replace("Operation: new = ", "");
       let test_divisible_by = Number(lines[3].split(" ").pop());
       let true_case = Number(lines[4].split(" ").pop());
       let false_case = Number(lines[5].split(" ").pop());
-      const monkey = new Monkey(
-        idx,
-        starting,
-        operation,
-        test_divisible_by,
-        true_case,
-        false_case,
-      );
+      const monkey = new Monkey(idx, starting, operation, test_divisible_by, true_case, false_case);
       // console.log({ monkey })
       return monkey;
     });

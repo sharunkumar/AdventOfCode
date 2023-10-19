@@ -4,9 +4,7 @@ type Char = "#" | "." | "O" | "+";
 
 export default class RegolithReservoir extends Solution {
   async solve(input: string) {
-    let paths = this.get_lines(input).map((line) =>
-      line.split(" -> ").map((rock) => rock.split(",").map(Number)),
-    );
+    let paths = this.get_lines(input).map((line) => line.split(" -> ").map((rock) => rock.split(",").map(Number)));
     // .pipelog()
 
     const rocks_x = paths
@@ -116,12 +114,7 @@ function construct_box(paths: number[][][], max_x: number, max_y: number) {
   return box;
 }
 
-function drop_sand(
-  box: Char[][],
-  starting: number[],
-  max_x: number,
-  max_y: number,
-): boolean {
+function drop_sand(box: Char[][], starting: number[], max_x: number, max_y: number): boolean {
   let [x, y] = starting;
 
   do {
@@ -145,13 +138,7 @@ function drop_sand(
   return true;
 }
 
-function get_next_drop(
-  box: Char[][],
-  x: number,
-  y: number,
-  max_x: number,
-  max_y: number,
-): [number, number] {
+function get_next_drop(box: Char[][], x: number, y: number, max_x: number, max_y: number): [number, number] {
   let [x1, y1] = [x, y];
   y1 += 1;
 

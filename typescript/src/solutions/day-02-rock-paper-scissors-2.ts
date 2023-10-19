@@ -70,10 +70,7 @@ export default class RockPaperScissors extends Solution {
   solve(input: string) {
     return this.get_lines(input)
       .map((line) => line.split(" "))
-      .map((arr) => [
-        this.parse_play(arr[0]).valueOf(),
-        this.parse_outcome(arr[1]).valueOf(),
-      ])
+      .map((arr) => [this.parse_play(arr[0]).valueOf(), this.parse_outcome(arr[1]).valueOf()])
       .map(([play, outcome]) => this.get_play(play, outcome) + outcome + 1)
       .reduce(sum);
   }

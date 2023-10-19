@@ -1,29 +1,13 @@
 import { Solution, inclusive_between as ibw, intersect } from "../utils";
 import Counter from "../utils/Counter";
-import {
-  add,
-  hash,
-  maxp,
-  minp,
-  mul,
-  point3d,
-  point_between,
-} from "../utils/Point3D";
+import { add, hash, maxp, minp, mul, point3d, point_between } from "../utils/Point3D";
 
 export default class BoilingBoulders extends Solution {
   solve(input: string) {
-    let coords = this.get_lines(input).map(
-      (i) => i.split(",").map((j) => parseInt(j)) as point3d,
-    );
+    let coords = this.get_lines(input).map((i) => i.split(",").map((j) => parseInt(j)) as point3d);
 
-    let min = add(
-      coords.reduce(minp, [Infinity, Infinity, Infinity]),
-      [-1, -1, -1],
-    );
-    let max = add(
-      coords.reduce(maxp, [-Infinity, -Infinity, -Infinity]),
-      [1, 1, 1],
-    );
+    let min = add(coords.reduce(minp, [Infinity, Infinity, Infinity]), [-1, -1, -1]);
+    let max = add(coords.reduce(maxp, [-Infinity, -Infinity, -Infinity]), [1, 1, 1]);
 
     let facediffs = [
       [0.5, 0, 0],

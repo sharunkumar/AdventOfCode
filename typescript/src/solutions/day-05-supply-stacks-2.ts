@@ -39,10 +39,7 @@ export default class SupplyStacks extends Solution {
 
     this.moves = this.get_lines(moves_input)
       .map((item) => item.split(" "))
-      .map(
-        (item) =>
-          new Move(parseInt(item[1]), parseInt(item[3]), parseInt(item[5])),
-      );
+      .map((item) => new Move(parseInt(item[1]), parseInt(item[3]), parseInt(item[5])));
 
     this.moves.forEach((move) => {
       let from = this.stacks[move.from_stack - 1];

@@ -43,8 +43,7 @@ class GameState {
   tail_states: Set<[number, number]>;
 
   get_unique_tails() {
-    return new Set(Array.from(this.tail_states).map((a) => `${a[0]},${a[1]}`))
-      .size;
+    return new Set(Array.from(this.tail_states).map((a) => `${a[0]},${a[1]}`)).size;
   }
 
   move_head(move: MoveD) {
@@ -53,14 +52,8 @@ class GameState {
       this.head.y += move.dy;
 
       if (!this.tail.is_around(this.head)) {
-        let tdx =
-          this.head.x == this.tail.x
-            ? 0
-            : (this.head.x - this.tail.x) / Math.abs(this.head.x - this.tail.x);
-        let tdy =
-          this.head.y == this.tail.y
-            ? 0
-            : (this.head.y - this.tail.y) / Math.abs(this.head.y - this.tail.y);
+        let tdx = this.head.x == this.tail.x ? 0 : (this.head.x - this.tail.x) / Math.abs(this.head.x - this.tail.x);
+        let tdy = this.head.y == this.tail.y ? 0 : (this.head.y - this.tail.y) / Math.abs(this.head.y - this.tail.y);
 
         this.tail.x += tdx;
         this.tail.y += tdy;

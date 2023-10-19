@@ -43,10 +43,7 @@ export default class DistressSignal extends Solution {
 
   solve(input: string) {
     let signals = this.get_blocks(input)
-      .map(
-        (block) =>
-          this.get_lines(block).map((line) => JSON.parse(line)) as Signal,
-      )
+      .map((block) => this.get_lines(block).map((line) => JSON.parse(line)) as Signal)
       .flat();
 
     let [x, y] = [[[2]] as Signal, [[6]] as Signal];
