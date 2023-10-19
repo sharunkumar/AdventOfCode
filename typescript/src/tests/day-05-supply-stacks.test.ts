@@ -1,9 +1,9 @@
 import path from "path";
-import { default as part1 } from "../solutions/day-03-rucksack-reorganization-1";
-import { default as part2 } from "../solutions/day-03-rucksack-reorganization-2";
+import { default as part1 } from "../solutions/day-05-supply-stacks-1";
+import { default as part2 } from "../solutions/day-05-supply-stacks-2";
 import { readFileSync } from "fs";
 
-describe("day 3", () => {
+describe("Day 05: Supply Stacks", () => {
   let input: string;
   beforeAll(() => {
     const input_file_name = __filename.replace(/\.test\.ts$/, ".input.txt").replace(/tests/, "tests/io");
@@ -11,10 +11,10 @@ describe("day 3", () => {
   });
   test("part 1", () => {
     let output = new part1().solve(input);
-    expect(output).toBe(157);
+    expect(output).toBe("CMZ");
   });
   test("part 2", () => {
     let output = new part2().solve(input);
-    expect(output).toBe(70);
+    expect(output).toBe("MCD");
   });
 });
