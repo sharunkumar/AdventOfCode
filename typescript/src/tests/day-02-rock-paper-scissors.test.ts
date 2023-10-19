@@ -3,7 +3,7 @@ import { default as part1 } from "../solutions/day-02-rock-paper-scissors-1";
 import { default as part2 } from "../solutions/day-02-rock-paper-scissors-2";
 import { readFileSync } from "fs";
 
-describe("Rock Paper Scissors", () => {
+describe("Day 02: Rock Paper Scissors", () => {
   let input: string;
   beforeAll(() => {
     const input_file_name = __filename.replace(/\.test\.ts$/, ".input.txt").replace(/tests/, "tests/io");

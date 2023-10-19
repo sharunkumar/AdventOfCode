@@ -5,7 +5,7 @@ import path from "path";
 
 let [_1, _2, ...arg] = process.argv;
 
-let title_with_day = arg.join(" ");
+let title_with_day = arg.join(" ").replace(/Day (\d):/g, "Day 0$1:");
 
 let title = titleCase(regexMatch(title_with_day, /: .*/g).join("")).replace(": ", "");
 
@@ -35,7 +35,7 @@ let file_content = readFileSync(template_path)
 
 let test_file_content = readFileSync(test_template_path)
   .toString()
-  .replace(/day 1/g, title)
+  .replace(/day 1/g, title_with_day)
   .replace(/day-01-calorie-counting/g, file_name);
 
 extensions.forEach((e) => createFile(file_path + e, file_content));
