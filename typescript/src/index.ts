@@ -21,34 +21,39 @@ import PyroclasticFlow from "./solutions/day-17-pyroclastic-flow-2";
 import BoilingBoulders from "./solutions/day-18-boiling-boulders-2";
 import NotEnoughMinerals from "./solutions/day-19-not-enough-minerals-1";
 
-const solution: Solution = new NotEnoughMinerals
+const solution: Solution = new NotEnoughMinerals();
 
-const input_file_name = path.join(__dirname, "..", "io", `${solution.constructor.name}.txt`)
+const input_file_name = path.join(
+  __dirname,
+  "..",
+  "io",
+  `${solution.constructor.name}.txt`,
+);
 
 if (!existsSync(input_file_name)) {
-    writeFileSync(input_file_name, "", "utf-8")
-    console.debug(`${input_file_name} created.`)
+  writeFileSync(input_file_name, "", "utf-8");
+  console.debug(`${input_file_name} created.`);
 }
 
-const input = readFileSync(input_file_name, "utf-8")
+const input = readFileSync(input_file_name, "utf-8");
 
 if (input == "") {
-    console.debug(`add input to ${input_file_name} to continue.`)
-    process.exit(0)
+  console.debug(`add input to ${input_file_name} to continue.`);
+  process.exit(0);
 }
 
-const start = Date.now()
+const start = Date.now();
 
-const output = solution.solve(input)
+const output = solution.solve(input);
 
-output instanceof Promise ? output.then(ending) : ending(output)
+output instanceof Promise ? output.then(ending) : ending(output);
 
 function ending(output: any) {
-    const end = Date.now()
+  const end = Date.now();
 
-    console.debug({ output })
+  console.debug({ output });
 
-    console.debug("solution runtime: " + (end - start) + "ms")
+  console.debug("solution runtime: " + (end - start) + "ms");
 }
 
 // writeFileSync(__dirname + "/io/output.txt", output.toString(), { encoding: "utf8" })
