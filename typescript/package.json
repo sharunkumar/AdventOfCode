@@ -7,7 +7,7 @@
     "init:dev": "ts-node ./src/utils/init-day.ts",
     "bunmon": "nodemon --exec 'bun ./src/index.ts'",
     "build": "tsc",
-    "test": "jest --verbose",
+    "test": "jest",
     "lint": "eslint . --ext .ts",
     "prettier-format": "run-script-os",
     "prettier-format:win32": "prettier --config .prettierrc \"./src/**/*.ts\" --write",
