@@ -1,9 +1,11 @@
+import { EOL } from "os";
 import { FunctionLibrary, Solution } from "../utils";
 
 let cycles = 0;
 let x = 1;
 let signal = 0;
 let buffer = "";
+let output = [] as string[];
 
 function is_x_in_sprite() {
   return [x - 1, x, x + 1].includes(buffer.length);
@@ -15,7 +17,8 @@ function increment_cycle() {
   if (is_qualifying_cycle()) {
     signal += cycles * x;
     // console.log(cycles, x)
-    console.log({ buffer });
+    // console.log({ buffer });
+    output.push(buffer);
     buffer = "";
   }
 }
@@ -45,6 +48,6 @@ export default class CathodeRayTube extends Solution {
       .map((command) => [Instruction.get(command.shift() + ""), ...command.map(parseInt)])
       .map(([func, ...args]) => func(...args));
 
-    return signal;
+    return output.join(EOL);
   }
 }
