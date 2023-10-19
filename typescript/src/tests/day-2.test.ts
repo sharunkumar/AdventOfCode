@@ -4,18 +4,17 @@ import { default as day2 } from "../solutions/day-02-rock-paper-scissors-2";
 import { readFileSync } from "fs";
 
 describe("day 2", () => {
+  let input: string;
+  beforeAll(() => {
+    const input_file_name = __filename.replace(/\.test\.ts$/, ".input.txt").replace(/tests/, "tests/io");
+    input = readFileSync(input_file_name, "utf-8");
+  });
   test("part 1", () => {
-    let solution = new day1();
-    const input_file_name = path.join(__dirname, "..", "..", "io", `${solution.constructor.name}.txt`);
-    const input = readFileSync(input_file_name, "utf-8");
-    let output = solution.solve(input);
-    expect(output).toBe(12458);
+    let output = new day1().solve(input);
+    expect(output).toBe(15);
   });
   test("part 2", () => {
-    let solution = new day2();
-    const input_file_name = path.join(__dirname, "..", "..", "io", `${solution.constructor.name}.txt`);
-    const input = readFileSync(input_file_name, "utf-8");
-    let output = solution.solve(input);
-    expect(output).toBe(12683);
+    let output = new day2().solve(input);
+    expect(output).toBe(12);
   });
 });
