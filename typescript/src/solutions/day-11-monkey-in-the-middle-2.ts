@@ -76,6 +76,6 @@ export default class MonkeyInTheMiddle extends Solution {
 
     // monkeys.pipelog()
 
-    return { monkey_business: first * second };
+    return first * second;
   }
 }
