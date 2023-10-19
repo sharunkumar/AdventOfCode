@@ -21,7 +21,7 @@ import PyroclasticFlow from "./solutions/day-17-pyroclastic-flow-2";
 import BoilingBoulders from "./solutions/day-18-boiling-boulders-2";
 import NotEnoughMinerals from "./solutions/day-19-not-enough-minerals-1";
 
-const solution: Solution = new NotEnoughMinerals();
+const solution: Solution = new CalorieCounting();
 
 const input_file_name = path.join(__dirname, "..", "io", `${solution.constructor.name}.txt`);
 
