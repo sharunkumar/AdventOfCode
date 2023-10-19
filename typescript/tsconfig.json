@@ -1,16 +1,25 @@
 {
+  "compileOnSave": false,
   "compilerOptions": {
-    "target": "ES6",
-    "module": "commonjs",
-    "lib": ["es6"],
+    "target": "ES2022",
+    "typeRoots": ["node_modules/@types"],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "forceConsistentCasingInFileNames": true,
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "pretty": true,
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "dist",
     "allowJs": true,
-    "outDir": "build",
-    "rootDir": "src",
-    "strict": true,
+    "noEmit": false,
     "esModuleInterop": true,
-    "types": ["node", "jest"],
-    "skipLibCheck": true
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "strictNullChecks": true
   },
-  "include": ["src/**/*"],
-  "exclude": ["src/**/*.spec.ts"]
+  "include": ["src/**/*.ts", "src/**/*.json", ".env", "src/utils/init-day.ts"],
+  "exclude": ["node_modules", "src/http", "src/logs"]
 }
