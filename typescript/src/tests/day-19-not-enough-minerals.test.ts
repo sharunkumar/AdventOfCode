@@ -14,6 +14,6 @@ describe("Day 19: Not Enough Minerals", () => {
   });
   test("part 2", () => {
     let output = new part2().solve(input);
-    expect(output).toBe(null);
+    expect(output.geodes[1]).toBe(62);
   });
 });
