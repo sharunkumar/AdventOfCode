@@ -1,2 +1,2 @@
-console.log = (x: any) => {};
+console.log = (message?: any, ...optionalParams: any[]) => {};
 console.clear = () => {};
