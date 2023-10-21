@@ -10,7 +10,7 @@ describe("Day 19: Not Enough Minerals", () => {
   });
   test("part 1", () => {
     let output = new part1().solve(input);
-    expect(output).toBe(33);
+    expect(output.result).toBe(33);
   });
   test("part 2", () => {
     let output = new part2().solve(input);
