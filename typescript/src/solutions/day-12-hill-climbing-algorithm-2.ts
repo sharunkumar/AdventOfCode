@@ -77,7 +77,7 @@ export default class HillClimbingAlgorithm extends Solution {
 
       visit(curr);
 
-      if (matrix[curr.x][curr.y] == "a") return { curr };
+      if (matrix[curr.x][curr.y] == "a") return curr.steps;
 
       neighbours(curr)
         .filter((nb) => nb.z >= curr.z - 1)
