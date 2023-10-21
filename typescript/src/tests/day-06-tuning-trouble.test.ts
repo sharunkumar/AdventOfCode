@@ -1,4 +1,3 @@
-import path from "path";
 import { default as part1 } from "../solutions/day-06-tuning-trouble-1";
 import { default as part2 } from "../solutions/day-06-tuning-trouble-2";
 import { readFileSync } from "fs";

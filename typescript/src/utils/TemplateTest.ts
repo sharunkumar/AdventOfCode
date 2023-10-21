@@ -1,4 +1,3 @@
-import path from "path";
 import { default as part1 } from "../solutions/day-01-calorie-counting-1";
 import { default as part2 } from "../solutions/day-01-calorie-counting-2";
 import { readFileSync } from "fs";
@@ -11,10 +10,10 @@ describe("day 1", () => {
   });
   test("part 1", () => {
     let output = new part1().solve(input);
-    expect(output).toBe(undefined);
+    expect(output).toBe(null);
   });
   test("part 2", () => {
     let output = new part2().solve(input);
-    expect(output).toBe(undefined);
+    expect(output).toBe(null);
   });
 });
