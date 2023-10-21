@@ -10,10 +10,10 @@ describe("day 1", () => {
   });
   test("part 1", () => {
     let output = new part1().solve(input);
-    expect(output).toBe(undefined);
+    expect(output).toBe(null);
   });
   test("part 2", () => {
     let output = new part2().solve(input);
-    expect(output).toBe(undefined);
+    expect(output).toBe(null);
   });
 });
