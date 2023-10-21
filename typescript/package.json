@@ -2,6 +2,7 @@
   "name": "advent-of-code-2022",
   "version": "1.0.0",
   "description": "Advent of Code solutions for 2022",
+  "main": "src/index",
   "scripts": {
     "start:dev": "nodemon",
     "init:dev": "ts-node ./src/utils/init-day.ts",
