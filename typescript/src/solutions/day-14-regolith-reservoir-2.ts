@@ -91,7 +91,7 @@ export default class RegolithReservoir extends Solution {
 
     // await draw(paths, { min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
     // draw_box(box)
-    return { sands };
+    return sands;
   }
 }
 

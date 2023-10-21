@@ -11,10 +11,10 @@ describe("day 1", () => {
   });
   test("part 1", () => {
     let output = new part1().solve(input);
-    expect(output).toBe(24000);
+    expect(output).toBe(undefined);
   });
   test("part 2", () => {
     let output = new part2().solve(input);
-    expect(output).toBe(45000);
+    expect(output).toBe(undefined);
   });
 });
