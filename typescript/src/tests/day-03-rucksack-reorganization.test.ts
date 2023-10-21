@@ -1,4 +1,3 @@
-import path from "path";
 import { default as part1 } from "../solutions/day-03-rucksack-reorganization-1";
 import { default as part2 } from "../solutions/day-03-rucksack-reorganization-2";
 import { readFileSync } from "fs";

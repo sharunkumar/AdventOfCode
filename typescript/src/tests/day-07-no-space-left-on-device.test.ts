@@ -1,4 +1,3 @@
-import path from "path";
 import { default as part1 } from "../solutions/day-07-no-space-left-on-device-1";
 import { default as part2 } from "../solutions/day-07-no-space-left-on-device-2";
 import { readFileSync } from "fs";

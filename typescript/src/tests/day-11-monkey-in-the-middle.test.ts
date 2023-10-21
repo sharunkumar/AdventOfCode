@@ -1,4 +1,3 @@
-import path from "path";
 import { default as part1 } from "../solutions/day-11-monkey-in-the-middle-1";
 import { default as part2 } from "../solutions/day-11-monkey-in-the-middle-2";
 import { readFileSync } from "fs";

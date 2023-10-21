@@ -1,4 +1,3 @@
-import path from "path";
 import { default as part1 } from "../solutions/day-12-hill-climbing-algorithm-1";
 import { default as part2 } from "../solutions/day-12-hill-climbing-algorithm-2";
 import { readFileSync } from "fs";
