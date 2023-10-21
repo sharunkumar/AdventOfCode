@@ -5,8 +5,7 @@
   "main": "src/index",
   "scripts": {
     "dev": "bun --watch .",
-    "init:dev": "ts-node ./src/utils/init-day.ts",
-    "bunmon": "nodemon --exec 'bun ./src/index.ts'",
+    "init:dev": "bun ./src/utils/init-day.ts",
     "build": "tsc",
     "test": "bun test --watch . --preload ./preload.ts",
     "lint": "eslint . --ext .ts",
