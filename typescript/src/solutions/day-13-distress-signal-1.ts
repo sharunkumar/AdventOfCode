@@ -49,6 +49,6 @@ export default class DistressSignal extends Solution {
       .map((x, idx) => (x == 1 ? idx + 1 : 0))
       .sum();
 
-    return { signals };
+    return signals;
   }
 }

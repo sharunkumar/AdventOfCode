@@ -54,8 +54,6 @@ export default class DistressSignal extends Solution {
     signals.sort((a, b) => -1 * this.compare_signals(a as Signal, b as Signal));
     // .pipelog(true, 1)
 
-    return {
-      decoder_key: (signals.indexOf(x) + 1) * (signals.indexOf(y, 1) + 1),
-    };
+    return (signals.indexOf(x) + 1) * (signals.indexOf(y, 1) + 1);
   }
 }
