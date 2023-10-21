@@ -19,7 +19,7 @@ import BeaconExclusionZone from "./solutions/day-15-beacon-exclusion-zone-2";
 import ProboscideaVolcanium from "./solutions/day-16-proboscidea-volcanium-2";
 import PyroclasticFlow from "./solutions/day-17-pyroclastic-flow-2";
 import BoilingBoulders from "./solutions/day-18-boiling-boulders-2";
-import NotEnoughMinerals from "./solutions/day-19-not-enough-minerals-1";
+import NotEnoughMinerals from "./solutions/day-19-not-enough-minerals-2";
 
 const solution: Solution = new NotEnoughMinerals();
 

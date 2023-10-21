@@ -156,14 +156,14 @@ export default class NotEnoughMinerals extends Solution {
       .map((input) => new Blueprint(input[0], input[1], input[2], [input[3], input[4]], [input[5], input[6]]));
     // .pipelog();
 
-    let result = 0;
+    let result = 1;
 
-    for (let i = 0; i < blueprints.length; i++) {
+    for (let i = 0; i < 3; i++) {
       let rez = new MaxResult();
       // console.log({ bp: blueprints[i] });
-      this.solution(new State(), blueprints[i], 24, rez, true, true, true, 0);
+      this.solution(new State(), blueprints[i], 32, rez, true, true, true, 0);
       // console.log({ geodes: rez.result });
-      result += blueprints[i].id * rez.result;
+      result *= rez.result;
     }
 
     return { result };
