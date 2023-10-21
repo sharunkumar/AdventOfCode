@@ -1,162 +1,168 @@
 import { Solution, inclusive_between as ibw, sleep, sum } from "../utils";
 
-type Char = "#" | "." | "O" | "+"
+type Char = "#" | "." | "O" | "+";
 
 export default class RegolithReservoir extends Solution {
-    async solve(input: string) {
-        let paths = this.get_lines(input)
-            .map(line => line.split(" -> ").map(rock => rock.split(",").map(Number)))
-            // .pipelog()
+  async solve(input: string) {
+    let paths = this.get_lines(input).map((line) => line.split(" -> ").map((rock) => rock.split(",").map(Number)));
+    // .pipelog()
 
-        const rocks_x = paths.map(path => path.map(rock => rock[0])).flat().flat();
-        const rocks_y = paths.map(path => path.map(rock => rock[1])).flat().flat();
+    const rocks_x = paths
+      .map((path) => path.map((rock) => rock[0]))
+      .flat()
+      .flat();
+    const rocks_y = paths
+      .map((path) => path.map((rock) => rock[1]))
+      .flat()
+      .flat();
 
-        let min_x = rocks_x.reduce((acc, curr) => Math.min(acc, curr), 999) - 1000
-        let max_x = rocks_x.reduce((acc, curr) => Math.max(acc, curr), 0) + 1000
+    let min_x = rocks_x.reduce((acc, curr) => Math.min(acc, curr), 999) - 1000;
+    let max_x = rocks_x.reduce((acc, curr) => Math.max(acc, curr), 0) + 1000;
 
-        let min_y = rocks_y.reduce((acc, curr) => Math.min(acc, curr), 999)
-        let max_y = rocks_y.reduce((acc, curr) => Math.max(acc, curr), 0)
+    let min_y = rocks_y.reduce((acc, curr) => Math.min(acc, curr), 999);
+    let max_y = rocks_y.reduce((acc, curr) => Math.max(acc, curr), 0);
 
-        max_y +=2
+    max_y += 2;
 
-        paths.push([[min_x, max_y], [max_x, max_y]])
+    paths.push([
+      [min_x, max_y],
+      [max_x, max_y],
+    ]);
 
-        paths = paths.map(path => path.map(([x, y]) => [x - min_x, y]))
+    paths = paths.map((path) => path.map(([x, y]) => [x - min_x, y]));
 
-        // .pipelog()
+    // .pipelog()
 
-        let starting = [500 - min_x, 0]
+    let starting = [500 - min_x, 0];
 
-        max_x = max_x - min_x
-        // max_y = max_y - min_y
+    max_x = max_x - min_x;
+    // max_y = max_y - min_y
 
-        min_x = min_y = 0
+    min_x = min_y = 0;
 
-        // paths.push([[min_x - 10, max_y], [max_x + 10, max_y]])
-        // console.log({ min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
+    // paths.push([[min_x - 10, max_y], [max_x + 10, max_y]])
+    // console.log({ min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
 
-        let box = construct_box(paths, max_x, max_y)
+    let box = construct_box(paths, max_x, max_y);
 
-        // paths.map(rocks => rocks.map(([x,y]) => box[y][x] = "#"))
+    // paths.map(rocks => rocks.map(([x,y]) => box[y][x] = "#"))
 
-        for (let i = 0; i < paths.length; i++) {
-            const path = paths[i];
+    for (let i = 0; i < paths.length; i++) {
+      const path = paths[i];
 
-            // console.log({path})
-            
-            let [x,y] = path[0]
-            box[y][x] = "#"
+      // console.log({path})
 
-            for (let j = 1; j < path.length; j++) {
-                let [x1,y1] = path[j]
+      let [x, y] = path[0];
+      box[y][x] = "#";
 
-                // draw the endpoint
-                box[y1][x1] = "#"
+      for (let j = 1; j < path.length; j++) {
+        let [x1, y1] = path[j];
 
-                // connect prev rock to endpoint
-                if (x==x1) {
-                    for (let k = Math.min(y,y1); k <= Math.max(y,y1); k++) {
-                        box[k][x] = "#"
-                    }
-                } else if (y == y1) {
-                    for (let k = Math.min(x, x1); k <= Math.max(x, x1); k++) {
-                        box[y][k] = "#"
-                    }
-                }
+        // draw the endpoint
+        box[y1][x1] = "#";
 
-                // update the current rock coordinates
-                [x,y] = [x1,y1]
-            }
-            
+        // connect prev rock to endpoint
+        if (x == x1) {
+          for (let k = Math.min(y, y1); k <= Math.max(y, y1); k++) {
+            box[k][x] = "#";
+          }
+        } else if (y == y1) {
+          for (let k = Math.min(x, x1); k <= Math.max(x, x1); k++) {
+            box[y][k] = "#";
+          }
         }
 
-        box[starting[1]][starting[0]] = "+"
-
-        let sands = 0
-        while (drop_sand(box, starting, max_x, max_y)) {
-            sands++
-            // await draw_box(box, 100);
-            if(box[starting[1]][starting[0]] == "O") break
-            // console.log({sands})
-            // await sleep(10)
-        }
-        // drop_sand(box, starting, max_x, max_y)
-
-        // await draw(paths, { min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
-        // draw_box(box)
-        return {sands}
+        // update the current rock coordinates
+        [x, y] = [x1, y1];
+      }
     }
+
+    box[starting[1]][starting[0]] = "+";
+
+    let sands = 0;
+    while (drop_sand(box, starting, max_x, max_y)) {
+      sands++;
+      // await draw_box(box, 100);
+      if (box[starting[1]][starting[0]] == "O") break;
+      // console.log({sands})
+      // await sleep(10)
+    }
+    // drop_sand(box, starting, max_x, max_y)
+
+    // await draw(paths, { min_x: 0, max_x: max_x - min_x, min_y: 0, max_y: max_y - min_y, starting })
+    // draw_box(box)
+    return sands;
+  }
 }
 
-async function draw_box(box: Char[][], sleep_millis:number = 0) {
-    console.clear()
-    box.map(x => x.join("")).pipelog();
-    await sleep(sleep_millis)
+async function draw_box(box: Char[][], sleep_millis: number = 0) {
+  console.clear();
+  box.map((x) => x.join("")).pipelog();
+  await sleep(sleep_millis);
 }
 
 function construct_box(paths: number[][][], max_x: number, max_y: number) {
-    let box = [] as Char[][]
-    for (let i = 0; i <= max_y; i++) {
-        const row = [] as Char[]
-        for (let j = 0; j <= max_x; j++) {
-            row.push(".")
-        }
-        box.push(row)
+  let box = [] as Char[][];
+  for (let i = 0; i <= max_y; i++) {
+    const row = [] as Char[];
+    for (let j = 0; j <= max_x; j++) {
+      row.push(".");
     }
+    box.push(row);
+  }
 
-    return box
+  return box;
 }
 
 function drop_sand(box: Char[][], starting: number[], max_x: number, max_y: number): boolean {
-    let [x,y] = starting
+  let [x, y] = starting;
 
-    do {
-        let [x1, y1] = get_next_drop(box, x, y, max_x, max_y)
-        
-        function outOfBounts(): boolean {
-            return !ibw(x1, 0, max_x) || !ibw(y1, 0, max_y)
-        }
+  do {
+    let [x1, y1] = get_next_drop(box, x, y, max_x, max_y);
 
-        if (outOfBounts()) return false
+    function outOfBounts(): boolean {
+      return !ibw(x1, 0, max_x) || !ibw(y1, 0, max_y);
+    }
 
-        if(box[y1][x1] == ".") {
-            [x,y] = [x1,y1]
-        } else {
-            break
-        }
-        
-    } while (true)
+    if (outOfBounts()) return false;
 
-    box[y][x] = "O"
+    if (box[y1][x1] == ".") {
+      [x, y] = [x1, y1];
+    } else {
+      break;
+    }
+  } while (true);
 
-    return true
+  box[y][x] = "O";
+
+  return true;
 }
 
 function get_next_drop(box: Char[][], x: number, y: number, max_x: number, max_y: number): [number, number] {
-    let [x1,y1] = [x,y]
-    y1 +=1
+  let [x1, y1] = [x, y];
+  y1 += 1;
 
-    function outOfBounts(): boolean {
-        return !ibw(x1,0,max_x) || !ibw(y1,0,max_y)
-    }
+  function outOfBounts(): boolean {
+    return !ibw(x1, 0, max_x) || !ibw(y1, 0, max_y);
+  }
 
-    if (outOfBounts()  ||box[y1][x1] == ".") return [x1, y1]
+  if (outOfBounts() || box[y1][x1] == ".") return [x1, y1];
 
-    if (box[y1][x1] == "#" || box[y1][x1] == "O") {
-        x1-=1
-        if (outOfBounts() ||box[y1][x1] == ".") return [x1, y1]
-    }
-    if (box[y1][x1] == "#" || box[y1][x1] == "O") {
-        x1 += 2
-        if (outOfBounts() ||box[y1][x1] == ".") return [x1, y1]
-    }
+  if (box[y1][x1] == "#" || box[y1][x1] == "O") {
+    x1 -= 1;
+    if (outOfBounts() || box[y1][x1] == ".") return [x1, y1];
+  }
+  if (box[y1][x1] == "#" || box[y1][x1] == "O") {
+    x1 += 2;
+    if (outOfBounts() || box[y1][x1] == ".") return [x1, y1];
+  }
 
-    return [x1,y1]
+  return [x1, y1];
 }
 // async function draw(paths: number[][][], data: { min_x: number; max_x: number; min_y: number; max_y: number; starting: number[]; }) {
 //     for (let i = 0; i < paths.length; i++) {
 //         const path = paths[i];
-        
+
 //     }
 // }
 // function draw(paths: number[][][], starting: number[]) {

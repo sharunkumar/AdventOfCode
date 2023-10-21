@@ -1,160 +1,154 @@
 import { Solution } from "../utils";
-import { Point } from '../utils/Point';
+import { Point } from "../utils/Point";
 import { Rock } from "./modals/day-17";
 
 export default class PyroclasticFlow extends Solution {
-    solve(input: string) {
+  solve(input: string) {
+    let [stream, ...rocks_raw] = this.get_blocks(input);
 
-        let [stream, ...rocks_raw] = this.get_blocks(input)
+    let rocks = rocks_raw.map(this.get_lines.bind(this)).map((r) => new Rock(r));
 
-        let rocks = rocks_raw.map(this.get_lines.bind(this)).map(r => new Rock(r))
+    let chamber_width = 7;
+    let chamber_height = 6000;
+    let chamber_floor = chamber_height - 1;
 
-        let chamber_width = 7
-        let chamber_height = 6000
-        let chamber_floor = chamber_height - 1
+    let chamber = [] as string[][];
 
-        let chamber = [] as string[][]
-
-        for (let i = 0; i < chamber_height; i++) {
-            let arr = []
-            for (let j = 0; j < chamber_width; j++) {
-                arr.push(".")
-            }
-            chamber.push(arr)
-        }
-
-        let iter_rocks = new LoopingIterator(rocks)
-        let iter_jets = new LoopingIterator([...stream])
-
-
-        // loop n times
-        while (iter_rocks.count < 2022) {
-            // rock appears
-            let current_rock = iter_rocks.next()
-            let rock_appear_position_y = chamber_floor - 2 - current_rock.height
-            let rock_appear_position_x = 2
-
-            const pos = new Point(rock_appear_position_x, rock_appear_position_y)
-
-            do {
-                // jet the rock
-                let jet = iter_jets.next()
-
-                if (jet == ">") {
-                    if (can_move_right(current_rock, pos, chamber)) {
-                        pos.x++
-                    } else {
-                    }
-                } else if (jet == "<") {
-                    if (can_move_left(current_rock, pos, chamber)) {
-                        pos.x--
-                    } else {
-                    }
-                }
-                // move rock down
-                if (rock_can_move(current_rock, pos, chamber)) {
-                    pos.y++
-                }
-                else {
-                    break
-                }
-            } while (true)
-
-            // settle the rock
-            set_rock(current_rock, chamber, pos)
-
-            chamber_floor = Math.min(pos.y - 1, chamber_floor)
-
-            // print(chamber, chamber_floor)
-        }
-
-        return { height: chamber.length - chamber_floor - 1 }
+    for (let i = 0; i < chamber_height; i++) {
+      let arr = [];
+      for (let j = 0; j < chamber_width; j++) {
+        arr.push(".");
+      }
+      chamber.push(arr);
     }
+
+    let iter_rocks = new LoopingIterator(rocks);
+    let iter_jets = new LoopingIterator([...stream]);
+
+    // loop n times
+    while (iter_rocks.count < 2022) {
+      // rock appears
+      let current_rock = iter_rocks.next();
+      let rock_appear_position_y = chamber_floor - 2 - current_rock.height;
+      let rock_appear_position_x = 2;
+
+      const pos = new Point(rock_appear_position_x, rock_appear_position_y);
+
+      do {
+        // jet the rock
+        let jet = iter_jets.next();
+
+        if (jet == ">") {
+          if (can_move_right(current_rock, pos, chamber)) {
+            pos.x++;
+          } else {
+          }
+        } else if (jet == "<") {
+          if (can_move_left(current_rock, pos, chamber)) {
+            pos.x--;
+          } else {
+          }
+        }
+        // move rock down
+        if (rock_can_move(current_rock, pos, chamber)) {
+          pos.y++;
+        } else {
+          break;
+        }
+      } while (true);
+
+      // settle the rock
+      set_rock(current_rock, chamber, pos);
+
+      chamber_floor = Math.min(pos.y - 1, chamber_floor);
+
+      // print(chamber, chamber_floor)
+    }
+
+    return { height: chamber.length - chamber_floor - 1 };
+  }
 }
 
 function print(chamber: string[][], starting: number = 0) {
-    // console.clear()
-    for (let i = starting; i < chamber.length; i++) {
-        const l = chamber[i];
-        console.log(l.join(""))
-    }
+  // console.clear()
+  for (let i = starting; i < chamber.length; i++) {
+    const l = chamber[i];
+    console.log(l.join(""));
+  }
 }
 
 class LoopingIterator<T> {
-    index: number;
-    count: number;
-    constructor(public array: T[]) {
-        this.index = -1
-        this.count = 0
-    }
+  index: number;
+  count: number;
+  constructor(public array: T[]) {
+    this.index = -1;
+    this.count = 0;
+  }
 
-    next() {
-        this.index = (this.index + 1) % this.array.length
-        this.count++
-        return this.array[this.index]
-    }
+  next() {
+    this.index = (this.index + 1) % this.array.length;
+    this.count++;
+    return this.array[this.index];
+  }
 }
 
 function rock_can_move(rock: Rock, position: Point, chamber: string[][]): boolean {
-    const rownum = position.y + rock.height;
+  const rownum = position.y + rock.height;
 
-    if (rownum >= chamber.length) {
-        return false
+  if (rownum >= chamber.length) {
+    return false;
+  }
+
+  let vec = rock.surface_vector_bottom();
+
+  for (let i = 0; i < vec.length; i++) {
+    const v = vec[i];
+
+    if (chamber[rownum + v][position.x + i] != ".") {
+      return false;
     }
+  }
 
-    let vec = rock.surface_vector_bottom()
-
-    for (let i = 0; i < vec.length; i++) {
-        const v = vec[i];
-
-        if (chamber[rownum + v][position.x + i] != ".") {
-            return false
-        }
-    }
-
-    return true
+  return true;
 }
 function set_rock(rock: Rock, chamber: string[][], pos: Point) {
-    rock.rows.forEach((row, y) => {
-        [...row].forEach((c, x) => {
-            chamber[pos.y + y][pos.x + x] = (c == "#" ? c : chamber[pos.y + y][pos.x + x])
-        })
-    })
+  rock.rows.forEach((row, y) => {
+    [...row].forEach((c, x) => {
+      chamber[pos.y + y][pos.x + x] = c == "#" ? c : chamber[pos.y + y][pos.x + x];
+    });
+  });
 }
 
 function can_move_right(rock: Rock, position: Point, chamber: string[][]): boolean {
-    const colnum = position.x + rock.width;
-    if (colnum >= chamber[0].length)
-        return false
+  const colnum = position.x + rock.width;
+  if (colnum >= chamber[0].length) return false;
 
-    let vec = rock.surface_vector_right()
+  let vec = rock.surface_vector_right();
 
-    for (let i = 0; i < vec.length; i++) {
-        const v = vec[i];
+  for (let i = 0; i < vec.length; i++) {
+    const v = vec[i];
 
-        if (chamber[position.y + i][colnum + v] != ".") {
-            return false
-        }
+    if (chamber[position.y + i][colnum + v] != ".") {
+      return false;
     }
+  }
 
-    return true;
+  return true;
 }
 
 function can_move_left(rock: Rock, position: Point, chamber: string[][]): boolean {
-    const colnum = position.x - 1;
-    if (colnum < 0)
-        return false
+  const colnum = position.x - 1;
+  if (colnum < 0) return false;
 
-    let vec = rock.surface_vector_left()
+  let vec = rock.surface_vector_left();
 
-    for (let i = 0; i < vec.length; i++) {
-        const v = vec[i];
+  for (let i = 0; i < vec.length; i++) {
+    const v = vec[i];
 
-        if (chamber[position.y + i][colnum + v] != ".") {
-            return false
-        }
+    if (chamber[position.y + i][colnum + v] != ".") {
+      return false;
     }
+  }
 
-    return true;
+  return true;
 }
-
