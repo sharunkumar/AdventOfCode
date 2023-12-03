@@ -1,0 +1,6 @@
+{
+  "watch": ["src", "io"],
+  "ext": ".ts,.js,.txt",
+  "ignore": ["output.txt"],
+  "exec": "ts-node ./src/index.ts"
+}
