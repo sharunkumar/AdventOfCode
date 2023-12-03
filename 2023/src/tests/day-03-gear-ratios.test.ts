@@ -13,10 +13,10 @@ describe("Day 03: Gear Ratios", () => {
   })
   test("part 1", () => {
     let output = new part1().solve(input_1)
-    expect(output).toBe(null)
+    expect(output).toBe(4361)
   })
-  test("part 2", () => {
-    let output = new part2().solve(input_2)
-    expect(output).toBe(null)
-  })
+  // test("part 2", () => {
+  //   let output = new part2().solve(input_2)
+  //   expect(output).toBe(null)
+  // })
 })

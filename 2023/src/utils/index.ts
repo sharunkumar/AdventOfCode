@@ -89,3 +89,16 @@ export function regexMatch(input: string, re: RegExp) {
 export function intersect<T>(one: Set<T>, two: Set<T>): Set<T> {
   return new Set([...one].filter((x) => two.has(x)))
 }
+
+export function numberc(str: string): number | string {
+  if (!isNaN(Number(str))) {
+    return Number(str)
+  }
+  return str
+}
+
+export function safe_get<T>(matrix: T[][], x: number, y: number): T | undefined {
+  try {
+    return matrix[x][y]
+  } catch (_) {}
+}
