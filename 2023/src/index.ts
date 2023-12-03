@@ -1,7 +1,7 @@
 import { existsSync, readFileSync, writeFileSync } from "fs";
 import { Solution } from "./utils";
 import path from "path";
-import Trebuchet from "./solutions/day-01-trebuchet-1";
+import Trebuchet from "./solutions/day-01-trebuchet-2";
 
 const solution: Solution = new Trebuchet();
 
