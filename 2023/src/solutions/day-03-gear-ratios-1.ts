@@ -28,21 +28,21 @@ export default class GearRatios extends Solution {
           numbuf += c.toString()
           // console.log(numbuf)
         } else {
-          // check if number has symbol neigbors
           if (numbuf.length == 0) continue
+          // check if number has symbol neigbors
           console.log(numbuf)
+          let finds: (string | undefined)[] = []
           for (let l = 1; l <= numbuf.length; l++) {
             let k = j - l
-            let finds = neigbors
-              .map(([a, b]) => safe_get(matrix, i + a, k + b))
-              .filter((x) => x && x !== "." && isNaN(Number(x)))
-              .pipelog()
-
-            if (finds.length > 0) {
-              sum += Number(numbuf)
-              numbuf = ""
-              break
-            }
+            finds.push(
+              ...neigbors
+                .map(([a, b]) => safe_get(matrix, i + a, k + b))
+                .filter((x) => x && x !== "." && isNaN(Number(x))),
+            )
+          }
+          finds.pipelog()
+          if (finds.length > 0) {
+            sum += Number(numbuf)
           }
 
           numbuf = ""
