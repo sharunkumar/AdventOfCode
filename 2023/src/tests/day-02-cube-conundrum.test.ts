@@ -15,8 +15,8 @@ describe("Day 02: Cube Conundrum", () => {
     let output = new part1().solve(input_1)
     expect(output).toBe(8)
   })
-  // test("part 2", () => {
-  //   let output = new part2().solve(input_2);
-  //   expect(output).toBe(null);
-  // });
+  test("part 2", () => {
+    let output = new part2().solve(input_2)
+    expect(output).toBe(2286)
+  })
 })
