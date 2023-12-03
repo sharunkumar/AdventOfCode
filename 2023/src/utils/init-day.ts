@@ -25,7 +25,8 @@ import("title-case").then(({ titleCase }) => {
 
   let sample_input_path = path.join(".", "io", className + ".txt");
 
-  let test_sample_input_path = path.join(".", "src", "tests", "io", file_name + ".input.txt");
+  let test_sample_input_path_1 = path.join(".", "src", "tests", "io", file_name + ".input.1.txt");
+  let test_sample_input_path_2 = path.join(".", "src", "tests", "io", file_name + ".input.2.txt");
 
   let extensions = ["-1.ts", "-2.ts"];
 
@@ -46,7 +47,8 @@ import("title-case").then(({ titleCase }) => {
 
   createFile(sample_input_path);
 
-  createFile(test_sample_input_path);
+  createFile(test_sample_input_path_1);
+  createFile(test_sample_input_path_2);
 });
 
 function createFile(file_path: string, file_content: string = "") {
