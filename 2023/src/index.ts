@@ -2,7 +2,7 @@ import { existsSync, readFileSync, writeFileSync } from "fs"
 import { Solution } from "./utils"
 import path from "path"
 import Trebuchet from "./solutions/day-01-trebuchet-2"
-import CubeConundrum from "./solutions/day-02-cube-conundrum-1"
+import CubeConundrum from "./solutions/day-02-cube-conundrum-2"
 
 const solution: Solution = new CubeConundrum()
 

@@ -19,7 +19,6 @@ export default class CubeConundrum extends Solution {
         return { game_number, groups }
       })
       .map(({ game_number, groups }) => {
-        console.log(game_number)
         const sets = groups
           .map((g) =>
             g.split(", ").map((ball) => {
