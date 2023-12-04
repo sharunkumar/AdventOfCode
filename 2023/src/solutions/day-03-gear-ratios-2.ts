@@ -62,7 +62,7 @@ function getNeightbors(i: number, k: number, matrix: string[][]) {
       }
       return result
     })
-    .filter(({ code }) => code && code !== "." && isNaN(Number(code)))
+    .filter(({ code }) => code && code === "*" && isNaN(Number(code)))
   // .pipelog()
   // .map(({ code }) => code)
 }
