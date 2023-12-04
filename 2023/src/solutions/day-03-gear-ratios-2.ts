@@ -39,17 +39,19 @@ export default class GearRatios extends Solution {
     return sum
   }
 }
+
+const neigbors = [
+  [1, 0],
+  [-1, 0],
+  [0, 1],
+  [0, -1],
+  [1, 1],
+  [1, -1],
+  [-1, 1],
+  [-1, -1],
+]
+
 function getNeightbors(i: number, k: number, matrix: string[][]) {
-  let neigbors = [
-    [1, 0],
-    [-1, 0],
-    [0, 1],
-    [0, -1],
-    [1, 1],
-    [1, -1],
-    [-1, 1],
-    [-1, -1],
-  ]
   return neigbors
     .map(([a, b]) => [i + a, k + b])
     .map(([c, d]) => {
