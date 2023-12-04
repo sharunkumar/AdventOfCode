@@ -8,17 +8,6 @@ export default class GearRatios extends Solution {
 
     let sum = 0
 
-    let neigbors = [
-      [1, 0],
-      [-1, 0],
-      [0, 1],
-      [0, -1],
-      [1, 1],
-      [1, -1],
-      [-1, 1],
-      [-1, -1],
-    ]
-
     for (let i = 0; i < matrix.length; i++) {
       const row = matrix[i]
       let numbuf = ""
@@ -31,24 +20,10 @@ export default class GearRatios extends Solution {
           if (numbuf.length == 0) continue
           // check if number has symbol neigbors
           console.log(numbuf)
-          let finds: (string | undefined)[] = []
+          let finds: ReturnType<typeof getNeightbors> = []
           for (let l = 1; l <= numbuf.length; l++) {
             let k = j - l
-            finds.push(
-              ...neigbors
-                .map(([a, b]) => [i + a, k + b])
-                .map(([c, d]) => {
-                  const result = {
-                    code: safe_get(matrix, c, d),
-                    x: c,
-                    y: d,
-                  }
-                  return result
-                })
-                .filter(({ code }) => code && code !== "." && isNaN(Number(code)))
-                .pipelog()
-                .map(({ code }) => code),
-            )
+            finds.push(...getNeightbors(i, k, matrix))
           }
           finds.pipelog()
           if (finds.length > 0) {
@@ -63,4 +38,29 @@ export default class GearRatios extends Solution {
 
     return sum
   }
+}
+function getNeightbors(i: number, k: number, matrix: string[][]) {
+  let neigbors = [
+    [1, 0],
+    [-1, 0],
+    [0, 1],
+    [0, -1],
+    [1, 1],
+    [1, -1],
+    [-1, 1],
+    [-1, -1],
+  ]
+  return neigbors
+    .map(([a, b]) => [i + a, k + b])
+    .map(([c, d]) => {
+      const result = {
+        code: safe_get(matrix, c, d),
+        x: c,
+        y: d,
+      }
+      return result
+    })
+    .filter(({ code }) => code && code !== "." && isNaN(Number(code)))
+    .pipelog()
+    .map(({ code }) => code)
 }
