@@ -109,3 +109,7 @@ dist
 output.txt
 
 build
+
+# database
+*.db
+*db-journal

@@ -1,0 +1,25 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgres://postgres:postgres@localhost:5432/"
+}
+
+model GearCoordinates {
+  id Int @id @default(autoincrement())
+
+  i Int
+  j Int
+
+  part_i Int
+  part_j Int
+
+  part_num Int
+
+  @@unique([i, j, part_i, part_j])
+}
