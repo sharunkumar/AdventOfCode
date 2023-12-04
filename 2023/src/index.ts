@@ -4,8 +4,9 @@ import path from "path"
 import Trebuchet from "./solutions/day-01-trebuchet-2"
 import CubeConundrum from "./solutions/day-02-cube-conundrum-2"
 import GearRatios from "./solutions/day-03-gear-ratios-2"
+import Scratchcards from "./solutions/day-04-scratchcards-2"
 
-const solution: Solution = new GearRatios()
+const solution: Solution = new Scratchcards()
 
 const input_file_name = path.join(__dirname, "..", "io", `${solution.constructor.name}.txt`)
 
