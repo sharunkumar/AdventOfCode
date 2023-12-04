@@ -54,6 +54,7 @@
   },
   "dependencies": {
     "@types/lodash": "^4.14.202",
+    "big-m": "^7.0.0",
     "lodash": "^4.17.21"
   }
 }
