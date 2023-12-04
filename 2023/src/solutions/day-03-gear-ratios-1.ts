@@ -3,7 +3,7 @@ import { Solution, numberc, safe_get } from "../utils"
 export default class GearRatios extends Solution {
   solve(input: string) {
     const lines = this.get_lines(input)
-    const matrix = lines.map((line) => line.split("")).pipelog()
+    const matrix = lines.map((line) => (line + ".").split("")).pipelog()
     // lines.map((line) => line.split(".").map((x) => (isNaN(Number(x)) ? x : Number(x)))).pipelog()
 
     let sum = 0
@@ -34,11 +34,7 @@ export default class GearRatios extends Solution {
           let finds: (string | undefined)[] = []
           for (let l = 1; l <= numbuf.length; l++) {
             let k = j - l
-            finds.push(
-              ...neigbors
-                .map(([a, b]) => safe_get(matrix, i + a, k + b))
-                .filter((x) => x && x !== "." && isNaN(Number(x))),
-            )
+            finds.push(...neigbors.map(([a, b]) => safe_get(matrix, i + a, k + b)).filter((x) => x && x !== "." && isNaN(Number(x))))
           }
           finds.pipelog()
           if (finds.length > 0) {
