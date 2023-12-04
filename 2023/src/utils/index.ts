@@ -4,6 +4,10 @@ export function sum(x: number, y: number): number {
   return x + y
 }
 
+export function product(x: number, y: number): number {
+  return x * y
+}
+
 // export function pipelog<T>(x: T): T {
 //     console.log(x)
 //     return x
@@ -57,7 +61,8 @@ declare global {
     pipelog(): Array<T>
     pipelog(include_index: boolean): Array<T>
     pipelog(include_index: boolean, index_start: number): Array<T>
-    sum(): Number
+    sum(): number
+    product(): number
   }
 }
 
@@ -74,6 +79,10 @@ Array.prototype.pipelog = function <T>(include_index: boolean = false, index_sta
 
 Array.prototype.sum = function <T>(): number {
   return this.reduce(sum)
+}
+
+Array.prototype.product = function <T>(): number {
+  return this.reduce(product)
 }
 
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))

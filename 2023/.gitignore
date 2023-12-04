@@ -112,3 +112,4 @@ build
 
 # database
 *.db
+*db-journal
