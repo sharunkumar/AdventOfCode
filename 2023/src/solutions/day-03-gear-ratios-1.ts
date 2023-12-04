@@ -34,7 +34,12 @@ export default class GearRatios extends Solution {
           let finds: (string | undefined)[] = []
           for (let l = 1; l <= numbuf.length; l++) {
             let k = j - l
-            finds.push(...neigbors.map(([a, b]) => safe_get(matrix, i + a, k + b)).filter((x) => x && x !== "." && isNaN(Number(x))))
+            finds.push(
+              ...neigbors
+                .map(([a, b]) => [i + a, k + b])
+                .map(([c, d]) => safe_get(matrix, c, d))
+                .filter((x) => x && x !== "." && isNaN(Number(x))),
+            )
           }
           finds.pipelog()
           if (finds.length > 0) {
