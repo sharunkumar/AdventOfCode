@@ -43,7 +43,7 @@ export default class GearRatios extends Solution {
                     part_num: num,
                   },
                 })
-                .catch((err) => console.warn("duplicate insert"))
+                .catch((err) => 0)
             }
           }
 
