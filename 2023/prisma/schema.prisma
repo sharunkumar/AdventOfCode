@@ -6,8 +6,8 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
-  url      = "file:aoc.db"
+  provider = "postgresql"
+  url      = "postgres://postgres:postgres@localhost:5432/"
 }
 
 model GearCoordinates {
