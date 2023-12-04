@@ -37,13 +37,23 @@ export default class GearRatios extends Solution {
             finds.push(
               ...neigbors
                 .map(([a, b]) => [i + a, k + b])
-                .map(([c, d]) => safe_get(matrix, c, d))
-                .filter((x) => x && x !== "." && isNaN(Number(x))),
+                .map(([c, d]) => {
+                  const result = {
+                    code: safe_get(matrix, c, d),
+                    x: c,
+                    y: d,
+                  }
+                  return result
+                })
+                .filter(({ code }) => code && code !== "." && isNaN(Number(code)))
+                .pipelog()
+                .map(({ code }) => code),
             )
           }
           finds.pipelog()
           if (finds.length > 0) {
-            sum += Number(numbuf)
+            const num = Number(numbuf)
+            sum += num
           }
 
           numbuf = ""
