@@ -3,7 +3,7 @@ import { Solution } from "./utils"
 import path from "path"
 import Trebuchet from "./solutions/day-01-trebuchet-2"
 import CubeConundrum from "./solutions/day-02-cube-conundrum-2"
-import GearRatios from "./solutions/day-03-gear-ratios-1"
+import GearRatios from "./solutions/day-03-gear-ratios-2"
 
 const solution: Solution = new GearRatios()
 
