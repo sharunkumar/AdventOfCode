@@ -17,6 +17,6 @@ describe("Day 03: Gear Ratios", () => {
   })
   test("part 2", () => {
     let output = new part2().solve(input_2)
-    expect(output).toBe(null)
+    expect(output).toBe(467835)
   })
 })
