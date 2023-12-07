@@ -11,12 +11,12 @@ describe("Day 05: If You Give A Seed A Fertilizer", () => {
     input_1 = readFileSync(input_file_name_1, "utf-8")
     input_2 = readFileSync(input_file_name_2, "utf-8")
   })
-  test("part 1", () => {
-    let output = new part1().solve(input_1)
-    expect(output).toBe(35)
-  })
-  // test("part 2", () => {
-  //   let output = new part2().solve(input_2)
-  //   expect(output).toBe(null)
+  // test("part 1", () => {
+  //   let output = new part1().solve(input_1)
+  //   expect(output).toBe(35)
   // })
+  test("part 2", () => {
+    let output = new part2().solve(input_2)
+    expect(output).toBe(46)
+  })
 })
