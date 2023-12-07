@@ -4,11 +4,9 @@ export default class IfYouGiveASeedAFertilizer extends Solution {
   solve(input: string) {
     const [seeds_data, ...rest] = this.get_blocks(input)
 
-    // console.log({ seeds: seeds_data, rest })
-
     const seeds = regexMatch(seeds_data, /\d+/g).map(Number) //.pipelog()
 
-    // console.log({ seeds, rest })
+    let seeds2 = [] as [number, number][]
 
     const maps = rest
       .map(this.get_blocks)
@@ -16,32 +14,41 @@ export default class IfYouGiveASeedAFertilizer extends Solution {
       .flat()
       .map(([_first, ...eh]) => [eh.map((x) => regexMatch(x, /\d+/g).map(Number))].flat())
 
-    // console.log({ seeds, maps })
+    for (let i = 0; i < seeds.length; i += 2) {
+      seeds2.push([seeds[i], seeds[i] + seeds[i + 1]])
+    }
 
-    const result = seeds
-      // .slice(0, 1)
-      .map((seed) => {
-        // console.log(seed)
+    maps.forEach((ranges) => {
+      let running = [] as [number, number][]
+      while (seeds2.length) {
+        const next = seeds2.pop()
+        if (!next) break
+        const [start, end] = next
+        let found = false
+        for (let r = 0; r < ranges.length; r++) {
+          const [dest, src, range] = ranges[r]
 
-        let running = seed
-
-        for (let mi = 0; mi < maps.length; mi++) {
-          const m = maps[mi]
-
-          running =
-            m
-              .filter(([dest, src, range]) => running >= src && running <= src + range)
-              .map(([dest, src, range]) => {
-                // console.log([dest, src, range])
-                return dest + (running - src)
-              })[0] || running
-
-          // console.log({ running })
+          let overlap_start = Math.max(start, src)
+          let overlap_end = Math.min(end, src + range)
+          if (overlap_start < overlap_end) {
+            running.push([overlap_start - src + dest, overlap_end - src + dest])
+            if (overlap_start > start) {
+              seeds2.push([start, overlap_start])
+            }
+            if (end > overlap_end) {
+              seeds2.push([overlap_end, end])
+            }
+            found = true
+            break
+          }
         }
-        return running
-      })
-      .least()
+        if (!found) {
+          running.push([start, end])
+        }
+      }
+      seeds2 = running
+    })
 
-    return result
+    return seeds2.map((x) => x[0]).least()
   }
 }
