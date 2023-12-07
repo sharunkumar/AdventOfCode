@@ -4,6 +4,10 @@ export function sum(x: number, y: number): number {
   return x + y
 }
 
+export function least(x: number, y: number): number {
+  return Math.min(x, y)
+}
+
 export function product(x: number, y: number): number {
   return x * y
 }
@@ -63,6 +67,7 @@ declare global {
     pipelog(include_index: boolean, index_start: number): Array<T>
     sum(): number
     product(): number
+    least(): number
   }
 }
 
@@ -79,6 +84,10 @@ Array.prototype.pipelog = function <T>(include_index: boolean = false, index_sta
 
 Array.prototype.sum = function <T>(): number {
   return this.reduce(sum)
+}
+
+Array.prototype.least = function <T>(): number {
+  return this.reduce(least)
 }
 
 Array.prototype.product = function <T>(): number {
