@@ -5,8 +5,9 @@ import Trebuchet from "./solutions/day-01-trebuchet-2"
 import CubeConundrum from "./solutions/day-02-cube-conundrum-2"
 import GearRatios from "./solutions/day-03-gear-ratios-2"
 import Scratchcards from "./solutions/day-04-scratchcards-2"
+import IfYouGiveASeedAFertilizer from "./solutions/day-05-if-you-give-a-seed-a-fertilizer-1"
 
-const solution: Solution = new Scratchcards()
+const solution: Solution = new IfYouGiveASeedAFertilizer()
 
 const input_file_name = path.join(__dirname, "..", "io", `${solution.constructor.name}.txt`)
 
