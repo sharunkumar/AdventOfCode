@@ -7,7 +7,7 @@ export default class CamelCards extends Solution {
 
     const lets = new Map([
       ["T", "A"],
-      ["J", "B"],
+      ["J", "1"],
       ["Q", "C"],
       ["K", "D"],
       ["A", "E"],
