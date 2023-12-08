@@ -33,17 +33,7 @@ export default class CamelCards extends Solution {
       .map((c) => {
         return {
           ...c,
-          classification: (() => {
-            if (c.counts["5"]) return 6
-            if (c.counts["4"]) return 5
-            if (c.counts["3"]) {
-              if (c.counts["2"]) return 4
-              return 3
-            }
-            if (c.counts["2"] == 4) return 2
-            if (c.counts["2"]) return 1
-            return 0
-          })(),
+          classification: score(c),
           strength: Array.from(c.cards)
             .map((char) => lets.get(char) || char)
             .join(""),
@@ -55,4 +45,16 @@ export default class CamelCards extends Solution {
       .map((c, idx) => c.bid * (idx + 1))
       .sum()
   }
+}
+
+function score(c: { counts: any; cards?: string; bid?: number }) {
+  if (c.counts["5"]) return 6
+  if (c.counts["4"]) return 5
+  if (c.counts["3"]) {
+    if (c.counts["2"]) return 4
+    return 3
+  }
+  if (c.counts["2"] == 4) return 2
+  if (c.counts["2"]) return 1
+  return 0
 }
