@@ -20,14 +20,11 @@ export default class HauntedWasteland extends Solution {
     // console.log(map)
 
     let running = "AAA"
-    let steps = 0
-    let i = 0
 
     while (running !== "ZZZ") {
       running = map.get(running)![directions.next()]
-      steps++
     }
 
-    return steps
+    return directions.count
   }
 }
