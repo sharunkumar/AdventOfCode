@@ -120,3 +120,5 @@ export function safe_get<T>(matrix: T[][], x: number, y: number): T | undefined 
     return matrix[x][y]
   } catch (_) {}
 }
+
+export const range = (n: number): number[] => [...Array(n).keys()]
