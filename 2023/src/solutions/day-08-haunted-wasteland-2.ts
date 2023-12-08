@@ -23,11 +23,11 @@ export default class HauntedWasteland extends Solution {
     const keys = Array.from(map.keys())
 
     let starts = keys.filter((key) => key[2] === "A")
-    const ends = keys.filter((key) => key[2] === "Z")
+    // const ends = keys.filter((key) => key[2] === "Z")
 
     // console.log({ starts, ends })
 
-    while (!isEqual(starts, ends)) {
+    while (starts.filter((x) => x[2] !== "Z").length) {
       const next = directions.next()
 
       starts = starts.map((s, idx) => map.get(s)![next])
