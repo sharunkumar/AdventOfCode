@@ -143,3 +143,11 @@ export function safe_get<T>(
 }
 
 export const range = (n: number): number[] => [...Array(n).keys()]
+
+export function gcd(a: number, b: number) {
+  return !b ? a : gcd(b, a % b)
+}
+
+export function lcm(a: number, b: number) {
+  return (a * b) / gcd(a, b)
+}
