@@ -1,4 +1,4 @@
-import { Solution, sum } from "../utils";
+import { Solution, sum } from "../utils"
 
 enum play {
   rock,
@@ -17,30 +17,30 @@ export default class RockPaperScissors extends Solution {
     switch (letter) {
       case "A":
       case "X":
-        return play.rock;
+        return play.rock
       case "B":
       case "Y":
-        return play.paper;
+        return play.paper
       case "C":
       case "Z":
-        return play.scissors;
+        return play.scissors
       default:
-        throw new Error("Can't parse");
+        throw new Error("Can't parse")
     }
   }
 
   get_outcome(left: play, right: play): outcome {
-    let length = Object.values(play).length / 2;
+    let length = Object.values(play).length / 2
 
     if (left == right) {
-      return outcome.draw;
+      return outcome.draw
     }
 
     if (right == (left + 1) % length) {
-      return outcome.win;
+      return outcome.win
     }
 
-    return outcome.loss;
+    return outcome.loss
   }
 
   solve(input: string) {
@@ -48,6 +48,6 @@ export default class RockPaperScissors extends Solution {
       .map((line) => line.split(" "))
       .map((arr) => arr.map((item) => this.parse_raw(item)))
       .map((plays) => this.get_outcome(plays[0], plays[1]) + plays[1] + 1)
-      .reduce(sum);
+      .reduce(sum)
   }
 }
