@@ -27,12 +27,21 @@ export default class HauntedWasteland extends Solution {
 
     // console.log({ starts, ends })
 
-    while (starts.filter((x) => x[2] !== "Z").length) {
+    while (condition(starts)) {
       const next = directions.next()
 
       starts = starts.map((s, idx) => map.get(s)![next])
+      // console.log(directions.count)
     }
 
     return directions.count
   }
+}
+
+function condition(starts: string[]) {
+  for (let index = 0; index < starts.length; index++) {
+    const element = starts[index]
+    if (element[2] !== "Z") return true
+  }
+  return false
 }
