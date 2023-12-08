@@ -7,8 +7,9 @@ import GearRatios from "./solutions/day-03-gear-ratios-2"
 import Scratchcards from "./solutions/day-04-scratchcards-2"
 import IfYouGiveASeedAFertilizer from "./solutions/day-05-if-you-give-a-seed-a-fertilizer-2"
 import WaitForIt from "./solutions/day-06-wait-for-it-2"
+import CamelCards from "./solutions/day-07-camel-cards-2"
 
-const solution: Solution = new WaitForIt()
+const solution: Solution = new CamelCards()
 
 const input_file_name = path.join(
   __dirname,

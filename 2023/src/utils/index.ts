@@ -8,6 +8,10 @@ export function least(x: number, y: number): number {
   return Math.min(x, y)
 }
 
+export function greatest(x: number, y: number): number {
+  return Math.max(x, y)
+}
+
 export function product(x: number, y: number): number {
   return x * y
 }
@@ -68,6 +72,7 @@ declare global {
     sum(): number
     product(): number
     least(): number
+    greatest(): number
   }
 }
 
@@ -91,6 +96,10 @@ Array.prototype.sum = function <T>(): number {
 
 Array.prototype.least = function <T>(): number {
   return this.reduce(least)
+}
+
+Array.prototype.greatest = function <T>(): number {
+  return this.reduce(greatest)
 }
 
 Array.prototype.product = function <T>(): number {
