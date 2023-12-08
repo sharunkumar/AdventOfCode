@@ -19,8 +19,8 @@ describe("Day 07: Camel Cards", () => {
     let output = new part1().solve(input_1)
     expect(output).toBe(6440)
   })
-  // test("part 2", () => {
-  //   let output = new part2().solve(input_2)
-  //   expect(output).toBe(null)
-  // })
+  test.todo("part 2", () => {
+    let output = new part2().solve(input_2)
+    expect(output).toBe(null)
+  })
 })
