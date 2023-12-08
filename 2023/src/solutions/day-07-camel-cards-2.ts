@@ -1,4 +1,4 @@
-import { countBy, sortBy } from "lodash"
+import { Dictionary, countBy, sortBy } from "lodash"
 import { Solution } from "../utils"
 
 export default class CamelCards extends Solution {
@@ -34,11 +34,11 @@ export default class CamelCards extends Solution {
         return {
           ...c,
           classification: replacements(c.cards)
-            .map((h) =>
+            .map((hand) =>
               score({
                 counts: countBy(
-                  h,
-                  (s) => Array.from(h).filter((a) => a == s).length,
+                  hand,
+                  (s) => Array.from(hand).filter((a) => a == s).length,
                 ),
               }),
             )
@@ -56,7 +56,7 @@ export default class CamelCards extends Solution {
   }
 }
 
-function score(c: { counts: any; cards?: string; bid?: number }) {
+function score(c: { counts: Dictionary<number> }) {
   if (c.counts["5"]) return 6
   if (c.counts["4"]) return 5
   if (c.counts["3"]) {
@@ -68,7 +68,7 @@ function score(c: { counts: any; cards?: string; bid?: number }) {
   return 0
 }
 
-function replacements(hand) {
+function replacements(hand: string) {
   if (hand == "") {
     return [""]
   }
