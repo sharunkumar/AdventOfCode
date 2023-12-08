@@ -18,20 +18,20 @@ describe("Day 01: Trebuchet", () => {
     const ctor_name = new part1().constructor.name
     input_prod = readFileSync(`io/${ctor_name}.txt`, "utf-8")
   })
-  test.todo("part 1", () => {
+  test("part 1", () => {
     let output = new part1().solve(input_1)
-    expect(output).toBe(null)
+    expect(output).toBe(142)
   })
-  test.todo("part 1 - prod", () => {
+  test("part 1 - prod", () => {
     let output = new part1().solve(input_prod)
-    expect(output).toBe(null)
+    expect(output).toBe(54304)
   })
-  test.todo("part 2", () => {
+  test("part 2", () => {
     let output = new part2().solve(input_2)
-    expect(output).toBe(null)
+    expect(output).toBe(281)
   })
-  test.todo("part 2 - prod", () => {
+  test("part 2 - prod", () => {
     let output = new part2().solve(input_prod)
-    expect(output).toBe(null)
+    expect(output).toBe(54418)
   })
 })
