@@ -13,7 +13,10 @@ import("title-case").then(({ titleCase }) => {
 
   let className = title.replace(/ /g, "")
 
-  let file_name = title_with_day.replace(":", "").replace(/ /g, "-").toLowerCase()
+  let file_name = title_with_day
+    .replace(":", "")
+    .replace(/ /g, "-")
+    .toLowerCase()
 
   let file_path = path.join(".", "src", "solutions", file_name)
 
@@ -25,8 +28,20 @@ import("title-case").then(({ titleCase }) => {
 
   let sample_input_path = path.join(".", "io", className + ".txt")
 
-  let test_sample_input_path_1 = path.join(".", "src", "tests", "io", file_name + ".input.1.txt")
-  let test_sample_input_path_2 = path.join(".", "src", "tests", "io", file_name + ".input.2.txt")
+  let test_sample_input_path_1 = path.join(
+    ".",
+    "src",
+    "tests",
+    "io",
+    file_name + ".input.1.txt",
+  )
+  let test_sample_input_path_2 = path.join(
+    ".",
+    "src",
+    "tests",
+    "io",
+    file_name + ".input.2.txt",
+  )
 
   let extensions = ["-1.ts", "-2.ts"]
 
@@ -43,7 +58,9 @@ import("title-case").then(({ titleCase }) => {
 
   extensions.forEach((e) => createFile(file_path + e, file_content))
 
-  test_extensions.forEach((e) => createFile(test_file_path + e, test_file_content))
+  test_extensions.forEach((e) =>
+    createFile(test_file_path + e, test_file_content),
+  )
 
   createFile(sample_input_path)
 

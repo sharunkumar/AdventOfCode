@@ -12,7 +12,9 @@ export default class IfYouGiveASeedAFertilizer extends Solution {
       .map(this.get_blocks)
       .map((block) => block.map(this.get_lines))
       .flat()
-      .map(([_first, ...eh]) => [eh.map((x) => regexMatch(x, /\d+/g).map(Number))].flat())
+      .map(([_first, ...eh]) =>
+        [eh.map((x) => regexMatch(x, /\d+/g).map(Number))].flat(),
+      )
 
     for (let i = 0; i < seeds.length; i += 2) {
       seeds2.push([seeds[i], seeds[i] + seeds[i + 1]])

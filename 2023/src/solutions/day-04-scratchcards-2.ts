@@ -49,15 +49,24 @@ export default class Scratchcards extends Solution {
   }
 }
 
-type ArrayElement<ArrayType extends readonly unknown[]> = ArrayType extends readonly (infer ElementType)[] ? ElementType : never
+type ArrayElement<ArrayType extends readonly unknown[]> =
+  ArrayType extends readonly (infer ElementType)[] ? ElementType : never
 
-function process(cards: { card_numer: number; winning: number[]; mine: number[] }[]) {
+function process(
+  cards: { card_numer: number; winning: number[]; mine: number[] }[],
+) {
   return cards.map((card) => {
     const count = countCard(card)
-    return count == 0 ? 1 : process(cards.slice(card.card_numer - 1, card.card_numer - 1 + count))
+    return count == 0
+      ? 1
+      : process(cards.slice(card.card_numer - 1, card.card_numer - 1 + count))
   })
 }
 
-function countCard(card: { card_numer: number; winning: number[]; mine: number[] }): number {
+function countCard(card: {
+  card_numer: number
+  winning: number[]
+  mine: number[]
+}): number {
   return card.mine.filter((x) => card.winning.includes(x)).length
 }

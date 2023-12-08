@@ -26,7 +26,11 @@ export default class Scratchcards extends Solution {
     return result
   }
 }
-function countCard(card: { card_numer: number; winning: number[]; mine: number[] }) {
+function countCard(card: {
+  card_numer: number
+  winning: number[]
+  mine: number[]
+}) {
   let cum = 0
   for (let i = 0; i < card.mine.length; i++) {
     const c = card.mine[i]
