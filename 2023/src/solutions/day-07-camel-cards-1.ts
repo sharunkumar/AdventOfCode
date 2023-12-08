@@ -35,13 +35,13 @@ export default class CamelCards extends Solution {
           ...c,
           classification: (() => {
             if (c.counts["5"]) return 6
-            if (c.counts["4"]) return 4
+            if (c.counts["4"]) return 5
             if (c.counts["3"]) {
               if (c.counts["2"]) return 4
               return 3
             }
-            if (c.counts["2"] === 4) return 2
-            if (c.counts[2]) return 1
+            if (c.counts["2"] == 4) return 2
+            if (c.counts["2"]) return 1
             return 0
           })(),
           strength: Array.from(c.cards)
