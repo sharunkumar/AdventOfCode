@@ -4,7 +4,7 @@ import { readFileSync } from "fs"
 
 describe("Day 07: Camel Cards", () => {
   let input_1: string
-  let input_1_prod: string
+  let input_prod: string
   let input_2: string
   beforeAll(() => {
     const input_file_name_1 = __filename
@@ -14,15 +14,15 @@ describe("Day 07: Camel Cards", () => {
       .replace(/\.test\.ts$/, ".input.2.txt")
       .replace(/tests/, "tests/io")
     input_1 = readFileSync(input_file_name_1, "utf-8")
-    input_1_prod = readFileSync("io/CamelCards.txt", "utf-8")
     input_2 = readFileSync(input_file_name_2, "utf-8")
+    input_prod = readFileSync("io/CamelCards.txt", "utf-8")
   })
   test("part 1", () => {
     let output = new part1().solve(input_1)
     expect(output).toBe(6440)
   })
   test("part 1 - prod", () => {
-    let output = new part1().solve(input_1_prod)
+    let output = new part1().solve(input_prod)
     expect(output).toBe(248569531)
   })
   test("part 2", () => {
