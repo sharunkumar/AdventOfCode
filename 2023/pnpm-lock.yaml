@@ -17,6 +17,9 @@ dependencies:
   lodash:
     specifier: ^4.17.21
     version: 4.17.21
+  title-case:
+    specifier: ^4.1.2
+    version: 4.1.2
 
 devDependencies:
   '@babel/core':
@@ -79,9 +82,6 @@ devDependencies:
   run-script-os:
     specifier: ^1.1.6
     version: 1.1.6
-  title-case:
-    specifier: ^4.1.2
-    version: 4.1.2
   ts-node:
     specifier: ^10.9.2
     version: 10.9.2(@types/node@20.10.4)(typescript@4.9.5)
@@ -4140,7 +4140,7 @@ packages:
 
   /title-case@4.1.2:
     resolution: {integrity: sha512-K9Mmf3WWSF0DCAMLk6so4EFyxhh9puTZSnfkpFnp+EGLewLQTYOeYKDXE4PCFU5dUmrqXwSVzZXbpJ6gFIm9Ow==}
-    dev: true
+    dev: false
 
   /tmpl@1.0.5:
     resolution: {integrity: sha512-3f0uOEAQwIqGuWW2MVzYg8fV/QNnc/IpuJNG837rLuczAaLVHslWHZQj4IGiEl5Hs3kkbhwL9Ab7Hrsmuj+Smw==}
