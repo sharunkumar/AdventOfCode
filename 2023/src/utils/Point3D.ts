@@ -7,11 +7,19 @@ export function hash(point: point3d) {
 }
 
 export function minp(p1: point3d, p2: point3d) {
-  return p3d(Math.min(p1[0], p2[0]), Math.min(p1[1], p2[1]), Math.min(p1[2], p2[2]))
+  return p3d(
+    Math.min(p1[0], p2[0]),
+    Math.min(p1[1], p2[1]),
+    Math.min(p1[2], p2[2]),
+  )
 }
 
 export function maxp(p1: point3d, p2: point3d) {
-  return p3d(Math.max(p1[0], p2[0]), Math.max(p1[1], p2[1]), Math.max(p1[2], p2[2]))
+  return p3d(
+    Math.max(p1[0], p2[0]),
+    Math.max(p1[1], p2[1]),
+    Math.max(p1[2], p2[2]),
+  )
 }
 
 export function add(a: point3d, b: point3d) {
@@ -27,5 +35,9 @@ export function p3d(x: number, y: number, z: number) {
 }
 
 export function point_between(p: point3d, minp: point3d, maxp: point3d) {
-  return ibw(p[0], minp[0], maxp[0]) && ibw(p[1], minp[1], maxp[1]) && ibw(p[2], minp[2], maxp[2])
+  return (
+    ibw(p[0], minp[0], maxp[0]) &&
+    ibw(p[1], minp[1], maxp[1]) &&
+    ibw(p[2], minp[2], maxp[2])
+  )
 }

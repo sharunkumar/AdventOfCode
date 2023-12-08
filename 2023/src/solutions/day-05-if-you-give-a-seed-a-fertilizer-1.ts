@@ -14,7 +14,9 @@ export default class IfYouGiveASeedAFertilizer extends Solution {
       .map(this.get_blocks)
       .map((block) => block.map(this.get_lines))
       .flat()
-      .map(([_first, ...eh]) => [eh.map((x) => regexMatch(x, /\d+/g).map(Number))].flat())
+      .map(([_first, ...eh]) =>
+        [eh.map((x) => regexMatch(x, /\d+/g).map(Number))].flat(),
+      )
 
     // console.log({ seeds, maps })
 
@@ -30,7 +32,10 @@ export default class IfYouGiveASeedAFertilizer extends Solution {
 
           running =
             m
-              .filter(([dest, src, range]) => running >= src && running <= src + range)
+              .filter(
+                ([dest, src, range]) =>
+                  running >= src && running <= src + range,
+              )
               .map(([dest, src, range]) => {
                 // console.log([dest, src, range])
                 return dest + (running - src)

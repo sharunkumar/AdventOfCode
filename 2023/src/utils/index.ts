@@ -73,7 +73,10 @@ declare global {
 
 export const ascii_lowercase = "abcdefghijklmnopqrstuvwxyz"
 
-Array.prototype.pipelog = function <T>(include_index: boolean = false, index_start: number = 0): Array<T> {
+Array.prototype.pipelog = function <T>(
+  include_index: boolean = false,
+  index_start: number = 0,
+): Array<T> {
   this.map((x, idx) => {
     if (include_index) console.log(idx + index_start, x)
     else console.log(x)
@@ -96,7 +99,12 @@ Array.prototype.product = function <T>(): number {
 
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
-export function manhattan_distance(x1: number, y1: number, x2: number, y2: number) {
+export function manhattan_distance(
+  x1: number,
+  y1: number,
+  x2: number,
+  y2: number,
+) {
   return Math.abs(x1 - x2) + Math.abs(y1 - y2)
 }
 
@@ -115,7 +123,11 @@ export function numberc(str: string): number | string {
   return str
 }
 
-export function safe_get<T>(matrix: T[][], x: number, y: number): T | undefined {
+export function safe_get<T>(
+  matrix: T[][],
+  x: number,
+  y: number,
+): T | undefined {
   try {
     return matrix[x][y]
   } catch (_) {}

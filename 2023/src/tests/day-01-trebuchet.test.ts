@@ -6,8 +6,12 @@ describe("Day 01: Trebuchet", () => {
   let input_1: string
   let input_2: string
   beforeAll(() => {
-    const input_file_name_1 = __filename.replace(/\.test\.ts$/, ".input.1.txt").replace(/tests/, "tests/io")
-    const input_file_name_2 = __filename.replace(/\.test\.ts$/, ".input.2.txt").replace(/tests/, "tests/io")
+    const input_file_name_1 = __filename
+      .replace(/\.test\.ts$/, ".input.1.txt")
+      .replace(/tests/, "tests/io")
+    const input_file_name_2 = __filename
+      .replace(/\.test\.ts$/, ".input.2.txt")
+      .replace(/tests/, "tests/io")
     input_1 = readFileSync(input_file_name_1, "utf-8")
     input_2 = readFileSync(input_file_name_2, "utf-8")
   })
