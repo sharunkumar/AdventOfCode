@@ -33,7 +33,16 @@ export default class CamelCards extends Solution {
       .map((c) => {
         return {
           ...c,
-          classification: score(c),
+          classification: replacements(c.cards)
+            .map((h) =>
+              score({
+                counts: countBy(
+                  h,
+                  (s) => Array.from(h).filter((a) => a == s).length,
+                ),
+              }),
+            )
+            .greatest(),
           strength: Array.from(c.cards)
             .map((char) => lets.get(char) || char)
             .join(""),
@@ -57,4 +66,26 @@ function score(c: { counts: any; cards?: string; bid?: number }) {
   if (c.counts["2"] == 4) return 2
   if (c.counts["2"]) return 1
   return 0
+}
+
+function replacements(hand) {
+  if (hand == "") {
+    return [""]
+  }
+
+  let options: string
+  if (hand[0] == "J") {
+    options = "23456789TQKA"
+  } else {
+    options = hand[0]
+  }
+
+  let rest = replacements(hand.slice(1))
+  let result = [] as string[]
+  for (let x of options) {
+    for (let y of rest) {
+      result.push(x + y)
+    }
+  }
+  return result
 }
