@@ -29,4 +29,8 @@ describe("Day 07: Camel Cards", () => {
     let output = new part2().solve(input_2)
     expect(output).toBe(5905)
   })
+  test("part 2 - prod", () => {
+    let output = new part2().solve(input_prod)
+    expect(output).toBe(250382098)
+  })
 })
