@@ -36,7 +36,7 @@ describe("Day 08: Haunted Wasteland", () => {
   })
   test("part 2", () => {
     let output = new part2().solve(input_2)
-    expect(output).toBe(null)
+    expect(output).toBe(6)
   })
   test.todo("part 2 - prod", () => {
     let output = new part2().solve(input_prod)
