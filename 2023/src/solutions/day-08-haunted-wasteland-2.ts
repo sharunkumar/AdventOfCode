@@ -1,16 +1,9 @@
-import { isEqual } from "lodash"
-import { Solution, regexMatch } from "../utils"
+import { Solution, lcm, regexMatch } from "../utils"
 import { LoopingIterator } from "../utils/iterator"
 
 export default class HauntedWasteland extends Solution {
   solve(input: string) {
     const [first, second] = this.get_blocks(input) //.pipelog()
-
-    const directions = new LoopingIterator(
-      first.split("").map((lr) => (lr == "L" ? 0 : 1)),
-    )
-
-    // console.log({ directions })
 
     const map = new Map<string, string[]>(
       this.get_lines(second)
@@ -18,30 +11,32 @@ export default class HauntedWasteland extends Solution {
         .map(([a, b, c]) => [a, [b, c]] as [string, string[]]),
     )
 
-    // console.log(map)
-
     const keys = Array.from(map.keys())
 
     let starts = keys.filter((key) => key[2] === "A")
-    // const ends = keys.filter((key) => key[2] === "Z")
 
-    // console.log({ starts, ends })
+    let zees = starts.map((start) => {
+      const directions = new LoopingIterator(
+        first.split("").map((lr) => (lr == "L" ? 0 : 1)),
+      )
 
-    while (condition(starts)) {
-      const next = directions.next()
+      let running = start
 
-      starts = starts.map((s, idx) => map.get(s)![next])
-      // console.log(directions.count)
+      while (true) {
+        running = map.get(running)![directions.next()]
+
+        if (running.endsWith("Z")) {
+          return directions.count
+        }
+      }
+    })
+
+    let num = zees.pop()!
+
+    while (zees.length) {
+      num = lcm(num, zees.pop()!)
     }
 
-    return directions.count
+    return num
   }
-}
-
-function condition(starts: string[]) {
-  for (let index = 0; index < starts.length; index++) {
-    const element = starts[index]
-    if (element[2] !== "Z") return true
-  }
-  return false
 }
