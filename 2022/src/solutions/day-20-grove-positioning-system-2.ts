@@ -10,10 +10,11 @@ interface data {
 
 export default class GrovePositioningSystem extends Solution {
   solve(input: string) {
+    const dkey = 811589153
     const nodes = this.get_lines(input).map(Number)
       .map((num) => new DLLNode<data>({
         moved: false,
-        value: num,
+        value: num * dkey,
         start: false
       }))
 
@@ -25,9 +26,11 @@ export default class GrovePositioningSystem extends Solution {
     }
 
 
-    for (let i = 0; i < nodes.length; i++) {
-      const running = nodes[i];
-      move(running)
+    for (let c = 0; c < 10; c++) {
+      for (let i = 0; i < nodes.length; i++) {
+        const running = nodes[i];
+        move(running, nodes.length - 1)
+      }
     }
 
     let new_nodes = [] as DLLNode<data>[]
@@ -50,8 +53,8 @@ export default class GrovePositioningSystem extends Solution {
   }
 }
 
-function move(node: DLLNode<data>) {
-  let count = node.data.value
+function move(node: DLLNode<data>, modulo: number) {
+  let count = node.data.value % modulo
 
   let current = node
 
