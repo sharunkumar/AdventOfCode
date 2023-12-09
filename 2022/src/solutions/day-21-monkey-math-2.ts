@@ -8,18 +8,26 @@ export default class MonkeyMath extends Solution {
       .map(([t, x]) => {
         if (typeof x == "number")
           return [t, x] as [string, number]
-        else
-          return [t, x.split(" ")] as [string, [string, string, string]]
+        else {
+          const result = [t, x.split(" ")] as [string, [string, string, string]]
+          if (result[0] == "root") {
+            result[1][1] = "="
+          }
+          return result
+        }
       }))
 
-    // console.log(tokens)
+    console.log(tokens)
 
     function compute(root: string) {
+      if (root == "humn") {
+        return "x"
+      }
       const val = tokens.get(root)!
       if (typeof val == "number") return val
       else {
         const [left, op, right] = val
-        return eval(`${compute(left)} ${op} ${compute(right)}`)
+        return `(${compute(left)} ${op} ${compute(right)})`
       }
     }
 
