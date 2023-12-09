@@ -27,7 +27,7 @@ export default class MirageMaintenance extends Solution {
         })
         // .map((stack) => stack.map((x) => x.reverse()))
         // .slice(-1)
-        .pipelog()
+        // .pipelog()
         .map((stack) => {
           let running = stack.at(-1)![0]
 
