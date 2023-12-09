@@ -2,6 +2,11 @@
 
 Advent of Code Solutions written in TypeScript
 
+## Requirements
+
+- bun - https://bun.sh/
+- pnpm - https://pnpm.io/
+
 ## Running the code
 
 ```bash
