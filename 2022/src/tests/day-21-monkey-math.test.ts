@@ -17,9 +17,9 @@ describe("Day 21: Monkey Math", () => {
     input_2 = readFileSync(input_file_name_2, "utf-8")
     input_prod = readFileSync(`io/${new part1().constructor.name}.txt`, "utf-8")
   })
-  test.todo("part 1", () => {
+  test("part 1", () => {
     let output = new part1().solve(input_1)
-    expect(output).toBe(null)
+    expect(output).toBe(150)
   })
   test.todo("part 1 - prod", () => {
     let output = new part1().solve(input_prod)
