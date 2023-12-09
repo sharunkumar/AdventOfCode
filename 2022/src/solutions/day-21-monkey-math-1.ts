@@ -19,12 +19,7 @@ export default class MonkeyMath extends Solution {
       if (typeof val == "number") return val
       else {
         const [left, op, right] = val
-        switch (op) {
-          case "+": return compute(left) + compute(right)
-          case "-": return compute(left) - compute(right)
-          case "/": return compute(left) / compute(right)
-          case "*": return compute(left) * compute(right)
-        }
+        return eval(`${compute(left)} ${op} ${compute(right)}`)
       }
     }
 
