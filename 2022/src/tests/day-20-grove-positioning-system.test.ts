@@ -25,9 +25,9 @@ describe("Day 20: Grove Positioning System", () => {
     let output = new part1().solve(input_prod)
     expect(output).toBe(8302)
   })
-  test.todo("part 2", () => {
+  test("part 2", () => {
     let output = new part2().solve(input_2)
-    expect(output).toBe(null)
+    expect(output).toBe(1623178306)
   })
   test.todo("part 2 - prod", () => {
     let output = new part2().solve(input_prod)
