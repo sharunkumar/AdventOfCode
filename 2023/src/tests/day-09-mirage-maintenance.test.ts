@@ -29,8 +29,8 @@ describe("Day 09: Mirage Maintenance", () => {
     let output = new part2().solve(input_2)
     expect(output).toBe(2)
   })
-  test.todo("part 2 - prod", () => {
+  test("part 2 - prod", () => {
     let output = new part2().solve(input_prod)
-    expect(output).toBe(null)
+    expect(output).toBe(977)
   })
 })
