@@ -12,7 +12,7 @@ export default class MonkeyMath extends Solution {
           return [t, x.split(" ")] as [string, [string, string, string]]
       }))
 
-    console.log(tokens)
+    // console.log(tokens)
 
     function compute(root: string) {
       const val = tokens.get(root)!
