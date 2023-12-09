@@ -19,7 +19,7 @@ describe("Day 21: Monkey Math", () => {
   })
   test("part 1", () => {
     let output = new part1().solve(input_1)
-    expect(output).toBe(150)
+    expect(output).toBe(152)
   })
   test.todo("part 1 - prod", () => {
     let output = new part1().solve(input_prod)
