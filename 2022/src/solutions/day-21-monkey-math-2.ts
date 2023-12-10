@@ -50,64 +50,37 @@ export default class MonkeyMath extends Solution {
 
     // console.log(tokens)
 
-    function compute(root: string): number {
-      // if (root == "humn") {
-      //   return "x"
-      // }
+    function compute(root: string): string {
       const val = tokens.get(root)!
-      if (typeof val == "number") return val
+      if (typeof val == "number") return val.toString()
       else {
         const [left, op, right] = val
-        return eval(`(${compute(left)} ${op} ${compute(right)})`)
+        return `(${compute(left)} ${op} ${compute(right)})`
       }
     }
 
-    const rhs = compute(tokens.get("root")![2])
+    const lhs: string = tokens.get("root")![0]
+    const rhs: string = tokens.get("root")![2]
 
-    // console.log({ rhs })
+    // nuclear approach
+    let running = 0,
+      low = 0,
+      high = 10_000_000_000_000,
+      left = -Infinity,
+      right = eval(compute(rhs))
 
-    function traverse(root: string) {
-      if (root == "humn") {
-        return "x"
+    while (left !== right) {
+      running = Math.floor((low + high) / 2)
+      tokens.set("humn", running)
+      left = eval(compute(lhs))
+
+      if (left < right) {
+        low = running
       } else {
-        const result = tokens.get(root)!
-        if (typeof result == "number") return result
-        else {
-          return fix(result)
-        }
-      }
-
-      function fix(result: [string, string, string]) {
-        const x = traverse(result[0])
-        const op = result[1]
-        const y = traverse(result[2])
-        return typeof y == "number" ? [x, op, y] : [y, op, x]
+        high = running
       }
     }
 
-    const expr = traverse(tokens.get("root")![0])
-
-    // console.log({ expr })
-
-    function construct(arr: any[]): expression {
-      if (arr[0] == "x") {
-        return {
-          left: "x",
-          op: arr[1],
-          right: arr[2],
-        }
-      } else {
-        return {
-          left: construct(arr[0]),
-          op: arr[1],
-          right: arr[2],
-        }
-      }
-    }
-
-    const final = construct(expr)
-    // console.log(final)
-
-    return invert(final, rhs)
+    return running
   }
 }
