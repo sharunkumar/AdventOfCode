@@ -1,9 +1,8 @@
-import { PrismaClient } from "@prisma/client"
 import { Solution, numberc } from "../utils"
 import { floor } from "lodash"
 
 export default class PipeMaze extends Solution {
-  async solve(input: string) {
+  solve(input: string) {
     let start_i = 0
     let start_j = 0
     const matrix = this.get_lines(input).map((line, idxi) =>
@@ -17,27 +16,22 @@ export default class PipeMaze extends Solution {
     )
     // .pipelog()
 
-    const prisma = new PrismaClient()
-
-    await prisma.seenCoordinates.deleteMany()
-
     interface coord {
       i: number
       j: number
     }
 
     let q = [] as coord[]
+    let seen = [] as coord[]
 
     // console.log({ start_i, start_j })
 
-    async function not_seen(i: number, j: number) {
-      if (await prisma.seenCoordinates.findFirst({ where: { i, j } }))
-        return false
-      return true
+    function not_seen(i: number, j: number) {
+      return seen.filter((c) => c.i == i && c.j == j).length == 0
     }
 
     q.push({ i: start_i, j: start_j })
-    await prisma.seenCoordinates.create({ data: { i: start_i, j: start_j } })
+    seen.push({ i: start_i, j: start_j })
 
     while (q.length) {
       const { i, j } = q.shift()!
@@ -50,45 +44,45 @@ export default class PipeMaze extends Solution {
         i > 0 &&
         "S|JL".includes(ch) &&
         "|7F".includes(matrix[i - 1][j]) &&
-        (await not_seen(i - 1, j))
+        not_seen(i - 1, j)
       ) {
-        await prisma.seenCoordinates.create({ data: { i: i - 1, j } })
         q.push({ i: i - 1, j })
+        seen.push({ i: i - 1, j })
       }
 
       if (
         i < matrix.length - 1 &&
         "S|7F".includes(ch) &&
         "|JL".includes(matrix[i + 1][j]) &&
-        (await not_seen(i + 1, j))
+        not_seen(i + 1, j)
       ) {
-        await prisma.seenCoordinates.create({ data: { i: i + 1, j } })
         q.push({ i: i + 1, j })
+        seen.push({ i: i + 1, j })
       }
 
       if (
         j > 0 &&
         "S-J7".includes(ch) &&
         "-LF".includes(matrix[i][j - 1]) &&
-        (await not_seen(i, j - 1))
+        not_seen(i, j - 1)
       ) {
-        await prisma.seenCoordinates.create({ data: { i, j: j - 1 } })
         q.push({ i: i, j: j - 1 })
+        seen.push({ i: i, j: j - 1 })
       }
 
       if (
         j < matrix[0].length - 1 &&
         "S-LF".includes(ch) &&
         "-J7".includes(matrix[i][j + 1]) &&
-        (await not_seen(i, j + 1))
+        not_seen(i, j + 1)
       ) {
-        await prisma.seenCoordinates.create({ data: { i, j: j + 1 } })
         q.push({ i: i, j: j + 1 })
+        seen.push({ i: i, j: j + 1 })
       }
 
       // console.log({ curr })
     }
 
-    return floor((await prisma.seenCoordinates.count()) / 2)
+    return floor(seen.length / 2)
   }
 }
