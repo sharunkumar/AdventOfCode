@@ -27,7 +27,7 @@ export default class PipeMaze extends Solution {
     // console.log({ start_i, start_j })
 
     function not_seen(i: number, j: number) {
-      return seen.filter((c) => c.i == i && c.j == j).length == 0
+      return !seen.some((c) => c.i == i && c.j == j)
     }
 
     q.push({ i: start_i, j: start_j })
