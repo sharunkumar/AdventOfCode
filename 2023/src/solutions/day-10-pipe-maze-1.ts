@@ -1,7 +1,9 @@
+import { PrismaClient } from "@prisma/client"
 import { Solution, numberc } from "../utils"
+import { floor } from "lodash"
 
 export default class PipeMaze extends Solution {
-  solve(input: string) {
+  async solve(input: string) {
     let start_i = 0
     let start_j = 0
     const matrix = this.get_lines(input)
@@ -16,6 +18,19 @@ export default class PipeMaze extends Solution {
       )
       .pipelog()
 
+    const prisma = new PrismaClient()
+
+    await prisma.seenCoordinates.deleteMany()
+
+    interface coord {
+      i: Number
+      j: Number
+    }
+
+    let q = [] as coord[]
+
     console.log({ start_i, start_j })
+
+    return floor((await prisma.seenCoordinates.count()) / 2)
   }
 }
