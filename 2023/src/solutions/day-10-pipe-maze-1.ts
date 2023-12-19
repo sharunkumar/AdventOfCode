@@ -6,17 +6,16 @@ export default class PipeMaze extends Solution {
   async solve(input: string) {
     let start_i = 0
     let start_j = 0
-    const matrix = this.get_lines(input)
-      .map((line, idxi) =>
-        line.split("").map((c, idxj) => {
-          if (c == "S") {
-            start_i = idxi
-            start_j = idxj
-          }
-          return c
-        }),
-      )
-      .pipelog()
+    const matrix = this.get_lines(input).map((line, idxi) =>
+      line.split("").map((c, idxj) => {
+        if (c == "S") {
+          start_i = idxi
+          start_j = idxj
+        }
+        return c
+      }),
+    )
+    // .pipelog()
 
     const prisma = new PrismaClient()
 
@@ -32,7 +31,9 @@ export default class PipeMaze extends Solution {
     // console.log({ start_i, start_j })
 
     async function not_seen(i: number, j: number) {
-      return (await prisma.seenCoordinates.count({ where: { i, j } })) == 0
+      if (await prisma.seenCoordinates.findFirst({ where: { i, j } }))
+        return false
+      return true
     }
 
     q.push({ i: start_i, j: start_j })
