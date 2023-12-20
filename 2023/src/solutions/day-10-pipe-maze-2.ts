@@ -97,11 +97,11 @@ export default class PipeMaze extends Solution {
       // console.log({ curr })
     }
 
-    console.log({ possible_s })
+    // console.log({ possible_s })
 
     matrix[start_i][start_j] = possible_s.pop()!
 
-    console.log(matrix)
+    // console.log(matrix)
 
     return floor(loop.length / 2)
   }
