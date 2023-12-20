@@ -1,5 +1,6 @@
 import { assert } from "console"
 import { Solution } from "../utils"
+import { isUndefined } from "lodash"
 
 export default class PipeMaze extends Solution {
   solve(input: string) {
@@ -111,6 +112,64 @@ export default class PipeMaze extends Solution {
       }
     }
 
+    const outside = [] as coord[]
+
+    for (let i = 0; i < matrix.length; i++) {
+      const row = matrix[i]
+      let within = false
+      let up: undefined | boolean = undefined
+      for (let j = 0; j < row.length; j++) {
+        const ch = row[j]
+        if (ch == "|") {
+          // if (up) {
+          //   throw new Error("Should not be up at this point")
+          // }
+          within = !within
+        } else if (ch == "-") {
+          // console.log({ up })
+          // if (!up) {
+          //   throw new Error("Should be up at this point")
+          // }
+        } else if ("LF".includes(ch)) {
+          // if (!up) {
+          //   throw new Error("Should not be up at L/F")
+          // }
+          up = ch == "L"
+        } else if ("7J".includes(ch)) {
+          // if(up) {
+          //   throw new Error("Should not be up at 7J")
+          // }
+          if (isUndefined(up)) {
+            throw new Error("Up should be defined here")
+          }
+          if (ch != (up === false ? "7" : "J")) {
+            within = !within
+          }
+          up = undefined
+        } else if (ch == ".") {
+        } else {
+          throw new Error(`Unexpected char: ${ch}`)
+        }
+
+        if (!within) {
+          outside.push({ i, j })
+        }
+      }
+    }
+
     matrix.map((line) => line.join("")).pipelog()
+
+    // replace outside pipes
+    for (let i = 0; i < matrix.length; i++) {
+      const row = matrix[i]
+      for (let j = 0; j < row.length; j++) {
+        if (outside.some((c) => c.i == i && c.j == j)) {
+          matrix[i][j] = "O"
+        }
+      }
+    }
+    matrix.map((line) => line.join("")).pipelog()
+
+    return matrix.flat().filter((x) => x === ".").length
   }
 }
