@@ -5,16 +5,16 @@ import { readFileSync } from "fs"
 describe("Day 10: Pipe Maze", () => {
   let input_1: string
   let input_prod: string
-  let input_2: string
+  let input_2_1: string
   beforeAll(() => {
     const input_file_name_1 = __filename
       .replace(/\.test\.ts$/, ".input.1.txt")
       .replace(/tests/, "tests/io")
-    const input_file_name_2 = __filename
-      .replace(/\.test\.ts$/, ".input.2.txt")
+    const input_file_name_2_1 = __filename
+      .replace(/\.test\.ts$/, ".input.2-1.txt")
       .replace(/tests/, "tests/io")
     input_1 = readFileSync(input_file_name_1, "utf-8")
-    input_2 = readFileSync(input_file_name_2, "utf-8")
+    input_2_1 = readFileSync(input_file_name_2_1, "utf-8")
     input_prod = readFileSync(`io/${new part1().constructor.name}.txt`, "utf-8")
   })
   test("part 1", async () => {
@@ -25,9 +25,9 @@ describe("Day 10: Pipe Maze", () => {
     let output = await new part1().solve(input_prod)
     expect(output).toBe(7107)
   })
-  test.todo("part 2", () => {
-    let output = new part2().solve(input_2)
-    expect(output).toBe(null)
+  test("part 2 - 1", async () => {
+    let output = await new part2().solve(input_2_1)
+    expect(output).toBe(4)
   })
   test.todo("part 2 - prod", () => {
     let output = new part2().solve(input_prod)
