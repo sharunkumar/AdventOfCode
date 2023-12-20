@@ -1,5 +1,5 @@
-import { Solution, numberc } from "../utils"
-import { floor } from "lodash"
+import { assert } from "console"
+import { Solution } from "../utils"
 
 export default class PipeMaze extends Solution {
   solve(input: string) {
@@ -101,8 +101,16 @@ export default class PipeMaze extends Solution {
 
     matrix[start_i][start_j] = possible_s.pop()!
 
-    // console.log(matrix)
+    // replace garbage pipes
+    for (let i = 0; i < matrix.length; i++) {
+      const row = matrix[i]
+      for (let j = 0; j < row.length; j++) {
+        if (!loop.some((c) => c.i == i && c.j == j)) {
+          matrix[i][j] = "."
+        }
+      }
+    }
 
-    return floor(loop.length / 2)
+    matrix.map((line) => line.join("")).pipelog()
   }
 }

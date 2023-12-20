@@ -47,7 +47,7 @@ describe("Day 10: Pipe Maze", () => {
     let output = await new part2().solve(input_2_3)
     expect(output).toBe(10)
   })
-  test.todo("part 2 - prod", () => {
+  test("part 2 - prod", () => {
     let output = new part2().solve(input_prod)
     expect(output).toBe(null)
   })
