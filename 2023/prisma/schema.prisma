@@ -23,3 +23,10 @@ model GearCoordinates {
 
   @@unique([i, j, part_i, part_j])
 }
+
+model SeenCoordinates {
+  i Int
+  j Int
+
+  @@unique([i, j])
+}
