@@ -16,6 +16,8 @@ export default class PipeMaze extends Solution {
     )
     // .pipelog()
 
+    let possible_s = ["|", "-", "J", "L", "7", "F"]
+
     interface coord {
       i: number
       j: number
@@ -48,6 +50,9 @@ export default class PipeMaze extends Solution {
       ) {
         q.push({ i: i - 1, j })
         loop.push({ i: i - 1, j })
+        if (ch == "S") {
+          possible_s = possible_s.filter((cs) => "|JL".includes(cs))
+        }
       }
 
       if (
@@ -58,6 +63,9 @@ export default class PipeMaze extends Solution {
       ) {
         q.push({ i: i + 1, j })
         loop.push({ i: i + 1, j })
+        if (ch == "S") {
+          possible_s = possible_s.filter((cs) => "|7F".includes(cs))
+        }
       }
 
       if (
@@ -68,6 +76,9 @@ export default class PipeMaze extends Solution {
       ) {
         q.push({ i: i, j: j - 1 })
         loop.push({ i: i, j: j - 1 })
+        if (ch == "S") {
+          possible_s = possible_s.filter((cs) => "-J7".includes(cs))
+        }
       }
 
       if (
@@ -78,10 +89,19 @@ export default class PipeMaze extends Solution {
       ) {
         q.push({ i: i, j: j + 1 })
         loop.push({ i: i, j: j + 1 })
+        if (ch == "S") {
+          possible_s = possible_s.filter((cs) => "-LF".includes(cs))
+        }
       }
 
       // console.log({ curr })
     }
+
+    console.log({ possible_s })
+
+    matrix[start_i][start_j] = possible_s.pop()!
+
+    console.log(matrix)
 
     return floor(loop.length / 2)
   }
