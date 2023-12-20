@@ -22,16 +22,16 @@ export default class PipeMaze extends Solution {
     }
 
     let q = [] as coord[]
-    let seen = [] as coord[]
+    let loop = [] as coord[]
 
     // console.log({ start_i, start_j })
 
     function not_seen(i: number, j: number) {
-      return !seen.some((c) => c.i == i && c.j == j)
+      return !loop.some((c) => c.i == i && c.j == j)
     }
 
     q.push({ i: start_i, j: start_j })
-    seen.push({ i: start_i, j: start_j })
+    loop.push({ i: start_i, j: start_j })
 
     while (q.length) {
       const { i, j } = q.shift()!
@@ -47,7 +47,7 @@ export default class PipeMaze extends Solution {
         not_seen(i - 1, j)
       ) {
         q.push({ i: i - 1, j })
-        seen.push({ i: i - 1, j })
+        loop.push({ i: i - 1, j })
       }
 
       if (
@@ -57,7 +57,7 @@ export default class PipeMaze extends Solution {
         not_seen(i + 1, j)
       ) {
         q.push({ i: i + 1, j })
-        seen.push({ i: i + 1, j })
+        loop.push({ i: i + 1, j })
       }
 
       if (
@@ -67,7 +67,7 @@ export default class PipeMaze extends Solution {
         not_seen(i, j - 1)
       ) {
         q.push({ i: i, j: j - 1 })
-        seen.push({ i: i, j: j - 1 })
+        loop.push({ i: i, j: j - 1 })
       }
 
       if (
@@ -77,12 +77,12 @@ export default class PipeMaze extends Solution {
         not_seen(i, j + 1)
       ) {
         q.push({ i: i, j: j + 1 })
-        seen.push({ i: i, j: j + 1 })
+        loop.push({ i: i, j: j + 1 })
       }
 
       // console.log({ curr })
     }
 
-    return floor(seen.length / 2)
+    return floor(loop.length / 2)
   }
 }
