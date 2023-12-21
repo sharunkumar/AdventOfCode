@@ -9,9 +9,9 @@ export default class CosmicExpansion extends Solution {
   solve(input: string) {
     let universe = this.get_matrix(input)
 
-    this.print_matrix(universe)
+    // this.print_matrix(universe)
 
-    console.error("---")
+    // console.error("---")
     universe = expand(universe)
     this.print_matrix(universe)
   }
@@ -43,7 +43,7 @@ function expand(universe: string[][]): string[][] {
     }
   }
 
-  console.log({ columns })
+  // console.log({ columns })
 
   new_universe = new_universe.map((line) => {
     let new_line = line
