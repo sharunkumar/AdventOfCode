@@ -27,9 +27,9 @@ describe("Day 11: Cosmic Expansion", () => {
   })
   test("part 2", async () => {
     let output = await new part2().solve(input_2)
-    expect(output).toBe(null)
+    expect(output).toBe(374)
   })
-  test("part 2 - prod", async () => {
+  test.todo("part 2 - prod", async () => {
     let output = await new part2().solve(input_prod)
     expect(output).toBe(null)
   })
