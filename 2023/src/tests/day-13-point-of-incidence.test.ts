@@ -23,7 +23,7 @@ describe("Day 13: Point of Incidence", () => {
   })
   test("part 1 - prod", async () => {
     let output = await new part1().solve(input_prod)
-    expect(output).toBe(null)
+    expect(output).toBe(34889)
   })
   test.todo("part 2", async () => {
     let output = await new part2().solve(input_2)
