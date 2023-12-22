@@ -50,6 +50,12 @@ export abstract class Solution {
   get_blocks(input: string): Array<string> {
     return input.split(`${EOL}${EOL}`)
   }
+  get_matrix(input: string): Array<Array<string>> {
+    return this.get_lines(input).map((line) => line.split(""))
+  }
+  print_matrix(matrix: string[][]) {
+    matrix.map((line) => line.join("")).pipelog()
+  }
 }
 
 export function spreadMap<K, V>(input: Map<K, V>): Array<V> {
