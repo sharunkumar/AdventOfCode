@@ -15,6 +15,8 @@ export default class HotSprings extends Solution {
   }
 }
 
+const cache = new Map<string, number>()
+
 function count(cfg: string, nums: number[]): number {
   // console.log({ cfg, nums })
   if (cfg === "") {
@@ -23,6 +25,12 @@ function count(cfg: string, nums: number[]): number {
 
   if (nums.length === 0) {
     return cfg.includes("#") ? 0 : 1
+  }
+
+  const key = [cfg, ...nums].join("$")
+
+  if (cache.has(key)) {
+    return cache.get(key)!
   }
 
   let result = 0
@@ -42,6 +50,8 @@ function count(cfg: string, nums: number[]): number {
       result += count(cfg.slice(nums[0] + 1), nums.slice(1))
     }
   }
+
+  cache.set(key, result)
 
   return result
 }
