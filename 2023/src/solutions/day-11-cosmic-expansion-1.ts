@@ -1,4 +1,4 @@
-import { Solution } from "../utils"
+import { Solution, manhattan_distance } from "../utils"
 
 interface coord {
   i: number
@@ -11,13 +11,21 @@ export default class CosmicExpansion extends Solution {
   solve(input: string) {
     let universe = this.get_matrix(input)
 
-    // this.print_matrix(universe)
-
-    // console.error("---")
     universe = expand(universe)
-    // this.print_matrix(universe)
 
-    const stars = get_coords(universe, (c) => c === "#") //.pipelog()
+    const stars = get_coords(universe, (c) => c === "#")
+
+    return stars
+      .map((s1, i) => {
+        return stars.map((s2, j) => {
+          if (i < j) {
+            return manhattan_distance(s1.i, s1.j, s2.i, s2.j)
+          }
+        })
+      })
+      .flat()
+      .filter(Boolean)
+      .sum()
   }
 }
 
