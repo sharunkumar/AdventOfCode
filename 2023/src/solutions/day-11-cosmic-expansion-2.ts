@@ -15,9 +15,11 @@ type matrix = string[][]
 
 export default class CosmicExpansion extends Solution {
   solve(input: string) {
-    let universe = this.get_matrix(input)
+    const [first, second] = this.get_blocks(input) //.pipelog()
 
-    const adjustment_factor = 2 - 1
+    let universe = this.get_matrix(first)
+
+    const adjustment_factor = Number(second) - 1
 
     const exp = expand(universe)
 
