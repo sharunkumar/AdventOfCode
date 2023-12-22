@@ -5,6 +5,8 @@ interface coord {
   j: number
 }
 
+type matrix = string[][]
+
 export default class CosmicExpansion extends Solution {
   solve(input: string) {
     let universe = this.get_matrix(input)
@@ -17,8 +19,8 @@ export default class CosmicExpansion extends Solution {
   }
 }
 
-function expand(universe: string[][]): string[][] {
-  let new_universe = [] as string[][]
+function expand(universe: matrix): matrix {
+  let new_universe = [] as matrix
 
   for (let r = 0; r < universe.length; r++) {
     const row = universe[r]
