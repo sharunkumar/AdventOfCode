@@ -43,13 +43,14 @@ function transpose(matrix: string[][]): string[][] {
 }
 
 function get_index(arr: number[]): number {
-  for (let i = 1; i < arr.length - 1; i++) {
+  for (let i = 1; i < arr.length; i++) {
     if (equiv(arr.slice(0, i).reverse(), arr.slice(i))) return i
   }
   return NaN
 }
 
 function equiv(arr1: number[], arr2: number[]) {
+  if (arr1.length == 0 || arr2.length == 0) return false
   for (let i = 0; i < Math.min(arr1.length, arr2.length); i++) {
     if (arr1[i] !== arr2[i]) return false
   }

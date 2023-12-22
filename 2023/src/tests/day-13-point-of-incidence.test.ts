@@ -21,7 +21,7 @@ describe("Day 13: Point of Incidence", () => {
     let output = await new part1().solve(input_1)
     expect(output).toBe(405)
   })
-  test.todo("part 1 - prod", async () => {
+  test("part 1 - prod", async () => {
     let output = await new part1().solve(input_prod)
     expect(output).toBe(null)
   })
