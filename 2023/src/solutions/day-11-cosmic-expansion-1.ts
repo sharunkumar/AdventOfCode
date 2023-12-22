@@ -15,7 +15,9 @@ export default class CosmicExpansion extends Solution {
 
     // console.error("---")
     universe = expand(universe)
-    this.print_matrix(universe)
+    // this.print_matrix(universe)
+
+    const stars = get_coords(universe, (c) => c === "#") //.pipelog()
   }
 }
 
@@ -58,4 +60,20 @@ function expand(universe: matrix): matrix {
   })
 
   return new_universe
+}
+
+function get_coords(m: matrix, fn: (element: string) => boolean): coord[] {
+  return m
+    .map((row, i) => {
+      return row.map((char, j) => {
+        if (fn(char)) {
+          return {
+            i,
+            j,
+          }
+        }
+      })
+    })
+    .flat()
+    .filter(Boolean)
 }
