@@ -31,14 +31,12 @@ function expand(universe: string[][]): string[][] {
   let columns = [] as number[]
 
   for (let c = 0; c < new_universe[0].length; c++) {
-    let has_stars = false
-    for (let r = 0; r < new_universe.length; r++) {
-      if (new_universe[r][c] == "#") {
-        has_stars = true
-        break
+    no_star: {
+      for (let r = 0; r < new_universe.length; r++) {
+        if (new_universe[r][c] == "#") {
+          break no_star
+        }
       }
-    }
-    if (!has_stars) {
       columns.push(c)
     }
   }
