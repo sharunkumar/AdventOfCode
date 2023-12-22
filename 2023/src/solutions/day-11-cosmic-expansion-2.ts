@@ -21,9 +21,9 @@ export default class CosmicExpansion extends Solution {
 
     const exp = expand(universe)
 
-    console.log({ exp })
+    // console.log({ exp })
 
-    this.print_matrix(universe)
+    // this.print_matrix(universe)
 
     const stars = get_coords(universe, (c) => c === "#")
 
