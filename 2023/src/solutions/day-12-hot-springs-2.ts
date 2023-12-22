@@ -8,7 +8,9 @@ export default class HotSprings extends Solution {
         ([first, second]) =>
           [first, second.split(",").map(numberc)] as [string, number[]],
       )
-      .map(([cfg, nums]) => count(cfg, nums))
+      .map(([cfg, nums]) =>
+        count(new Array(5).fill(cfg).join("?"), new Array(5).fill(nums).flat()),
+      )
       .sum()
   }
 }
