@@ -17,9 +17,9 @@ describe("Day 16: The Floor Will Be Lava", () => {
     input_2 = readFileSync(input_file_name_2, "utf-8")
     input_prod = readFileSync(`io/${new part1().constructor.name}.txt`, "utf-8")
   })
-  test.todo("part 1", async () => {
+  test("part 1", async () => {
     let output = await new part1().solve(input_1)
-    expect(output).toBe(null)
+    expect(output).toBe(46)
   })
   test.todo("part 1 - prod", async () => {
     let output = await new part1().solve(input_prod)
