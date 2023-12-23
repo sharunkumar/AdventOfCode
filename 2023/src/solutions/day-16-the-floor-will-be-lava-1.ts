@@ -45,7 +45,7 @@ export default class TheFloorWillBeLava extends Solution {
       },
     ]
 
-    const memory: string[] = []
+    const memory = new Set<string>()
 
     while (fill.length) {
       const v = fill.shift()!
@@ -60,11 +60,13 @@ export default class TheFloorWillBeLava extends Solution {
       f(v.point, "#")
 
       if (ibw(next.i, 0, map.length - 1) && ibw(next.j, 0, map[0].length - 1)) {
-        const key = JSON.stringify(v)
-        if (memory.includes(key)) {
+        const key = [v.point.i, v.point.j, v.direction.di, v.direction.dj].join(
+          "$",
+        )
+        if (memory.has(key)) {
           continue
         } else {
-          memory.push(key)
+          memory.add(key)
         }
         if (m(next) == ".") {
           fill.push({
