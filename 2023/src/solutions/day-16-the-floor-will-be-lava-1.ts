@@ -20,6 +20,7 @@ export default class TheFloorWillBeLava extends Solution {
     const map = this.get_matrix(input) //.pipelog()
     const floor = this.get_matrix(input) //.pipelog()
 
+    // this.print_matrix(map)
     function m({ i, j }: coord) {
       return map[i][j]
     }
@@ -35,7 +36,7 @@ export default class TheFloorWillBeLava extends Solution {
       {
         point: {
           i: 0,
-          j: 0,
+          j: -1,
         },
         direction: {
           di: 0,
@@ -133,8 +134,11 @@ export default class TheFloorWillBeLava extends Solution {
     }
 
     // console.error("---")
-    // floor.pipelog()
+    // this.print_matrix(floor)
 
-    return floor.map((row) => row.map((c) => (c == "#" ? 1 : 0)).sum()).sum()
+    return floor
+      .map((row) => row.map((c) => (c == "#" ? 1 : 0)))
+      .flat()
+      .sum()
   }
 }
