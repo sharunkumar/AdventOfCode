@@ -17,7 +17,6 @@ export default class LensLibrary extends Solution {
         ([first, second]) =>
           [HASH(first), first, second] as [number, string, number],
       )
-      .pipelog()
       .forEach(([hash, label, power]) => {
         if (isNaN(power)) {
           // remove
