@@ -59,10 +59,11 @@ export default class TheFloorWillBeLava extends Solution {
       f(v.point, "#")
 
       if (ibw(next.i, 0, map.length - 1) && ibw(next.j, 0, map[0].length - 1)) {
-        if (memory.includes(JSON.stringify(v))) {
+        const key = JSON.stringify(v)
+        if (memory.includes(key)) {
           continue
         } else {
-          memory.push(JSON.stringify(v))
+          memory.push(key)
         }
         if (m(next) == ".") {
           fill.push({
