@@ -21,7 +21,7 @@ describe("Day 17: Clumsy Crucible", () => {
     let output = await new part1().solve(input_1)
     expect(output).toBe(102)
   })
-  test.todo("part 1 - prod", async () => {
+  test("part 1 - prod", async () => {
     let output = await new part1().solve(input_prod)
     expect(output).toBe(null)
   })
