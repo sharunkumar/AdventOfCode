@@ -36,8 +36,8 @@ export default class LavaductLagoon extends Solution {
           )
           .sum(),
       ) / 2
-    let i = area - boundary / 2 + 1
+    let interior = area - boundary / 2 + 1
 
-    return i + boundary
+    return interior + boundary
   }
 }
