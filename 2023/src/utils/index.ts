@@ -53,7 +53,7 @@ export abstract class Solution {
   get_matrix(input: string): Array<Array<string>> {
     return this.get_lines(input).map((line) => line.split(""))
   }
-  print_matrix(matrix: string[][]) {
+  print_matrix(matrix: (string | number)[][]) {
     matrix.map((line) => line.join("")).pipelog()
   }
 }
