@@ -100,6 +100,6 @@ export default class ClumsyCrucible extends Solution {
     )
 
     // credit: https://www.reddit.com/r/adventofcode/comments/18k9ne5/comment/kdzoynp/
-    return findHeatLoss(map, 3, 0)
+    return findHeatLoss(map, 10, 4)
   }
 }
