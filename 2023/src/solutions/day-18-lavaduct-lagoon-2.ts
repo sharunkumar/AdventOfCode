@@ -1,10 +1,19 @@
-import { Solution } from "../utils"
+import { Solution, regexMatch } from "../utils"
 
 const directions = {
   L: [0, -1] as [number, number],
   R: [0, 1] as [number, number],
   U: [-1, 0] as [number, number],
   D: [1, 0] as [number, number],
+}
+
+const dirmap: {
+  [key: string]: keyof typeof directions
+} = {
+  0: "R",
+  1: "D",
+  2: "L",
+  3: "U",
 }
 
 export default class LavaductLagoon extends Solution {
@@ -17,9 +26,13 @@ export default class LavaductLagoon extends Solution {
         (line) => line.split(" ") as [keyof typeof directions, string, string],
       )
       .map(([dir, num, hex]) => {
-        const n = Number(num)
+        // console.log( hex, parseInt(hex.slice(2, -2), 16), dirmap[hex.slice(-2, -1)], )
+        const n = parseInt(hex.slice(2, -2), 16)
         boundary += n
-        return directions[dir].map((d) => d * n) as [number, number]
+        return directions[dirmap[hex.slice(-2, -1)]].map((d) => d * n) as [
+          number,
+          number,
+        ]
       })
       .forEach((x) => {
         const [r, c] = points.at(-1)!
