@@ -25,9 +25,9 @@ describe("Day 18: Lavaduct Lagoon", () => {
     let output = await new part1().solve(input_prod)
     expect(output).toBe(46359)
   })
-  test.todo("part 2", async () => {
+  test("part 2", async () => {
     let output = await new part2().solve(input_2)
-    expect(output).toBe(null)
+    expect(output).toBe(952408144115)
   })
   test.todo("part 2 - prod", async () => {
     let output = await new part2().solve(input_prod)
