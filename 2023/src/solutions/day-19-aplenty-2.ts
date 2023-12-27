@@ -1,27 +1,47 @@
-import { Solution, regexMatch } from "../utils"
+import { max, min } from "lodash"
+import { Solution, numberc, regexMatch } from "../utils"
 
-interface xmas {
-  x: number
-  m: number
-  a: number
-  s: number
+class range {
+  constructor(public lo = 1, public hi = 4000) {}
+}
+
+class xmas {
+  constructor(
+    public x = new range(),
+    public m = new range(),
+    public a = new range(),
+    public s = new range(),
+    public stage = "in",
+  ) {}
+}
+
+function product(item: xmas) {
+  return (
+    (item.x.hi - item.x.lo + 1) *
+    (item.m.hi - item.m.lo + 1) *
+    (item.a.hi - item.a.lo + 1) *
+    (item.s.hi - item.s.lo + 1)
+  )
+}
+
+function split(r: range, cmp: string, num: number): [range, range] {
+  const trange = new range(r.lo, r.hi)
+  const frange = new range(r.lo, r.hi)
+
+  if (cmp == "<") {
+    trange.hi = num - 1
+    frange.lo = num
+  } else {
+    trange.lo = num + 1
+    frange.hi = num
+  }
+
+  return [trange, frange]
 }
 
 export default class Aplenty extends Solution {
   solve(input: string) {
-    const [first, second] = this.get_blocks(input)
-
-    const parts = this.get_lines(second)
-      .map((line) => regexMatch(line, /\d+/g).map(Number))
-      .map((n): xmas => {
-        return {
-          x: n[0],
-          m: n[1],
-          a: n[2],
-          s: n[3],
-        }
-      })
-    // .pipelog()
+    const [first, _] = this.get_blocks(input)
 
     const pipelines = new Map(
       this.get_lines(first)
@@ -32,44 +52,60 @@ export default class Aplenty extends Solution {
     pipelines.set("A", ["A"])
     pipelines.set("R", ["R"])
 
-    // console.log(pipelines)
+    console.log(pipelines)
 
-    function apply(spec: string[], item: xmas): string {
+    function progress(item: xmas): xmas[] {
+      // console.log({ item })
+      const result = [] as xmas[]
+
+      const spec = pipelines.get(item.stage)!
+
       // console.log({ spec })
+
       for (let i = 0; i < spec.length; i++) {
-        const curr = spec[i]
-        // console.log({ curr })
-        if (!curr.includes(":")) {
-          if ("AR".includes(curr)) {
-            return curr
+        const s = spec[i]
+        if (!s.includes(":")) {
+          if (s == "A") {
+            result.push(new xmas(item.x, item.m, item.a, item.s, s))
+          } else if (s == "R") {
+            // reject
           } else {
-            return apply(pipelines.get(curr)!, item)
+            // fallback
+            result.push(
+              ...progress(new xmas(item.x, item.m, item.a, item.s, s)),
+            )
           }
         } else {
-          let [cond, dest] = curr.split(":")
+          const [char, cmp, ...rest] = s
 
-          cond = cond
-            .replaceAll("x", `${item.x}`)
-            .replaceAll("m", `${item.m}`)
-            .replaceAll("a", `${item.a}`)
-            .replaceAll("s", `${item.s}`)
+          const [num, next] = rest.join("").split(":").map(numberc) as [
+            number,
+            string,
+          ]
 
-          const result = eval(cond)
-          // console.log({ cond, result })
-          if (result == true) {
-            return apply(pipelines.get(dest)!, item)
-          }
+          // console.log({ char, cmp, num, next })
+
+          const t = new xmas(item.x, item.m, item.a, item.s, item.stage)
+          const f = new xmas(item.x, item.m, item.a, item.s, item.stage)
+
+          const r = item[char] as range
+
+          const [trange, frange] = split(r, cmp, num)
+
+          t[char] = trange
+          t.stage = next
+
+          result.push(...progress(t))
+
+          f[char] = frange
+          item = f
         }
       }
-      throw new Error("this should not reach")
+
+      // console.log({ result })
+      return result
     }
 
-    return parts
-      .map(
-        (part) => [part, apply(pipelines.get("in")!, part)] as [xmas, string],
-      )
-      .filter((x) => x[1] == "A")
-      .map(([p, _]) => p.x + p.m + p.a + p.s)
-      .sum()
+    return progress(new xmas()).map(product).sum()
   }
 }
