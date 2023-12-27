@@ -52,7 +52,7 @@ export default class Aplenty extends Solution {
     pipelines.set("A", ["A"])
     pipelines.set("R", ["R"])
 
-    console.log(pipelines)
+    // console.log(pipelines)
 
     function progress(item: xmas): xmas[] {
       // console.log({ item })
