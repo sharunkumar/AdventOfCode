@@ -29,8 +29,8 @@ describe("Day 19: Aplenty", () => {
     let output = await new part2().solve(input_2)
     expect(output).toBe(167409079868000)
   })
-  test.todo("part 2 - prod", async () => {
+  test("part 2 - prod", async () => {
     let output = await new part2().solve(input_prod)
-    expect(output).toBe(null)
+    expect(output).toBe(132392981697081)
   })
 })
