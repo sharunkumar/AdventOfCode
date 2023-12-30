@@ -40,6 +40,9 @@ devDependencies:
   '@total-typescript/ts-reset':
     specifier: ^0.5.1
     version: 0.5.1
+  '@types/compute-lcm':
+    specifier: ^1.1.3
+    version: 1.1.3
   '@types/jest':
     specifier: ^29.5.11
     version: 29.5.11
@@ -1817,6 +1820,10 @@ packages:
     resolution: {integrity: sha512-mSM/iKUk5fDDrEV/e83qY+Cr3I1+Q3qqTuEn++HAWYjEa1+NxZr6CNrcJGf2ZTnq4HoFGC3zaTPZTobCzCFukA==}
     dependencies:
       '@babel/types': 7.23.6
+    dev: true
+
+  /@types/compute-lcm@1.1.3:
+    resolution: {integrity: sha512-SnoX1jjm79SLBGa+wM4/Xw4/XrcIZKMm/Q/LVEDfmMCITD3cf6NdQFhbFvbVDi5y8RI9HTCqqOwqsJUPrQ6/Og==}
     dev: true
 
   /@types/graceful-fs@4.1.9:
