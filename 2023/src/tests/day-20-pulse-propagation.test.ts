@@ -34,11 +34,7 @@ describe("Day 20: Pulse Propagation", () => {
     let output = await new part1().solve(input_prod)
     expect(output).toBe(807069600)
   })
-  test.todo("part 2", async () => {
-    let output = await new part2().solve(input_2)
-    expect(output).toBe(null)
-  })
-  test.todo("part 2 - prod", async () => {
+  test("part 2 - prod", async () => {
     let output = await new part2().solve(input_prod)
     expect(output).toBe(null)
   })
