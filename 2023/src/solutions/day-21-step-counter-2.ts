@@ -52,13 +52,8 @@ export default class StepCounter extends Solution {
           continue
         }
 
-        let neighbors: Array<[number, number]> = [
-          [r + 1, c],
-          [r - 1, c],
-          [r, c + 1],
-          [r, c - 1],
-        ]
-        for (let [nr, nc] of neighbors) {
+        for (let next of directions({ i: r, j: c })) {
+          const { i: nr, j: nc } = next
           if (
             nr < 0 ||
             nr >= grid.length ||
