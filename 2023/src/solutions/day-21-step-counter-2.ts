@@ -35,6 +35,7 @@ export default class StepCounter extends Solution {
 
     const size = grid.length
 
+    // ref. video https://youtu.be/9UOMZSL0JTg
     function fill(sr: number, sc: number, ss: number) {
       const ans = new Set<string>()
       const seen = new Set<string>()
