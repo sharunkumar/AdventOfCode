@@ -21,19 +21,19 @@ export default class StepCounter extends Solution {
   solve(input: string) {
     const grid = this.get_matrix(input)
 
-    let start: coord = { i: 0, j: 0 }
+    let sr = 0
+    let sc = 0
 
     grid.forEach((row, r) =>
       row.forEach((char, c) => {
         if (char === "S") {
-          start.i = r
-          start.j = c
+          sr = r
+          sc = c
         }
       }),
     )
 
     const size = grid.length
-    const steps = this.steps
 
     function fill(sr: number, sc: number, ss: number) {
       const ans = new Set<string>()
@@ -77,9 +77,7 @@ export default class StepCounter extends Solution {
       return ans.size
     }
 
-    const { i: sr, j: sc } = start
-
-    let grid_width = Math.floor(steps / size) - 1
+    let grid_width = Math.floor(this.steps / size) - 1
 
     let odd = Math.pow(Math.floor(grid_width / 2) * 2 + 1, 2)
     let even = Math.pow(Math.floor((grid_width + 1) / 2) * 2, 2)
