@@ -58,7 +58,7 @@ export default class PulsePropagation extends Solution {
       })
     })
 
-    console.log({ broadcast_targets, modules })
+    // console.log({ broadcast_targets, modules })
 
     let lo = 0
     let hi = 0
