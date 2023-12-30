@@ -21,16 +21,13 @@ describe("Day 21: Step Counter", () => {
     )
   })
   test("part 1", async () => {
-    let output = await new part1(6).solve(input_1)
-    expect(output).toBe(16)
+    expect(await new part1(6).solve(input_1)).toBe(16)
   })
   test("part 1 - prod", async () => {
-    let output = await new part1(64).solve(input_prod)
-    expect(output).toBe(3709)
+    expect(await new part1(64).solve(input_prod)).toBe(3709)
   })
-  test.todo("part 2", async () => {
-    let output = await new part2().solve(input_2)
-    expect(output).toBe(16733044)
+  test("part 2", async () => {
+    expect(await new part2(5000).solve(input_2)).toBe(16733044)
   })
   test.todo("part 2 - prod", async () => {
     let output = await new part2().solve(input_prod)

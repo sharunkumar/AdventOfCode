@@ -15,10 +15,11 @@ function directions(c: coord): [coord, coord, coord, coord] {
 }
 
 export default class StepCounter extends Solution {
+  constructor(public steps: number) {
+    super()
+  }
   solve(input: string) {
-    const [inp, steps] = this.get_blocks(input).map(numberc) as [string, number]
-
-    const map = this.get_matrix(inp)
+    const map = this.get_matrix(input)
 
     let start: coord = { i: 0, j: 0 }
 
@@ -40,7 +41,7 @@ export default class StepCounter extends Solution {
     const inbound = (c: coord): boolean =>
       ibw(c.i, 0, map.length) && ibw(c.j, 0, map[0].length)
 
-    const q = new Array<[coord, number]>(1).fill([start, steps])
+    const q = new Array<[coord, number]>(1).fill([start, this.steps])
 
     while (q.length) {
       const [curr, step] = q.shift()!
