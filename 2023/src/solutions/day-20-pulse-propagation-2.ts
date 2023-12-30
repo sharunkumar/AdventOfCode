@@ -1,3 +1,4 @@
+import lcm from "compute-lcm"
 import { Solution } from "../utils"
 
 type modtype = "%" | "&"
@@ -60,22 +61,46 @@ export default class PulsePropagation extends Solution {
 
     // console.log({ broadcast_targets, modules })
 
-    let lo = 0
-    let hi = 0
+    const [feed, ..._] = Array.from(modules.entries())
+      .filter(([name, module]) => module.outputs.includes("rx"))
+      .map(([name, mod]) => name)
 
-    for (let i = 0; i < 1000; i++) {
-      lo += 1
+    if (_.length) {
+      throw new Error(`Expected one feed, but there are many: ${_}`)
+    }
+
+    const cycle_lengths = new Map<string, number>()
+
+    const seen = new Map(
+      Array.from(modules.entries())
+        .filter(([name, module]) => module.outputs.includes(feed))
+        .map(([name, _]) => [name, 0]),
+    )
+
+    let presses = 0
+
+    for (let i = 0; i < Infinity; i++) {
+      presses += 1
       const q = broadcast_targets.map(
         (b) => ["broadcaster", b, "lo"] as [string, string, string],
       )
 
       while (q.length) {
         const [origin, target, pulse] = q.shift()!
-        if (pulse === "lo") lo += 1
-        else hi += 1
 
         if (modules.has(target)) {
           const module = modules.get(target)!
+
+          if (module.name === feed && pulse === "hi") {
+            seen.set(origin, seen.get(origin)! + 1)
+            if (!cycle_lengths.has(origin)) {
+              cycle_lengths.set(origin, presses)
+            }
+
+            if (Array.from(seen.values()).every((x) => x)) {
+              return lcm(Array.from(cycle_lengths.values()))
+            }
+          }
 
           if (module.type === "%") {
             if (pulse === "lo") {
@@ -100,7 +125,5 @@ export default class PulsePropagation extends Solution {
         }
       }
     }
-
-    return lo * hi
   }
 }
