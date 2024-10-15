@@ -2,6 +2,7 @@
 	"recommendations": [
 		"oven.bun-vscode",
 		"biomejs.biome",
-		"usernamehw.errorlens"
+		"usernamehw.errorlens",
+		"gruntfuggly.todo-tree"
 	]
 }
