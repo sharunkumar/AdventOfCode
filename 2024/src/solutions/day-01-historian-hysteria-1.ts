@@ -1,4 +1,4 @@
-import { regexMatch, Solution } from "../utils";
+import { regexMatch, Solution } from "#/utils";
 
 export default class HistorianHysteria extends Solution {
   solve(input: string) {
