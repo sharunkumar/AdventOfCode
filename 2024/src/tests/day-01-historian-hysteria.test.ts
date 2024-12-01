@@ -1,9 +1,9 @@
-import { default as part1 } from "../solutions/day-01-calorie-counting-1";
-import { default as part2 } from "../solutions/day-01-calorie-counting-2";
+import { default as part1 } from "../solutions/day-01-historian-hysteria-1";
+import { default as part2 } from "../solutions/day-01-historian-hysteria-2";
 import { readFileSync } from "node:fs";
 import { describe, test, beforeAll, expect } from "bun:test";
 
-describe("day 1", () => {
+describe("Day 01: Historian Hysteria", () => {
   let input_1: string;
   let input_prod: string;
   let input_2: string;
@@ -21,20 +21,20 @@ describe("day 1", () => {
       "utf-8"
     );
   });
-  test.todo("part 1", async () => {
+  test("part 1", async () => {
     const output = await new part1().solve(input_1);
-    expect(output).toBe(null); // FIXME - part 1
+    expect(output).toBe(11);
   });
-  test.todo("part 1 - prod", async () => {
+  test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 1 - prod
+    expect(output).toBe(2769675);
   });
-  test.todo("part 2", async () => {
+  test("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(null); // FIXME - part 2
+    expect(output).toBe(31); // FIXME - part 2
   });
-  test.todo("part 2 - prod", async () => {
+  test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 2 - prod
+    expect(output).toBe(24643097); // FIXME - part 2 - prod
   });
 });
