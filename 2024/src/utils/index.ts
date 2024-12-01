@@ -64,10 +64,8 @@ export function spreadMap<K, V>(input: Map<K, V>): Array<V> {
 
 export type ObjectValues<T> = T[keyof T];
 
-// biome-ignore lint/complexity/noStaticOnlyClass: <explanation>
 export class FunctionLibrary {
 	static get(name: string) {
-		// biome-ignore lint/complexity/noThisInStatic: <explanation>
 		return Reflect.get(this, name);
 	}
 }
