@@ -2,9 +2,9 @@
 	"editor.formatOnSave": true,
 	"editor.formatOnPaste": true,
 	"biome.enabled": false,
-	"prettier.enable": false,
+	"prettier.enable": true,
 	"[typescript]": {
-		"editor.defaultFormatter": "vscode.typescript-language-features"
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
 	},
 	"todo-tree.filtering.excludeGlobs": [
 		"**/node_modules/*/**",
