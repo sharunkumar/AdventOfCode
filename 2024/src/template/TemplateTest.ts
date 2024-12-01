@@ -1,5 +1,5 @@
-import { default as part1 } from "../solutions/day-01-calorie-counting-1";
-import { default as part2 } from "../solutions/day-01-calorie-counting-2";
+import { default as part1 } from "#/solutions/day-01-calorie-counting-1";
+import { default as part2 } from "#/solutions/day-01-calorie-counting-2";
 import { readFileSync } from "node:fs";
 import { describe, test, beforeAll, expect } from "bun:test";
 

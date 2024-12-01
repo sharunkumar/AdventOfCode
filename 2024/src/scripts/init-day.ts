@@ -1,5 +1,5 @@
 import { existsSync, readFileSync, writeFileSync } from "node:fs";
-import { regexMatch } from "../utils";
+import { regexMatch } from "#/utils";
 import path from "node:path";
 import { titleCase } from "title-case";
 import { $ } from "bun";

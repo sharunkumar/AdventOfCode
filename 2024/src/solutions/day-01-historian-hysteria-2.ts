@@ -1,4 +1,4 @@
-import { Counter, regexMatch, Solution } from "../utils";
+import { Solution, regexMatch, Counter } from "#/utils";
 
 export default class HistorianHysteria extends Solution {
   solve(input: string) {

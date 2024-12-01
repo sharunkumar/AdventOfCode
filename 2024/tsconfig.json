@@ -1,7 +1,10 @@
 {
 	"compilerOptions": {
 		// Enable latest features
-		"lib": ["ESNext", "DOM"],
+		"lib": [
+			"ESNext",
+			"DOM"
+		],
 		"target": "ESNext",
 		"module": "ESNext",
 		"moduleDetection": "force",
@@ -16,6 +19,12 @@
 		"strict": true,
 		"skipLibCheck": true,
 		"noFallthroughCasesInSwitch": true,
+		// Module Resolution
+		"paths": {
+			"#/*": [
+				"./src/*"
+			]
+		},
 		// Some stricter flags (disabled by default)
 		"noUnusedLocals": false,
 		"noUnusedParameters": false,
