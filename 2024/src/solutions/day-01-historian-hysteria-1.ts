@@ -6,10 +6,12 @@ export default class HistorianHysteria extends Solution {
       .map((x) => regexMatch(x, /\d+/g))
       .map((x) => [parseInt(x[0]), parseInt(x[1])]);
 
-    const list1 = lists.map(x => x[0]).sort()
-    const list2 = lists.map((x) => x[1]).sort()
+    const list1 = lists.map((x) => x[0]).sort();
+    const list2 = lists.map((x) => x[1]).sort();
 
-    const result = list1.map((x, idx) => Math.abs(list1[idx] - list2[idx])).sum()
+    const result = list1
+      .map((x, idx) => Math.abs(list1[idx] - list2[idx]))
+      .sum();
 
     return result;
   }
