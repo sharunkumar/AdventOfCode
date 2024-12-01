@@ -5,13 +5,18 @@ Advent of Code Solutions written in TypeScript
 ## Requirements
 
 - bun - https://bun.sh/
-- pnpm - https://pnpm.io/
+
+## Initializing the code for a certain day
+
+```bash
+cd 2024
+bun init:day Day 1: Historian Hysteria
+```
 
 ## Running the code
 
 ```bash
-cd 2023
-pnpm install
-pnpm test 01 # or any other day number
-pnpm test:clean 01 # disables log outputs
+cd 2024
+bun install
+bun test 01 # or any other day number
 ```
