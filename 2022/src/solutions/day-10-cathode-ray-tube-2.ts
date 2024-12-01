@@ -1,4 +1,4 @@
-import { EOL } from "os"
+import { EOL } from "node:os"
 import { FunctionLibrary, Solution } from "../utils"
 
 let cycles = 0
