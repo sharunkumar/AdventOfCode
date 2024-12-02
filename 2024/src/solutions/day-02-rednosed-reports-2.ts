@@ -23,8 +23,7 @@ export default class RedNosedReports extends Solution {
       }
 
       for (let i = 0; i < row.length; i++) {
-        const modifiedRow = [...row.slice(0, i), ...row.slice(i + 1)];
-        if (isValidSequence(modifiedRow)) {
+        if (isValidSequence(row.toSpliced(i, 1))) {
           return true;
         }
       }
