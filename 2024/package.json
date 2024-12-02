@@ -4,8 +4,7 @@
 	"type": "module",
 	"scripts": {
 		"init:day": "bun ./src/scripts/init-day.ts",
-		"test": "bun test --watch",
-		"test:clean": "bun test --watch --preload ./preload.ts"
+		"test:clean": "bun test --preload ./preload.ts"
 	},
 	"devDependencies": {
 		"@total-typescript/ts-reset": "^0.6.1",
