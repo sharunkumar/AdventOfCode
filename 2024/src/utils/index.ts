@@ -1,5 +1,26 @@
 import { EOL } from "node:os";
 
+export abstract class Solution {
+  abstract solve(input: string): unknown;
+  get_lines(input: string): Array<string> {
+    return input.split(EOL);
+  }
+  get_blocks(input: string): Array<string> {
+    return input.split(`${EOL}${EOL}`);
+  }
+  get_matrix(input: string): Array<Array<string>> {
+    return this.get_lines(input).map((line) => line.split(""));
+  }
+  get_matrix_numbers(input: string): Array<Array<number>> {
+    return this.get_lines(input).map((line) =>
+      regexMatch(line, /(\d+)/g).map((n) => parseInt(n))
+    );
+  }
+  print_matrix(matrix: (string | number)[][]) {
+    matrix.map((line) => line.join("")).pipelog();
+  }
+}
+
 export function sum(x: number, y: number): number {
   return x + y;
 }
@@ -39,23 +60,6 @@ export function descending(a: number, b: number): number {
 
 export function inclusive_between(x: number, start: number, end: number) {
   return start <= x && x <= end;
-}
-
-export abstract class Solution {
-  // define an abstract method that solves
-  abstract solve(input: string): unknown;
-  get_lines(input: string): Array<string> {
-    return input.split(EOL);
-  }
-  get_blocks(input: string): Array<string> {
-    return input.split(`${EOL}${EOL}`);
-  }
-  get_matrix(input: string): Array<Array<string>> {
-    return this.get_lines(input).map((line) => line.split(""));
-  }
-  print_matrix(matrix: (string | number)[][]) {
-    matrix.map((line) => line.join("")).pipelog();
-  }
 }
 
 export function spreadMap<K, V>(input: Map<K, V>): Array<V> {

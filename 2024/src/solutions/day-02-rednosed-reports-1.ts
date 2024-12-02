@@ -1,10 +1,8 @@
-import { inclusive_between as ibw, regexMatch, Solution } from "#/utils";
+import { inclusive_between as ibw, Solution } from "#/utils";
 
 export default class RedNosedReports extends Solution {
   solve(input: string) {
-    const matrix = this.get_lines(input).map((line) =>
-      regexMatch(line, /(\d+)/g).map((n) => parseInt(n))
-    );
+    const matrix = this.get_matrix_numbers(input);
 
     const diffs = matrix
       .map((row) => {
