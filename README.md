@@ -10,6 +10,7 @@ Advent of Code Solutions written in TypeScript
 
 ```bash
 cd 2024
+bun install
 bun init:day Day 1: Historian Hysteria
 ```
 
