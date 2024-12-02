@@ -37,11 +37,6 @@ export function product(x: number, y: number): number {
   return x * y;
 }
 
-// export function pipelog<T>(x: T): T {
-//     console.log(x)
-//     return x
-// }
-
 export function char_to_ascii(char: string) {
   return char.charCodeAt(0);
 }
