@@ -33,8 +33,8 @@ describe("Day 02: RedNosed Reports", () => {
     const output = await new part2().solve(input_2);
     expect(output).toBe(4); // FIXME - part 2
   });
-  test.todo("part 2 - prod", async () => {
+  test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 2 - prod
+    expect(output).toBe(589); // FIXME - part 2 - prod
   });
 });

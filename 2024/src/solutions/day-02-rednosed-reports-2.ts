@@ -6,20 +6,32 @@ export default class RedNosedReports extends Solution {
       regexMatch(line, /(\d+)/g).map((n) => parseInt(n))
     );
 
-    const diffs = matrix
-      .map((row) => {
-        return row
-          .flatMap((x, idx) => x - row[idx + 1])
-          .filter((x) => !isNaN(x));
-      })
-      .filter((row) => {
-        return (
-          (row.every((x) => x > 0) && row.every((x) => ibw(x, 1, 3))) ||
-          (row.every((x) => x < 0) && row.every((x) => ibw(x, -3, -1)))
-        );
-      });
-    console.log();
+    const safeReports = matrix.filter((row) => {
+      const isValidSequence = (numbers: number[]) => {
+        const diffs = numbers
+          .slice(0, -1)
+          .map((n, i) => numbers[i + 1] - numbers[i]);
 
-    return diffs.length;
+        return (
+          diffs.every((x) => x > 0 && ibw(x, 1, 3)) ||
+          diffs.every((x) => x < 0 && ibw(x, -3, -1))
+        );
+      };
+
+      if (isValidSequence(row)) {
+        return true;
+      }
+
+      for (let i = 0; i < row.length; i++) {
+        const modifiedRow = [...row.slice(0, i), ...row.slice(i + 1)];
+        if (isValidSequence(modifiedRow)) {
+          return true;
+        }
+      }
+
+      return false;
+    });
+
+    return safeReports.length;
   }
 }
