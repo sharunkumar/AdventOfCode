@@ -174,12 +174,12 @@ export class Counter<T> {
   }
 
   increment(item: T): void {
-    const count = this.counts.get(item) || 0;
+    const count = this.counts.get(item) ?? 0;
     this.counts.set(item, count + 1);
   }
 
   decrement(item: T): void {
-    const count = this.counts.get(item) || 0;
+    const count = this.counts.get(item) ?? 0;
     if (count <= 1) {
       this.counts.delete(item);
     } else {
@@ -188,7 +188,7 @@ export class Counter<T> {
   }
 
   getCount(item: T): number {
-    return this.counts.get(item) || 0;
+    return this.counts.get(item) ?? 0;
   }
 
   getItems(): T[] {
