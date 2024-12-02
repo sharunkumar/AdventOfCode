@@ -16,7 +16,10 @@ const title = titleCase(regexMatch(title_with_day, /: .*/g).join(""), {
 
 const unsafe_regex = /[^a-zA-Z0-9-]/g;
 
-const className = title.replace(/ /g, "").replace(unsafe_regex, "");
+const className = title
+  .replace(/ /g, "")
+  .replace(unsafe_regex, "")
+  .replaceAll("-", "");
 
 const file_name = title_with_day
   .replace(":", "")
