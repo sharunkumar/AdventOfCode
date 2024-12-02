@@ -31,10 +31,10 @@ describe("Day 01: Historian Hysteria", () => {
   });
   test("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(31); // FIXME - part 2
+    expect(output).toBe(31);
   });
   test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(24643097); // FIXME - part 2 - prod
+    expect(output).toBe(24643097);
   });
 });

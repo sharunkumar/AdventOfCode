@@ -23,18 +23,18 @@ describe("Day 02: RedNosed Reports", () => {
   });
   test("part 1", async () => {
     const output = await new part1().solve(input_1);
-    expect(output).toBe(2); // FIXME - part 1
+    expect(output).toBe(2);
   });
   test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(549); // FIXME - part 1 - prod
+    expect(output).toBe(549);
   });
   test("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(4); // FIXME - part 2
+    expect(output).toBe(4);
   });
   test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(589); // FIXME - part 2 - prod
+    expect(output).toBe(589);
   });
 });
