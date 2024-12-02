@@ -10,7 +10,7 @@ Advent of Code Solutions written in TypeScript
 
 ```bash
 bun install
-bun init:day Day 1: Historian Hysteria
+bun init:day Day 1: Calorie Counting
 ```
 
 ## Running the code
