@@ -23,18 +23,18 @@ describe("Day 03: Mull It Over", () => {
   });
   test("part 1", async () => {
     const output = await new part1().solve(input_1);
-    expect(output).toBe(161); // FIXME - part 1
+    expect(output).toBe(161);
   });
   test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(188192787); // FIXME - part 1 - prod
+    expect(output).toBe(188192787);
   });
   test("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(48); // FIXME - part 2
+    expect(output).toBe(48);
   });
-  test.todo("part 2 - prod", async () => {
+  test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 2 - prod
+    expect(output).toBe(113965544);
   });
 });
