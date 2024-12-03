@@ -1,4 +1,4 @@
-import { regexMatch, Solution, sum } from "#/utils";
+import { regexMatch, Solution } from "#/utils";
 
 export default class MullItOver extends Solution {
   solve(input: string) {
@@ -6,6 +6,6 @@ export default class MullItOver extends Solution {
       .map((mul) => regexMatch(mul, /\d+/g).map((n) => parseInt(n)))
       .map(([a, b]) => a * b);
 
-    return exp.reduce(sum);
+    return exp.sum();
   }
 }

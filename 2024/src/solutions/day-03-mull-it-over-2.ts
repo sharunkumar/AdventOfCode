@@ -1,4 +1,4 @@
-import { regexMatch, Solution, sum } from "#/utils";
+import { product, regexMatch, Solution } from "#/utils";
 
 export default class MullItOver extends Solution {
   solve(input: string) {
@@ -14,7 +14,7 @@ export default class MullItOver extends Solution {
       } else if (shouldDo) {
         result += regexMatch(e, /\d+/g)
           .map((n) => parseInt(n))
-          .reduce((a, b) => a * b, 1);
+          .product();
       }
     }
 
