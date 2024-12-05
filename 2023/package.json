@@ -29,6 +29,7 @@
     "typescript": "^5.7.2"
   },
   "dependencies": {
+    "@types/bun": "^1.1.14",
     "@types/lodash": "^4.17.13",
     "big-m": "^7.0.0",
     "compute-lcm": "^1.1.2",

@@ -11,6 +11,12 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
+  "todo-tree.filtering.excludeGlobs": [
+    "**/node_modules/*/**",
+    "**/src/template/**",
+    "**/src/tests/io/**",
+    "**/io/**",
+  ],
   "workbench.colorCustomizations": {
     "activityBar.activeBackground": "#28693b",
     "activityBar.background": "#28693b",
