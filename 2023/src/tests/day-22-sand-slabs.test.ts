@@ -27,7 +27,7 @@ describe("Day 22: Sand Slabs", () => {
   })
   test("part 2", async () => {
     let output = await new part2().solve(input_2)
-    expect(output).toBe(null)
+    expect(output).toBe(7)
   })
   test.todo("part 2 - prod", async () => {
     let output = await new part2().solve(input_prod)
