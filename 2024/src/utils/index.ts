@@ -2,23 +2,28 @@ import { EOL } from "node:os";
 
 export abstract class Solution {
   abstract solve(input: string): unknown;
-  get_lines(input: string): Array<string> {
-    return input.split(EOL);
-  }
-  get_blocks(input: string): Array<string> {
-    return input.split(`${EOL}${EOL}`);
-  }
-  get_matrix(input: string): Array<Array<string>> {
-    return this.get_lines(input).map((line) => line.split(""));
-  }
-  get_matrix_numbers(input: string): Array<Array<number>> {
-    return this.get_lines(input).map((line) =>
-      regexMatch(line, /(\d+)/g).map((n) => parseInt(n))
-    );
-  }
-  print_matrix(matrix: (string | number)[][]) {
-    matrix.map((line) => line.join("")).pipelog();
-  }
+}
+
+export function get_lines(input: string): Array<string> {
+  return input.split(EOL);
+}
+
+export function get_blocks(input: string): Array<string> {
+  return input.split(`${EOL}${EOL}`);
+}
+
+export function get_matrix(input: string): Array<Array<string>> {
+  return get_lines(input).map((line) => line.split(""));
+}
+
+export function get_matrix_numbers(input: string): Array<Array<number>> {
+  return get_lines(input).map((line) =>
+    regexMatch(line, /(\d+)/g).map((n) => parseInt(n))
+  );
+}
+
+export function print_matrix(matrix: (string | number)[][]) {
+  matrix.map((line) => line.join("")).pipelog();
 }
 
 export function sum(x: number, y: number): number {
