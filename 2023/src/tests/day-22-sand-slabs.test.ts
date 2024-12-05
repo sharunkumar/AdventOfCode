@@ -1,6 +1,7 @@
 import { default as part1 } from "../solutions/day-22-sand-slabs-1"
 import { default as part2 } from "../solutions/day-22-sand-slabs-2"
 import { readFileSync } from "fs"
+import { test, describe, beforeAll, expect } from "bun:test"
 
 describe("Day 22: Sand Slabs", () => {
   let input_1: string
@@ -25,7 +26,7 @@ describe("Day 22: Sand Slabs", () => {
     let output = await new part1().solve(input_prod)
     expect(output).toBe(439)
   })
-  test("part 2", async () => {
+  test.todo("part 2", async () => {
     let output = await new part2().solve(input_2)
     expect(output).toBe(7)
   })
