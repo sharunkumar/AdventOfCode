@@ -1,8 +1,12 @@
-import { inclusive_between as ibw, Solution } from "#/utils";
+import {
+  get_matrix_numbers,
+  inclusive_between as ibw,
+  Solution,
+} from "#/utils";
 
 export default class RedNosedReports extends Solution {
   solve(input: string) {
-    const matrix = this.get_matrix_numbers(input);
+    const matrix = get_matrix_numbers(input);
 
     const safeReports = matrix.filter((row) => {
       const isValidSequence = (numbers: number[]) => {

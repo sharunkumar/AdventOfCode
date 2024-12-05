@@ -1,12 +1,12 @@
-import { Solution } from "#/utils";
+import { get_blocks, get_lines, Solution } from "#/utils";
 
 export default class PrintQueue extends Solution {
   solve(input: string) {
-    const [rulesSection, updatesSection] = this.get_blocks(input);
-    const rules = this.get_lines(rulesSection).map((rule) =>
+    const [rulesSection, updatesSection] = get_blocks(input);
+    const rules = get_lines(rulesSection).map((rule) =>
       rule.split("|").map(Number)
     );
-    const updates = this.get_lines(updatesSection).map((update) =>
+    const updates = get_lines(updatesSection).map((update) =>
       update.split(",").map(Number)
     );
 

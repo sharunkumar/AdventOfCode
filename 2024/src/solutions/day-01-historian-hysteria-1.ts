@@ -1,8 +1,8 @@
-import { regexMatch, Solution } from "#/utils";
+import { get_lines, regexMatch, Solution } from "#/utils";
 
 export default class HistorianHysteria extends Solution {
   solve(input: string) {
-    const lists = this.get_lines(input)
+    const lists = get_lines(input)
       .map((x) => regexMatch(x, /\d+/g))
       .map((x) => [parseInt(x[0]), parseInt(x[1])]);
 

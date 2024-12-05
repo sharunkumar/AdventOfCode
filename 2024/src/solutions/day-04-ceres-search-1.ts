@@ -1,8 +1,8 @@
-import { Solution } from "#/utils";
+import { get_matrix, Solution } from "#/utils";
 
 export default class CeresSearch extends Solution {
   solve(input: string) {
-    const grid = this.get_matrix(input);
+    const grid = get_matrix(input);
     let count = 0;
     const rows = grid.length;
     const cols = grid[0].length;
