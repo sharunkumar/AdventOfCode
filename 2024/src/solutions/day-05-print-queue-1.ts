@@ -25,7 +25,7 @@ export default class PrintQueue extends Solution {
     const middlePages = correctUpdates.map(
       (update) => update[Math.floor(update.length / 2)]
     );
-    const result = middlePages.reduce((sum, page) => sum + page, 0);
+    const result = middlePages.sum();
 
     return result;
   }
