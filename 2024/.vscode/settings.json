@@ -1,0 +1,25 @@
+{
+	"editor.formatOnSave": true,
+	"editor.formatOnPaste": true,
+	"biome.enabled": false,
+	"prettier.enable": true,
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"todo-tree.filtering.excludeGlobs": [
+		"**/node_modules/*/**",
+		"**/src/template/**",
+		"**/src/tests/io/**",
+		"**/io/**",
+	],
+	"files.exclude": {
+		"**/.git": true,
+		"**/.svn": true,
+		"**/.hg": true,
+		"**/CVS": true,
+		"**/.DS_Store": true,
+		"**/Thumbs.db": true,
+		"**/node_modules": true
+	},
+	"todo-tree.tree.showBadges": true
+}

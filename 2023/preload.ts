@@ -1,2 +1,2 @@
-console.log = (message?: any, ...optionalParams: any[]) => {}
+console.log = (message?: unknown, ...optionalParams: unknown[]) => {}
 console.clear = () => {}
