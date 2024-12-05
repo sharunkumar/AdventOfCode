@@ -9,6 +9,7 @@
 	"todo-tree.filtering.excludeGlobs": [
 		"**/node_modules/*/**",
 		"**/src/template/**",
+		"**/src/tests/io/**",
 		"**/io/**",
 	],
 	"files.exclude": {
