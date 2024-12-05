@@ -1,19 +1,19 @@
-import { PrismaClient } from "@prisma/client"
 import { Solution, numberc, safe_get } from "../utils"
 
-const prisma = new PrismaClient()
-
 export default class GearRatios extends Solution {
-  async solve(input: string) {
-    await prisma.gearCoordinates.deleteMany()
+  solve(input: string) {
     const lines = this.get_lines(input)
     const matrix = lines.map((line) => (line + ".").split(""))
+
+    // Map to store gear coordinates and their adjacent numbers
+    const gearMap = new Map<string, number[]>()
 
     for (let i = 0; i < matrix.length; i++) {
       const row = matrix[i]
       let numbuf = ""
       let start_x = 0,
         start_y = 0
+
       for (let j = 0; j < row.length; j++) {
         const c = numberc(row[j])
         if (typeof c == "number") {
@@ -24,63 +24,35 @@ export default class GearRatios extends Solution {
           numbuf += c.toString()
         } else {
           if (numbuf.length == 0) continue
-          let finds: ReturnType<typeof getNeightbors> = []
+
+          let finds = new Set<string>()
           for (let l = 1; l <= numbuf.length; l++) {
             let k = j - l
-            finds.push(...getNeightbors(i, k, matrix))
+            getNeightbors(i, k, matrix).forEach(({ x, y }) => {
+              finds.add(`${x},${y}`)
+            })
           }
-          if (finds.length > 0) {
-            const num = Number(numbuf)
-            for (let f = 0; f < finds.length; f++) {
-              const find = finds[f]
-              await prisma.gearCoordinates
-                .create({
-                  data: {
-                    i: find.x,
-                    j: find.y,
-                    part_i: start_x,
-                    part_j: start_y,
-                    part_num: num,
-                  },
-                })
-                .catch((err) => 0)
+
+          const num = Number(numbuf)
+          finds.forEach((coord) => {
+            if (!gearMap.has(coord)) {
+              gearMap.set(coord, [])
             }
-          }
+            gearMap.get(coord)?.push(num)
+          })
 
           numbuf = ""
         }
       }
     }
 
-    const gears = await prisma.gearCoordinates.groupBy({
-      by: ["i", "j"],
-      having: {
-        part_num: {
-          _count: {
-            equals: 2,
-          },
-        },
-      },
-    })
-
+    // Calculate sum of gear ratios
     let sum = 0
-
-    for (let gi = 0; gi < gears.length; gi++) {
-      const g = gears[gi]
-      sum += (
-        await prisma.gearCoordinates.findMany({
-          where: {
-            i: g.i,
-            j: g.j,
-          },
-          select: {
-            part_num: true,
-          },
-        })
-      )
-        .map((g) => g.part_num)
-        .product()
-    }
+    gearMap.forEach((numbers) => {
+      if (numbers.length === 2) {
+        sum += numbers[0] * numbers[1]
+      }
+    })
 
     return sum
   }
@@ -96,10 +68,6 @@ const neigbors = [
   [-1, 1],
   [-1, -1],
 ]
-
-function updatePart(start_x: number, start_y: number, num: number) {
-  return
-}
 
 function getNeightbors(i: number, k: number, matrix: string[][]) {
   return neigbors

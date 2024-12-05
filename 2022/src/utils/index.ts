@@ -4,6 +4,18 @@ export function sum(x: number, y: number): number {
   return x + y
 }
 
+export function least(x: number, y: number): number {
+  return Math.min(x, y)
+}
+
+export function greatest(x: number, y: number): number {
+  return Math.max(x, y)
+}
+
+export function product(x: number, y: number): number {
+  return x * y
+}
+
 // export function pipelog<T>(x: T): T {
 //     console.log(x)
 //     return x
@@ -57,7 +69,10 @@ declare global {
     pipelog(): Array<T>
     pipelog(include_index: boolean): Array<T>
     pipelog(include_index: boolean, index_start: number): Array<T>
-    sum(): Number
+    sum(): number
+    product(): number
+    least(): number
+    greatest(): number
   }
 }
 
@@ -79,6 +94,18 @@ Array.prototype.sum = function <T>(): number {
   return this.reduce(sum)
 }
 
+Array.prototype.least = function <T>(): number {
+  return this.reduce(least)
+}
+
+Array.prototype.greatest = function <T>(): number {
+  return this.reduce(greatest)
+}
+
+Array.prototype.product = function <T>(): number {
+  return this.reduce(product)
+}
+
 export const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms))
 
 export function manhattan_distance(
@@ -96,4 +123,31 @@ export function regexMatch(input: string, re: RegExp) {
 
 export function intersect<T>(one: Set<T>, two: Set<T>): Set<T> {
   return new Set([...one].filter((x) => two.has(x)))
+}
+
+export function numberc(str: string): number | string {
+  if (!isNaN(Number(str))) {
+    return Number(str)
+  }
+  return str
+}
+
+export function safe_get<T>(
+  matrix: T[][],
+  x: number,
+  y: number,
+): T | undefined {
+  try {
+    return matrix[x][y]
+  } catch (_) {}
+}
+
+export const range = (n: number): number[] => [...Array(n).keys()]
+
+export function gcd(a: number, b: number) {
+  return !b ? a : gcd(b, a % b)
+}
+
+export function lcm(a: number, b: number) {
+  return (a * b) / gcd(a, b)
 }

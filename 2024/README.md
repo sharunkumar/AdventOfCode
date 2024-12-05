@@ -9,7 +9,6 @@ Advent of Code Solutions written in TypeScript
 ## Initializing the code for a certain day
 
 ```bash
-cd 2024
 bun install
 bun init:day Day 1: Historian Hysteria
 ```
@@ -17,7 +16,6 @@ bun init:day Day 1: Historian Hysteria
 ## Running the code
 
 ```bash
-cd 2024
 bun install
 bun test 01 # or any other day number
 ```
