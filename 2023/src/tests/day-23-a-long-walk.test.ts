@@ -1,9 +1,9 @@
-import { default as part1 } from "../solutions/day-01-calorie-counting-1"
-import { default as part2 } from "../solutions/day-01-calorie-counting-2"
+import { default as part1 } from "../solutions/day-23-a-long-walk-1"
+import { default as part2 } from "../solutions/day-23-a-long-walk-2"
 import { readFileSync } from "fs"
 import { test, describe, beforeAll, expect } from "bun:test"
 
-describe("day 1", () => {
+describe("Day 23: A Long Walk", () => {
   let input_1: string
   let input_prod: string
   let input_2: string
@@ -18,20 +18,20 @@ describe("day 1", () => {
     input_2 = readFileSync(input_file_name_2, "utf-8")
     input_prod = readFileSync(`io/${new part1().constructor.name}.txt`, "utf-8")
   })
-  test.todo("part 1", async () => {
+  test("part 1", async () => {
     let output = await new part1().solve(input_1)
-    expect(output).toBe(null)
+    expect(output).toBe(94)
   })
-  test.todo("part 1 - prod", async () => {
+  test("part 1 - prod", async () => {
     let output = await new part1().solve(input_prod)
-    expect(output).toBe(null)
+    expect(output).toBe(2010)
   })
-  test.todo("part 2", async () => {
+  test("part 2", async () => {
     let output = await new part2().solve(input_2)
-    expect(output).toBe(null)
+    expect(output).toBe(154)
   })
-  test.todo("part 2 - prod", async () => {
+  test("part 2 - prod", async () => {
     let output = await new part2().solve(input_prod)
-    expect(output).toBe(null)
+    expect(output).toBe(6318)
   })
 })
