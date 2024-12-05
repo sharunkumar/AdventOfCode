@@ -8,7 +8,8 @@
 	},
 	"todo-tree.filtering.excludeGlobs": [
 		"**/node_modules/*/**",
-		"**/src/template/**"
+		"**/src/template/**",
+		"**/io/**",
 	],
 	"files.exclude": {
 		"**/.git": true,
