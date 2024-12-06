@@ -1,10 +1,13 @@
-import { get_lines, Solution } from "#/utils";
+import { get_lines, get_matrix, Solution } from "#/utils";
+
+type Direction = "up" | "right" | "down" | "left";
+type Pos = { x: number; y: number; dir: Direction };
 
 export default class GuardGallivant extends Solution {
   solve(input: string) {
-    const grid = get_lines(input).map((line) => line.split(""));
+    const grid = get_matrix(input);
     const visited = new Set<string>();
-    let pos = { x: 0, y: 0, dir: "up" };
+    let pos: Pos = { x: 0, y: 0, dir: "up" };
 
     for (let y = 0; y < grid.length; y++) {
       for (let x = 0; x < grid[y].length; x++) {
@@ -15,7 +18,10 @@ export default class GuardGallivant extends Solution {
       }
     }
 
-    const directions = {
+    const directions: Record<
+      string,
+      { dx: number; dy: number; right: Direction }
+    > = {
       up: { dx: 0, dy: -1, right: "right" },
       right: { dx: 1, dy: 0, right: "down" },
       down: { dx: 0, dy: 1, right: "left" },
