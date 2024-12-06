@@ -1,4 +1,4 @@
-import { get_lines, get_matrix, Solution } from "#/utils";
+import { get_matrix, Solution } from "#/utils";
 
 type Direction = "up" | "right" | "down" | "left";
 type Pos = { x: number; y: number; dir: Direction };

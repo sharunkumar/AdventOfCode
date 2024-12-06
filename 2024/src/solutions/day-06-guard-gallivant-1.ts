@@ -1,4 +1,4 @@
-import { get_lines, get_matrix, Solution } from "#/utils";
+import { get_matrix, Solution } from "#/utils";
 
 type Direction = "up" | "right" | "down" | "left";
 type Pos = { x: number; y: number; dir: Direction };
@@ -19,7 +19,7 @@ export default class GuardGallivant extends Solution {
     }
 
     const directions: Record<
-      string,
+      Direction,
       { dx: number; dy: number; right: Direction }
     > = {
       up: { dx: 0, dy: -1, right: "right" },
