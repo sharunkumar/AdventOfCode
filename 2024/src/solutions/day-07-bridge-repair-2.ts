@@ -15,40 +15,47 @@ export default class BridgeRepair extends Solution {
   }
 }
 
+function validate_equation(target: number, array: number[]): boolean {
+  if (array.length === 1) return target === array[0];
+
+  if (
+    target % array[array.length - 1] === 0 &&
+    validate_equation(
+      Math.floor(target / array[array.length - 1]),
+      array.slice(0, -1)
+    )
+  ) {
+    return true;
+  }
+
+  if (
+    target > array[array.length - 1] &&
+    validate_equation(target - array[array.length - 1], array.slice(0, -1))
+  ) {
+    return true;
+  }
+
+  const targetStr = target.toString();
+  const lastStr = array[array.length - 1].toString();
+  if (
+    targetStr.endsWith(lastStr) &&
+    targetStr.length > lastStr.length &&
+    validate_equation(
+      parseInt(targetStr.slice(0, -lastStr.length)),
+      array.slice(0, -1)
+    )
+  ) {
+    return true;
+  }
+
+  return false;
+}
+
 function is_valid_equation(equation: number[]) {
   const test_value = equation[0];
   const numbers = equation.slice(1);
 
   if (numbers.length < 2) return false;
 
-  const operators = ["+", "*", "||"];
-  const combinations = [];
-
-  // Generate all possible operator combinations
-  for (let i = 0; i < Math.pow(3, numbers.length - 1); i++) {
-    const ops = [];
-    for (let j = 0; j < numbers.length - 1; j++) {
-      ops.push(operators[Math.floor(i / Math.pow(3, j)) % 3]);
-    }
-    combinations.push(ops);
-  }
-
-  // Test each combination
-  for (const ops of combinations) {
-    let result = numbers[0];
-    for (let i = 0; i < ops.length; i++) {
-      if (ops[i] === "+") {
-        result += numbers[i + 1];
-      } else if (ops[i] === "*") {
-        result *= numbers[i + 1];
-      } else {
-        result = parseInt(`${result}${numbers[i + 1]}`);
-      }
-    }
-    if (result === test_value) {
-      return true;
-    }
-  }
-
-  return false;
+  return validate_equation(test_value, numbers);
 }
