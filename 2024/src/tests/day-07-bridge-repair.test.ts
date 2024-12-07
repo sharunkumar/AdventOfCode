@@ -23,11 +23,11 @@ describe("Day 07: Bridge Repair", () => {
   });
   test("part 1", async () => {
     const output = await new part1().solve(input_1);
-    expect(output).toBe(3749); // FIXME - part 1
+    expect(output).toBe(3749);
   });
   test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 1 - prod
+    expect(output).toBe(10741443549536);
   });
   test.todo("part 2", async () => {
     const output = await new part2().solve(input_2);
