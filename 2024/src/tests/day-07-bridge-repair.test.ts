@@ -35,6 +35,6 @@ describe("Day 07: Bridge Repair", () => {
   });
   test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 2 - prod
+    expect(output).toBe(500335179214836); // FIXME - part 2 - prod
   });
 });

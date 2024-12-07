@@ -21,14 +21,14 @@ function is_valid_equation(equation: number[]) {
 
   if (numbers.length < 2) return false;
 
-  const operators = ["+", "*"];
+  const operators = ["+", "*", "||"];
   const combinations = [];
 
   // Generate all possible operator combinations
-  for (let i = 0; i < Math.pow(2, numbers.length - 1); i++) {
+  for (let i = 0; i < Math.pow(3, numbers.length - 1); i++) {
     const ops = [];
     for (let j = 0; j < numbers.length - 1; j++) {
-      ops.push(operators[(i >> j) & 1]);
+      ops.push(operators[Math.floor(i / Math.pow(3, j)) % 3]);
     }
     combinations.push(ops);
   }
@@ -39,8 +39,10 @@ function is_valid_equation(equation: number[]) {
     for (let i = 0; i < ops.length; i++) {
       if (ops[i] === "+") {
         result += numbers[i + 1];
-      } else {
+      } else if (ops[i] === "*") {
         result *= numbers[i + 1];
+      } else {
+        result = parseInt(`${result}${numbers[i + 1]}`);
       }
     }
     if (result === test_value) {
