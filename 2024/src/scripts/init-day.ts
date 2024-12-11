@@ -90,6 +90,7 @@ createFile(test_sample_input_path_2);
 
 await $`git add :/`;
 await $`git commit -m ${"init: " + arg_joined}`;
+await $`git push`;
 
 function createFile(file_path: string, file_content = "") {
   if (!existsSync(file_path)) {
