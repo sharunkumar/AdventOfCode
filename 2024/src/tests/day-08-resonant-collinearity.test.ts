@@ -27,7 +27,7 @@ describe("Day 08: Resonant Collinearity", () => {
   });
   test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 1 - prod
+    expect(output).toBe(256); // FIXME - part 1 - prod
   });
   test.todo("part 2", async () => {
     const output = await new part2().solve(input_2);
