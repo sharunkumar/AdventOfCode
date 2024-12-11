@@ -27,9 +27,9 @@ const file_name = title_with_day
   .replace(unsafe_regex, "")
   .toLowerCase();
 
+const year = path.basename(process.cwd());
 const day_number = file_name.match(/\d+/g)?.join("");
-
-const branch_name = `2024-${day_number}`;
+const branch_name = `${year}-${day_number}`;
 
 const current_branch = (await $`git rev-parse --abbrev-ref HEAD`.text()).trim();
 
