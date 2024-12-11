@@ -27,6 +27,16 @@ const file_name = title_with_day
   .replace(unsafe_regex, "")
   .toLowerCase();
 
+const day_number = file_name.match(/\d+/g)?.join("");
+
+const branch_name = `2024-${day_number}`;
+
+const current_branch = (await $`git rev-parse --abbrev-ref HEAD`.text()).trim();
+
+if (["main", "master"].includes(current_branch)) {
+  await $`git checkout -b ${branch_name}`;
+}
+
 const file_path = path.join(".", "src", "solutions", file_name);
 
 const test_file_path = path.join(".", "src", "tests", file_name);
