@@ -1,26 +1,28 @@
 import { default as part1 } from "#/solutions/day-09-disk-fragmenter-1";
 import { default as part2 } from "#/solutions/day-09-disk-fragmenter-2";
-import { readFileSync } from "node:fs";
-import { describe, test, beforeAll, expect } from "bun:test";
+import { describe, test, expect } from "bun:test";
+import path from "node:path";
 
-describe("Day 09: Disk Fragmenter", () => {
-  let input_1: string;
-  let input_prod: string;
-  let input_2: string;
-  beforeAll(() => {
-    const input_file_name_1 = __filename
-      .replace(/\.test\.ts$/, ".input.1.txt")
-      .replace(/tests/, "tests/io");
-    const input_file_name_2 = __filename
-      .replace(/\.test\.ts$/, ".input.2.txt")
-      .replace(/tests/, "tests/io");
-    input_1 = readFileSync(input_file_name_1, "utf-8");
-    input_2 = readFileSync(input_file_name_2, "utf-8");
-    input_prod = readFileSync(
-      `io/${new part1().constructor.name}.txt`,
-      "utf-8"
-    );
-  });
+const input_file_name_1 = __filename
+  .replace(/\.test\.ts$/, ".input.1.txt")
+  .replace(/tests/, "tests/io");
+const input_file_name_2 = __filename
+  .replace(/\.test\.ts$/, ".input.2.txt")
+  .replace(/tests/, "tests/io");
+const input_file_name_prod = path.join(
+  process.cwd(),
+  "io",
+  `${new part1().constructor.name}.txt`
+);
+const [input_1, input_2, input_prod] = await Promise.all(
+  [input_file_name_1, input_file_name_2, input_file_name_prod].map(
+    async (fn) => {
+      return (await import(fn, { with: { type: "text" } })).default;
+    }
+  )
+);
+
+describe("Day 09: Disk Fragmenter", async () => {
   test("part 1", async () => {
     const output = await new part1().solve(input_1);
     expect(output).toBe(1928); // FIXME - part 1
