@@ -25,18 +25,18 @@ const [input_1, input_2, input_prod] = await Promise.all(
 describe("Day 09: Disk Fragmenter", async () => {
   test("part 1", async () => {
     const output = await new part1().solve(input_1);
-    expect(output).toBe(1928); // FIXME - part 1
+    expect(output).toBe(1928);
   });
   test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(6367087064415); // FIXME - part 1 - prod
+    expect(output).toBe(6367087064415);
   });
   test("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(2858); // FIXME - part 2
+    expect(output).toBe(2858);
   });
   test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(6390781891880); // FIXME - part 2 - prod
+    expect(output).toBe(6390781891880);
   });
 });
