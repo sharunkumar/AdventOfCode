@@ -23,19 +23,43 @@ export default class DiskFragmenter extends Solution {
       }
     }
 
-    // Compact files by moving them to leftmost free space
-    for (let i = blocks.length - 1; i >= 0; i--) {
-      if (blocks[i] !== -1) {
-        let freeSpacePos = -1;
-        for (let j = 0; j < i; j++) {
-          if (blocks[j] === -1) {
-            freeSpacePos = j;
-            break;
-          }
+    // Compact files by moving whole files to leftmost free space
+    for (let currentFileId = fileId - 1; currentFileId >= 0; currentFileId--) {
+      // Find the file's current position and size
+      let fileStart = -1;
+      let fileSize = 0;
+      for (let i = 0; i < blocks.length; i++) {
+        if (blocks[i] === currentFileId) {
+          if (fileStart === -1) fileStart = i;
+          fileSize++;
         }
-        if (freeSpacePos !== -1) {
-          blocks[freeSpacePos] = blocks[i];
-          blocks[i] = -1;
+      }
+
+      // Find leftmost suitable free space
+      let bestFreeStart = -1;
+      let consecutiveFree = 0;
+      for (let i = 0; i < fileStart; i++) {
+        if (blocks[i] === -1) {
+          if (consecutiveFree === 0) bestFreeStart = i;
+          consecutiveFree++;
+          if (consecutiveFree === fileSize) break;
+        } else {
+          consecutiveFree = 0;
+          bestFreeStart = -1;
+        }
+      }
+
+      // Move the file if suitable free space was found
+      if (bestFreeStart !== -1 && consecutiveFree >= fileSize) {
+        // Copy file to new position
+        for (let i = 0; i < fileSize; i++) {
+          blocks[bestFreeStart + i] = currentFileId;
+        }
+        // Clear old position
+        for (let i = 0; i < blocks.length; i++) {
+          if (blocks[i] === currentFileId && i >= bestFreeStart + fileSize) {
+            blocks[i] = -1;
+          }
         }
       }
     }
