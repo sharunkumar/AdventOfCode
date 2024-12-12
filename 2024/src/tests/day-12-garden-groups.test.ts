@@ -21,17 +21,17 @@ describe("Day 12: Garden Groups", () => {
       "utf-8"
     );
   });
-  test.todo("part 1", async () => {
+  test("part 1", async () => {
     const output = await new part1().solve(input_1);
-    expect(output).toBe(null); // FIXME - part 1
+    expect(output).toBe(1930); // FIXME - part 1
   });
-  test.todo("part 1 - prod", async () => {
+  test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 1 - prod
+    expect(output).toBe(1431316); // FIXME - part 1 - prod
   });
   test.todo("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(null); // FIXME - part 2
+    expect(output).toBe(80); // FIXME - part 2
   });
   test.todo("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
