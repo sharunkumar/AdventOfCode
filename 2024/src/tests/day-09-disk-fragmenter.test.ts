@@ -25,9 +25,9 @@ describe("Day 09: Disk Fragmenter", () => {
     const output = await new part1().solve(input_1);
     expect(output).toBe(1928); // FIXME - part 1
   });
-  test.todo("part 1 - prod", async () => {
+  test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 1 - prod
+    expect(output).toBe(6367087064415); // FIXME - part 1 - prod
   });
   test.todo("part 2", async () => {
     const output = await new part2().solve(input_2);
