@@ -23,11 +23,11 @@ const [input_1, input_2, input_prod] = await Promise.all(
 );
 
 describe("Day 11: Plutonian Pebbles", () => {
-  test.todo("part 1", async () => {
+  test("part 1", async () => {
     const output = await new part1().solve(input_1);
-    expect(output).toBe(null); // FIXME - part 1
+    expect(output).toBe(55312); // FIXME - part 1
   });
-  test.todo("part 1 - prod", async () => {
+  test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
     expect(output).toBe(null); // FIXME - part 1 - prod
   });
