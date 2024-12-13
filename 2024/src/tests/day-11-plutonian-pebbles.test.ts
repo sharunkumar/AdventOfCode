@@ -33,10 +33,10 @@ describe("Day 11: Plutonian Pebbles", () => {
   });
   test("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(null); // FIXME - part 2
+    expect(output).toBe(65601038650482);
   });
   test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 2 - prod
+    expect(output).toBe(259755538429618);
   });
 });

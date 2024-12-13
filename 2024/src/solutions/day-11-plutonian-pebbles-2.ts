@@ -1,32 +1,43 @@
 import { Solution } from "#/utils";
 
 export default class PlutonianPebbles extends Solution {
-  solve(input: string) {
-    let stones = input.split(" ").map((x) => parseInt(x));
+  private cache = new Map<string, number>();
 
-    for (let i = 0; i < 25; i++) {
-      let output: number[] = [];
-
-      for (const stone of stones) {
-        if (stone === 0) {
-          output.push(1);
-          continue;
-        }
-
-        const string = stone.toString();
-        const length = string.length;
-
-        if (length % 2 === 0) {
-          output.push(parseInt(string.slice(0, length / 2)));
-          output.push(parseInt(string.slice(length / 2)));
-        } else {
-          output.push(stone * 2024);
-        }
-      }
-
-      stones = output;
+  private count(stone: number, steps: number): number {
+    const key = `${stone},${steps}`;
+    if (this.cache.has(key)) {
+      return this.cache.get(key)!;
     }
 
-    return stones.length;
+    if (steps === 0) {
+      return 1;
+    }
+
+    if (stone === 0) {
+      const result = this.count(1, steps - 1);
+      this.cache.set(key, result);
+      return result;
+    }
+
+    const string = stone.toString();
+    const length = string.length;
+
+    let result: number;
+    if (length % 2 === 0) {
+      const firstHalf = parseInt(string.slice(0, length / 2));
+      const secondHalf = parseInt(string.slice(length / 2));
+      result =
+        this.count(firstHalf, steps - 1) + this.count(secondHalf, steps - 1);
+    } else {
+      result = this.count(stone * 2024, steps - 1);
+    }
+
+    this.cache.set(key, result);
+    return result;
+  }
+
+  solve(input: string) {
+    const stones = input.split(/\s+/).map(Number);
+    return stones.reduce((sum, stone) => sum + this.count(stone, 75), 0);
   }
 }
