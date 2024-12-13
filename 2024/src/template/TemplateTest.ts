@@ -25,18 +25,22 @@ const [input_1, input_2, input_prod] = await Promise.all(
 describe("day 1", () => {
   test.todo("part 1", async () => {
     const output = await new part1().solve(input_1);
-    expect(output).toBe(null); // FIXME - part 1
+    // FIXME - part 1
+    expect(output).toBe(null);
   });
   test.todo("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 1 - prod
+    // FIXME - part 1 - prod
+    expect(output).toBe(null);
   });
   test.todo("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(null); // FIXME - part 2
+    // FIXME - part 2
+    expect(output).toBe(null);
   });
   test.todo("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 2 - prod
+    // FIXME - part 2 - prod
+    expect(output).toBe(null);
   });
 });
