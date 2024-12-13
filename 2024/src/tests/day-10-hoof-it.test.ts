@@ -1,5 +1,5 @@
-import { default as part1 } from "#/solutions/day-01-calorie-counting-1";
-import { default as part2 } from "#/solutions/day-01-calorie-counting-2";
+import { default as part1 } from "#/solutions/day-10-hoof-it-1";
+import { default as part2 } from "#/solutions/day-10-hoof-it-2";
 import { describe, test, expect } from "bun:test";
 import path from "node:path";
 
@@ -22,21 +22,21 @@ const [input_1, input_2, input_prod] = await Promise.all(
   )
 );
 
-describe("day 1", () => {
-  test.todo("part 1", async () => {
+describe("Day 10: Hoof It", () => {
+  test("part 1", async () => {
     const output = await new part1().solve(input_1);
-    expect(output).toBe(null); // FIXME - part 1
+    expect(output).toBe(36);
   });
-  test.todo("part 1 - prod", async () => {
+  test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 1 - prod
+    expect(output).toBe(737);
   });
-  test.todo("part 2", async () => {
+  test("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(null); // FIXME - part 2
+    expect(output).toBe(81);
   });
-  test.todo("part 2 - prod", async () => {
+  test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 2 - prod
+    expect(output).toBe(1619);
   });
 });

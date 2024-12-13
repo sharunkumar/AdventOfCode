@@ -31,10 +31,10 @@ describe("Day 07: Bridge Repair", () => {
   });
   test("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(11387); // FIXME - part 2
+    expect(output).toBe(11387);
   });
   test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(500335179214836); // FIXME - part 2 - prod
+    expect(output).toBe(500335179214836);
   });
 });
