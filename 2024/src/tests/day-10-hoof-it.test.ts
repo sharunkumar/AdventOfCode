@@ -23,13 +23,13 @@ const [input_1, input_2, input_prod] = await Promise.all(
 );
 
 describe("Day 10: Hoof It", () => {
-  test.todo("part 1", async () => {
+  test("part 1", async () => {
     const output = await new part1().solve(input_1);
-    expect(output).toBe(null); // FIXME - part 1
+    expect(output).toBe(36);
   });
-  test.todo("part 1 - prod", async () => {
+  test("part 1 - prod", async () => {
     const output = await new part1().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 1 - prod
+    expect(output).toBe(737);
   });
   test.todo("part 2", async () => {
     const output = await new part2().solve(input_2);
