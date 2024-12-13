@@ -33,10 +33,10 @@ describe("Day 10: Hoof It", () => {
   });
   test("part 2", async () => {
     const output = await new part2().solve(input_2);
-    expect(output).toBe(81); // FIXME - part 2
+    expect(output).toBe(81);
   });
   test("part 2 - prod", async () => {
     const output = await new part2().solve(input_prod);
-    expect(output).toBe(null); // FIXME - part 2 - prod
+    expect(output).toBe(1619);
   });
 });

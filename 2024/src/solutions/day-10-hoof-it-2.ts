@@ -26,19 +26,21 @@ export default class HoofIt extends Solution {
 
   private calculateTrailheadScore(grid: number[][], start: Pos): number {
     const visited = new Set<string>();
-    const reachable9s = new Set<string>();
+    const paths = new Set<string>();
 
-    const explore = (pos: Pos, currentHeight: number) => {
+    const explore = (pos: Pos, currentHeight: number, path: string) => {
       const key = `${pos.x},${pos.y}`;
-      if (visited.has(key)) return;
+      const visitKey = `${key}:${path}`;
+      if (visited.has(visitKey)) return;
 
       const height = grid[pos.y][pos.x];
       if (height !== currentHeight + 1) return;
 
-      visited.add(key);
+      visited.add(visitKey);
+      path = path + key + ";";
 
       if (height === 9) {
-        reachable9s.add(key);
+        paths.add(path);
         return;
       }
 
@@ -60,7 +62,7 @@ export default class HoofIt extends Solution {
           newY >= 0 &&
           newY < grid.length
         ) {
-          explore({ x: newX, y: newY }, height);
+          explore({ x: newX, y: newY }, height, path);
         }
       }
     };
@@ -83,10 +85,10 @@ export default class HoofIt extends Solution {
         newY >= 0 &&
         newY < grid.length
       ) {
-        explore({ x: newX, y: newY }, 0);
+        explore({ x: newX, y: newY }, 0, "");
       }
     }
 
-    return reachable9s.size;
+    return paths.size;
   }
 }
